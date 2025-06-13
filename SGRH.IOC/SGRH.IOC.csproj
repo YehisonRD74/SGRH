@@ -2,15 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>SGRH._Domain</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-    <Folder Include="Reservation\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
 
 </Project>
