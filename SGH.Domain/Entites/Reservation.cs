@@ -1,4 +1,4 @@
-﻿
+﻿using YourProject.Domain.Entities;
 
 namespace SGRH._Domain.Entities
 {
@@ -9,7 +9,10 @@ namespace SGRH._Domain.Entities
         public DateTime CheckOutDate { get; private set; }
         public string Status { get; private set; } // Confirmed, Cancelled, Pending
         public decimal TotalAmount { get; private set; }
+        
         public int CustomerId { get; private set; }
+        public Customer Customer { get; private set; } // Relación con Cliente
+        public ICollection<ReservationDetail> ReservationDetails { get; private set; } // Relación con Detalles
 
         public Reservation(int id, DateTime checkInDate, DateTime checkOutDate, string status, decimal totalAmount, int customerId)
         {
@@ -19,6 +22,8 @@ namespace SGRH._Domain.Entities
             Status = status;
             TotalAmount = totalAmount;
             CustomerId = customerId;
+
+            ReservationDetails = new List<ReservationDetail>();
         }
     }
 }

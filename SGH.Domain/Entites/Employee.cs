@@ -2,28 +2,14 @@
 
 namespace SGRH._Domain.Entities
 {
-    public class Employee : Person
-    {
-        public int Id { get; private set; }
-        public string Position { get; private set; }
+    public class Employee : User
+    {   
         public DateTime HireDate { get; private set; }
-
-        public Employee(
-            int id,
-            string name,
-            string lastName,
-            string email,
-            string phoneNumber,
-            int gender,
-            DateTime dateOfBirth,
-            string nationality,
-            string position,
-            DateTime hireDate
-        ) : base(name, lastName, email, phoneNumber, gender, dateOfBirth, nationality)
+        public Employee(int Id, string FirstName, string LastName, string Email, string PhoneNumber, string address, string Password, DateTime hireDate) : base(Id, FirstName, LastName, Email, PhoneNumber, address, Password)
         {
-            Id = id;
-            Position = position;
             HireDate = hireDate;
         }
+        
+        public override string Rol =>"Employee";
     }
 }

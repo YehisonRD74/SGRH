@@ -1,22 +1,12 @@
 ﻿using SGRH._Domain.Base;
 
-public class Administrator : Person
+public class Administrator : AuditEntity
 {
-    public int Id { get; private set; }
-    public string Role { get; private set; } = "Administrator";
-    public DateTime HireDate { get; private set; }
-
-    public Administrator(
-        string name,
-        string lastName,
-        string email,
-        string phoneNumber,
-        int gender,
-        DateTime dateOfBirth,
-        string nationality,
-        string createdBy
-    ) : base(name, lastName, email, phoneNumber, gender, dateOfBirth, nationality)
+    public Administrator(int Id, string FirstName, string LastName, string Email, string PhoneNumber, string address, string Password)
+        : base(Id, FirstName, LastName, Email, PhoneNumber, address, Password)
     {
-
     }
+
+    public string Rol => "Administrador";
+    
 }

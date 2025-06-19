@@ -2,18 +2,14 @@
 
 namespace YourProject.Domain.Entities
 {
-    public class Customer : Person
-    {
-        public int Id { get; private set; }
-        public string Address { get; private set; }
-        public string Password { get; private set; }
+    public class Customer : User
 
-        public Customer(int id, string name, string lastName, string email, string phoneNumber, int gender, DateTime dateOfBirth, string nationality, string address, string password)
-            : base(name, lastName, email, phoneNumber, gender, dateOfBirth, nationality)
+    {
+        public Customer(int Id, string FirstName, string LastName, string Email, string PhoneNumber, string address, string Password) : base(Id, FirstName, LastName, Email, PhoneNumber, address, Password)
         {
-            Id = id;
-            Address = address;
-            Password = password;
         }
+
+        public override string Rol => "Customer";
     }
 }
+

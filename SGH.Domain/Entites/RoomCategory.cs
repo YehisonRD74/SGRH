@@ -1,6 +1,4 @@
-﻿
-
-namespace SGRH._Domain.Entities
+﻿namespace SGRH._Domain.Entities
 {
     public class RoomCategory
     {
@@ -8,6 +6,7 @@ namespace SGRH._Domain.Entities
         public string CategoryName { get; private set; }
         public string Description { get; private set; }
         public decimal BaseRate { get; private set; }
+        public ICollection<Room> Rooms { get; private set; }
 
         public RoomCategory(int id, string categoryName, string description, decimal baseRate)
         {
@@ -15,6 +14,7 @@ namespace SGRH._Domain.Entities
             CategoryName = categoryName;
             Description = description;
             BaseRate = baseRate;
+            Rooms = new List<Room>();
         }
     }
 }

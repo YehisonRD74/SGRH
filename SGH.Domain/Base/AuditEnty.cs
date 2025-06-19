@@ -1,6 +1,6 @@
 ﻿using System;
 
-public abstract class AuditEntity
+public abstract class AuditEntity(int id, string firstName, string lastName, string email, string phoneNumber, string address, string password)
 {
     public string CreatedBy { get; private set; }
     public DateTime CreatedAt { get; private set; }
