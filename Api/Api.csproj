@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SGRH.Persistences\SGRH.Persistences.csproj" />
       <ProjectReference Include="..\SRH.Application\SRH.Application.csproj" />
     </ItemGroup>
 

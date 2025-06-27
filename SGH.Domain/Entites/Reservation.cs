@@ -12,7 +12,7 @@ namespace SGRH._Domain.Entities
         
         public int CustomerId { get; private set; }
         public Customer Customer { get; private set; } 
-        public ICollection<ReservationDetail> ReservationDetails { get; private set; } // Relación con Detalles
+        public ICollection<ReservationDetail> ReservationDetails { get; private set; } 
 
         public Reservation(int id, DateTime checkInDate, DateTime checkOutDate, string status, decimal totalAmount, int customerId)
         {
@@ -41,4 +41,8 @@ namespace SGRH._Domain.Entities
             TotalAmount = amount;
         }
     }
+
+
+    
+    
 }

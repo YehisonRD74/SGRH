@@ -10,4 +10,16 @@
       <ProjectReference Include="..\SGH.Domain\SGH.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Mono.Android">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.Android.Ref.34\34.0.52\ref\net8.0\Mono.Android.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Contracts\Services\" />
+      <Folder Include="Interfaces\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>
