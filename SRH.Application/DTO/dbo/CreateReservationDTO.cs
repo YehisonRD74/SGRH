@@ -4,7 +4,6 @@ namespace SRH.Application.DTO.dbo
     {
         public DateTime CheckInDate { get; init; }
         public DateTime CheckOutDate { get; init; }
-        public int ReservationStatus { get; init; }
         public decimal TotalAmount { get; init; }
         public int UserId { get; init; }
         public string CreatedBy { get; init; }

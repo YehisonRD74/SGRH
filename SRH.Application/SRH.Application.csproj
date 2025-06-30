@@ -17,9 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Contracts\Services\" />
-      <Folder Include="Interfaces\" />
-      <Folder Include="Services\" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
     </ItemGroup>
 
 </Project>

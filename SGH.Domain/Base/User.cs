@@ -1,31 +1,29 @@
-namespace SGRH._Domain.Base;
+using System;
+using SGRH._Domain.Base;
 
-public abstract class User: AuditEntity
+namespace SGRH._Domain.Base
 {
-    public int Id { get; set; }
-    public String FirstName { get; set; }
-    public String LastName { get; set; }
-    public string Email { get; set; }
-    public string PhoneNumber { get; set; }
-    public String address { get; set; }
-    public String Password{ get; set; }
-    
-
-    public abstract String Rol { get; }
-    
-    public User(int Id, string FirstName, string LastName, string Email, string PhoneNumber, string address, string Password) 
-        : base(Id, FirstName, LastName, Email, PhoneNumber, address, Password)
+    public abstract class User : BaseEntity
     {
-        this.Id = Id;   
-        this.FirstName = FirstName;
-        this.LastName = LastName;
-        this.Email = Email;
-        this.PhoneNumber = PhoneNumber;
-        this.address = address;
-        this.Password = Password;
-        
-        
-        
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public string PasswordHash { get; set; }
+
+        public abstract string Rol { get; }
+
+        protected User(string firstName, string lastName, string email, string phoneNumber, string address, string passwordHash)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Address = address;
+            PasswordHash = passwordHash;
+        }
+
+        protected User() { }
     }
-    
 }

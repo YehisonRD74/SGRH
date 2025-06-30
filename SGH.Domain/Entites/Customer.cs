@@ -3,13 +3,14 @@
 namespace YourProject.Domain.Entities
 {
     public class Customer : User
-
     {
-        public Customer(int Id, string FirstName, string LastName, string Email, string PhoneNumber, string address, string Password) : base(Id, FirstName, LastName, Email, PhoneNumber, address, Password)
+        public Customer(string firstName, string lastName, string email, string phoneNumber, string address, string passwordHash)
+            : base(firstName, lastName, email, phoneNumber, address, passwordHash)
         {
         }
 
         public override string Rol => "Customer";
+
+        protected Customer() : base() { }
     }
 }
-

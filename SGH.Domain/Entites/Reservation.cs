@@ -1,22 +1,23 @@
-﻿using YourProject.Domain.Entities;
+﻿using System;
+using System.Collections.Generic;
+using SGRH._Domain.Base;
+using YourProject.Domain.Entities;
 
 namespace SGRH._Domain.Entities
 {
-    public class Reservation
+    public class Reservation : BaseEntity
     {
-        public int Id { get;  set; }
-        public DateTime CheckInDate { get;  set; }
+        public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public string Status { get; set; } 
         public decimal TotalAmount { get; set; }
         
-        public int CustomerId { get; private set; }
-        public Customer Customer { get; private set; } 
-        public ICollection<ReservationDetail> ReservationDetails { get; private set; } 
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; } 
+        public ICollection<ReservationDetail> ReservationDetails { get; set; } 
 
-        public Reservation(int id, DateTime checkInDate, DateTime checkOutDate, string status, decimal totalAmount, int customerId)
+        public Reservation(DateTime checkInDate, DateTime checkOutDate, string status, decimal totalAmount, int customerId)
         {
-            Id = id;
             CheckInDate = checkInDate;
             CheckOutDate = checkOutDate;
             Status = status;
@@ -25,6 +26,9 @@ namespace SGRH._Domain.Entities
 
             ReservationDetails = new List<ReservationDetail>();
         }
+
+        protected Reservation() : base() { }
+
         public void UpdateDates(DateTime checkIn, DateTime checkOut)
         {
             CheckInDate = checkIn;
@@ -41,8 +45,4 @@ namespace SGRH._Domain.Entities
             TotalAmount = amount;
         }
     }
-
-
-    
-    
 }

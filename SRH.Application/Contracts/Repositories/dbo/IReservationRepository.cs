@@ -20,6 +20,7 @@ namespace SGM.Application.Contracts.Repositories
                Task<OperationResult> DisableAsync(DisableReservationDTO DisableReservationDTO);
        
                Task<OperationResult> GetAllAsync();
+               Task<OperationResult> GetByIdAsync(int id);
                
     }
 

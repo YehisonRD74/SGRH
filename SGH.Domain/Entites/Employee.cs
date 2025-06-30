@@ -1,15 +1,20 @@
-﻿using SGRH._Domain.Base;
+﻿using System;
+using SGRH._Domain.Base;
 
 namespace SGRH._Domain.Entities
 {
     public class Employee : User
-    {   
+    {
         public DateTime HireDate { get; private set; }
-        public Employee(int Id, string FirstName, string LastName, string Email, string PhoneNumber, string address, string Password, DateTime hireDate) : base(Id, FirstName, LastName, Email, PhoneNumber, address, Password)
+
+        public Employee(string firstName, string lastName, string email, string phoneNumber, string address, string passwordHash, DateTime hireDate)
+            : base(firstName, lastName, email, phoneNumber, address, passwordHash)
         {
             HireDate = hireDate;
         }
-        
-        public override string Rol =>"Employee";
+
+        protected Employee() : base() { }
+
+        public override string Rol => "Employee";
     }
 }

@@ -1,11 +1,18 @@
 ﻿using System;
 
-public abstract class AuditEntity(int id, string firstName, string lastName, string email, string phoneNumber, string address, string password)
+public abstract class AuditEntity
 {
-    public string CreatedBy { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public string? UpdatedBy { get; private set; }
-    public DateTime? UpdatedAt { get; private set; }
+    public int Id { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public string? CreatedBy { get; set; }
+    
+    public DateTime? UpdatedAt { get; set; }
+    public string? UpdatedBy { get; set; }
+
+    public bool IsDeleted { get; set; } = false;
+    public string? DeletedBy { get; set; }
+    public DateTime? DeletedAt { get; set; }
 
     public void SetCreated(string createdBy)
     {
@@ -13,10 +20,16 @@ public abstract class AuditEntity(int id, string firstName, string lastName, str
         CreatedAt = DateTime.UtcNow;
     }
 
-
     public void SetUpdated(string updatedBy)
     {
         UpdatedBy = updatedBy ?? throw new ArgumentNullException(nameof(updatedBy));
         UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void SetDeleted(string deletedBy)
+    {
+        IsDeleted = true;
+        DeletedBy = deletedBy ?? throw new ArgumentNullException(nameof(deletedBy));
+        DeletedAt = DateTime.UtcNow;
     }
 }

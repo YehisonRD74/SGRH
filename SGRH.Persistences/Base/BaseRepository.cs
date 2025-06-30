@@ -1,31 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SGRH._Domain.Base; 
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 namespace SGRH.Persistences.Base
 {
-   
     public abstract class BaseRepository<T>
     {
-        protected readonly ILogger<T> _logger;
+        protected readonly ILogger<T> logger;
 
         protected BaseRepository(ILogger<T> logger)
         {
-            _logger = logger;
+            logger = logger;
+        }
+
+        protected BaseRepository()
+        {
+            throw new NotImplementedException();
         }
 
         protected void LogInformation(string message, params object[] args)
         {
-            _logger.LogInformation(message, args);
+            logger.LogInformation(message, args);
         }
 
         protected void LogError(Exception exception, string message, params object[] args)
         {
-            _logger.LogError(exception, message, args);
+            logger.LogError(exception, message, args);
         }
-        
+
+        protected async Task<OperationResult> TryCatchAsync(Func<Task<OperationResult>> action, string actionName)
+        {
+            try
+            {
+                LogInformation("{Action} iniciado", actionName);
+                return await action();
+            }
+            catch (Exception ex)
+            {
+                LogError(ex, "Error en {Action}", actionName);
+                return OperationResult.Failure($"Error en {actionName}");
+            }
+        }
+
+        protected OperationResult TryCatch(Func<OperationResult> action, string actionName)
+        {
+            try
+            {
+                LogInformation("{Action} iniciado", actionName);
+                return action();
+            }
+            catch (Exception ex)
+            {
+                LogError(ex, "Error en {Action}", actionName);
+                return OperationResult.Failure($"Error en {actionName}");
+            }
+        }
     }
 }

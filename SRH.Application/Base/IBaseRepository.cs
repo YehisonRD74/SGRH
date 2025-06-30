@@ -1,6 +1,11 @@
-
 using System.Linq.Expressions;
 using SGRH._Domain.Base;
+
+namespace SRH.Application.Base
+{
+    using System.Linq.Expressions;
+    using SGRH._Domain.Base;
+}
 
 namespace SGM.Application.Contracts.Repositories
 {
@@ -8,14 +13,14 @@ namespace SGM.Application.Contracts.Repositories
     {
         Task<OperationResult> GetByIdAsync(int id);
 
-        Task<OperationResult> AddAsync(TEntity entity);
+        Task<OperationResult> AddAsync(TEntity TEntity);
 
         Task<OperationResult> UpdateAsync(TEntity entity);
 
         Task<OperationResult> DeleteAsync(TEntity entity);
 
-        Task<OperationResult> GetAllAsync(Expression<Func<TEntity, bool>> filter);
+        Task<OperationResult> GetAllAsync();
 
-        Task<OperationResult> ExistsAsync(Expression<Func<TEntity, bool>> filter);
+     
     }
 }

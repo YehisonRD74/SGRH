@@ -1,4 +1,6 @@
-﻿namespace SGRH._Domain.Base
+﻿using SGRH._Domain.Entities;
+
+namespace SGRH._Domain.Base
 {
     public class OperationResult
     {
@@ -19,11 +21,7 @@
             Data = data;
         }
 
-        public static OperationResult Success(string message = null)
-        {
-            return new OperationResult(true, message, null);
-        }
-
+        
         public static OperationResult Success(dynamic? data, string message = null)
         {
             return new OperationResult(true, message, data);

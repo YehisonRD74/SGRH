@@ -1,12 +1,16 @@
 ﻿using SGRH._Domain.Base;
 
-public class Administrator : User
+namespace SGRH._Domain.Entities
 {
-    public Administrator(int Id, string FirstName, string LastName, string Email, string PhoneNumber, string address, string Password)
-        : base(Id, FirstName, LastName, Email, PhoneNumber, address, Password)
+    public class Administrator : User
     {
-    }
+        public Administrator(string firstName, string lastName, string email, string phoneNumber, string address, string passwordHash)
+            : base(firstName, lastName, email, phoneNumber, address, passwordHash)
+        {
+        }
 
-    public override string Rol => "Administrador";
-    
+        public override string Rol => "Administrador";
+
+        protected Administrator() : base() { }
+    }
 }

@@ -1,14 +1,16 @@
-﻿namespace SGRH._Domain.Entities
+﻿using SGRH._Domain.Base;
+
+namespace SGRH._Domain.Entities
 {
-    public class Floor
+    public class Floor : BaseEntity
     {
-        public int Id { get; private set; }
-        public int NumeroPiso { get; private set; }
-        
-        public ICollection<Room> Room { get; private set; }
-        public Floor(int numeroPiso)
+        public int FloorNumber { get; set; }
+
+        public Floor(int entityFloorId, int floorNumber)
         {
-            NumeroPiso = numeroPiso;
+            FloorNumber = floorNumber;
         }
+
+        protected Floor() : base() { }
     }
 }
