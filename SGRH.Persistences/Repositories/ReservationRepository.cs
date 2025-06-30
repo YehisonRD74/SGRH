@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -10,386 +11,177 @@ using SRH.Application.DTO.dbo;
 
 namespace SGM.Persistence.Repositories
 {
-    public class ReservationRepository : BaseRepository<ReservationRepository>, IReservationRepository
+    public class ReservationDetailRepository : BaseRepository<ReservationDetailRepository>, IReservationDetailRepository
     {
         private readonly string _connectionString;
 
-        public ReservationRepository(string connectionString, ILogger<ReservationRepository> logger)
+        public ReservationDetailRepository(string connectionString, ILogger<ReservationDetailRepository> logger)
             : base(logger)
         {
             _connectionString = connectionString;
         }
 
-        public async Task<OperationResult> AddAsync(CreateReservationDTO createReservationDTO)
+        public async Task<OperationResult> AddAsync(CreateReservationDetailDTO dto)
         {
-            var resultOperation = new OperationResult();
+            var result = new OperationResult();
 
             try
             {
-                LogInformation("Creando reservación: {UserId}", createReservationDTO?.UserId);
-
-                if (createReservationDTO == null)
+                using var connection = new SqlConnection(_connectionString);
+                using var command = new SqlCommand("dbo.CreateReservationDetail", connection)
                 {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "Error: El objeto CreateReservationDTO no puede ser nulo.";
-                    return resultOperation;
-                }
+                    CommandType = CommandType.StoredProcedure
+                };
 
-                if (string.IsNullOrWhiteSpace(createReservationDTO.CreatedBy))
+                command.Parameters.AddWithValue("@NightPrice", dto.NightPrice);
+                command.Parameters.AddWithValue("@Subtotal", dto.Subtotal);
+                command.Parameters.AddWithValue("@ReservationId", dto.ReservationId);
+                command.Parameters.AddWithValue("@RoomId", dto.RoomId);
+                command.Parameters.AddWithValue("@CreatedAt", dto.CreatedAt);
+
+                var p_result = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
                 {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'CreatedBy' no puede estar vacío.";
-                    return resultOperation;
-                }
+                    Direction = ParameterDirection.Output
+                };
+                command.Parameters.Add(p_result);
 
-                if (createReservationDTO.CreatedBy.Length > 100)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'CreatedBy' no puede tener más de 100 caracteres.";
-                    return resultOperation;
-                }
+                await connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
 
-                if (createReservationDTO.UserId <= 0)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'UserId' debe ser mayor a 0.";
-                    return resultOperation;
-                }
-
-                if (createReservationDTO.CheckInDate == DateTime.MinValue)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'CheckInDate' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                if (createReservationDTO.CheckOutDate == DateTime.MinValue)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'CheckOutDate' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                if (createReservationDTO.CreatedAt == DateTime.MinValue)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'CreatedAt' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                if (string.IsNullOrWhiteSpace(createReservationDTO.Status))
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'Status' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                if (createReservationDTO.Status.Length > 20)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'Status' no puede tener más de 20 caracteres.";
-                    return resultOperation;
-                }
-
-                if (createReservationDTO.TotalAmount <= 0)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'TotalAmount' debe ser mayor a 0.";
-                    return resultOperation;
-                }
-
-                using (var connection = new SqlConnection(_connectionString))
-                using (var command = new SqlCommand("dbo.CreateReservation", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@CheckInDate", createReservationDTO.CheckInDate);
-                    command.Parameters.AddWithValue("@CheckOutDate", createReservationDTO.CheckOutDate);
-                    command.Parameters.AddWithValue("@Status", createReservationDTO.Status);
-                    command.Parameters.AddWithValue("@TotalAmount", createReservationDTO.TotalAmount);
-                    command.Parameters.AddWithValue("@UserId", createReservationDTO.UserId);
-                    command.Parameters.AddWithValue("@CreatedBy", createReservationDTO.CreatedBy);
-                    command.Parameters.AddWithValue("@CreatedAt", createReservationDTO.CreatedAt);
-
-                    var p_result = new SqlParameter("@presult", SqlDbType.VarChar)
-                    {
-                        Direction = ParameterDirection.Output,
-                        Size = 1000
-                    };
-                    command.Parameters.Add(p_result);
-
-                    await connection.OpenAsync();
-                    await command.ExecuteNonQueryAsync();
-
-                    var mensajeSP = p_result.Value?.ToString();
-                    resultOperation.Message = mensajeSP;
-                    if (mensajeSP == "Reserva creada exitosamente.")
-                    {
-                        resultOperation.IsSuccess = true;
-                        LogInformation(mensajeSP);
-                    }
-                    else
-                    {
-                        resultOperation.IsSuccess = false;
-                        LogError(new Exception("SP Execution Error"), mensajeSP);
-                    }
-                }
+                result.Message = p_result.Value?.ToString();
+                result.IsSuccess = result.Message == "Detalle de reserva creado exitosamente.";
             }
             catch (Exception ex)
             {
-                LogError(ex, "Error al crear la reserva.");
-                resultOperation.IsSuccess = false;
-                resultOperation.Message = "Ocurrió un error: " + ex.Message;
+                LogError(ex, "Error al crear el detalle de reserva.");
+                result.IsSuccess = false;
+                result.Message = ex.Message;
             }
 
-            return resultOperation;
+            return result;
         }
 
-        public async Task<OperationResult> UpdateAsync(UpDateReservationDTO UpDateReservationDTO)
+        public async Task<OperationResult> UpdateAsync(UpdateReservationDetailDTO dto)
         {
-            var resultOperation = new OperationResult();
+            var result = new OperationResult();
 
             try
             {
-                LogInformation("Actualizando reservación ID: {ReservationId}", UpDateReservationDTO?.ReservationId);
-
-                if (UpDateReservationDTO == null)
+                using var connection = new SqlConnection(_connectionString);
+                using var command = new SqlCommand("dbo.UpdateReservationDetail", connection)
                 {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "Error: El objeto UpDateReservationDTO no puede ser nulo.";
-                    return resultOperation;
-                }
+                    CommandType = CommandType.StoredProcedure
+                };
 
-                if (UpDateReservationDTO.ReservationId <= 0)
+                command.Parameters.AddWithValue("@Id", dto.Id);
+                command.Parameters.AddWithValue("@NightPrice", dto.NightPrice);
+                command.Parameters.AddWithValue("@Subtotal", dto.Subtotal);
+                command.Parameters.AddWithValue("@ReservationId", dto.ReservationId);
+                command.Parameters.AddWithValue("@RoomId", dto.RoomId);
+                command.Parameters.AddWithValue("@UpdatedAt", dto.UpdatedAt);
+
+                var p_result = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
                 {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'ReservationId' debe ser mayor a 0.";
-                    return resultOperation;
-                }
+                    Direction = ParameterDirection.Output
+                };
+                command.Parameters.Add(p_result);
 
-                if (UpDateReservationDTO.UserId <= 0)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'UserId' debe ser mayor a 0.";
-                    return resultOperation;
-                }
+                await connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
 
-                if (UpDateReservationDTO.CheckInDate == DateTime.MinValue)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'CheckInDate' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                if (UpDateReservationDTO.CheckOutDate == DateTime.MinValue)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'CheckOutDate' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                if (string.IsNullOrWhiteSpace(UpDateReservationDTO.Status))
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'Status' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                if (UpDateReservationDTO.Status.Length > 20)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'Status' no puede tener más de 20 caracteres.";
-                    return resultOperation;
-                }
-
-                if (UpDateReservationDTO.TotalAmount <= 0)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'TotalAmount' debe ser mayor a 0.";
-                    return resultOperation;
-                }
-
-                if (UpDateReservationDTO.UpdateAT == DateTime.MinValue)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'UpdateAT' no puede estar vacío.";
-                    return resultOperation;
-                }
-
-                using (var connection = new SqlConnection(_connectionString))
-                using (var command = new SqlCommand("dbo.UpdateReservation", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@ReservationId", UpDateReservationDTO.ReservationId);
-                    command.Parameters.AddWithValue("@CheckInDate", UpDateReservationDTO.CheckInDate);
-                    command.Parameters.AddWithValue("@CheckOutDate", UpDateReservationDTO.CheckOutDate);
-                    command.Parameters.AddWithValue("@Status", UpDateReservationDTO.Status);
-                    command.Parameters.AddWithValue("@TotalAmount", UpDateReservationDTO.TotalAmount);
-                    command.Parameters.AddWithValue("@UserId", UpDateReservationDTO.UserId);
-                    command.Parameters.AddWithValue("@UpdateAT", UpDateReservationDTO.UpdateAT);
-
-                    var p_result = new SqlParameter("@presult", SqlDbType.VarChar)
-                    {
-                        Direction = ParameterDirection.Output,
-                        Size = 1000
-                    };
-                    command.Parameters.Add(p_result);
-
-                    await connection.OpenAsync();
-                    await command.ExecuteNonQueryAsync();
-
-                    var mensajeSP = p_result.Value?.ToString();
-                    resultOperation.Message = mensajeSP;
-                    if (mensajeSP == "Reserva actualizada correctamente.")
-                    {
-                        resultOperation.IsSuccess = true;
-                        LogInformation("Reserva ID {ReservationId} actualizada correctamente.",
-                            UpDateReservationDTO.ReservationId);
-                    }
-                    else
-                    {
-                        resultOperation.IsSuccess = false;
-                        LogError(new Exception("SP Execution Error"), mensajeSP);
-                    }
-                }
+                result.Message = p_result.Value?.ToString();
+                result.IsSuccess = result.Message == "Detalle de reserva actualizado exitosamente.";
             }
             catch (Exception ex)
             {
-                LogError(ex, "Error al actualizar la reserva.");
-                resultOperation.IsSuccess = false;
-                resultOperation.Message = "Ocurrió un error: " + ex.Message;
+                LogError(ex, "Error al actualizar el detalle de reserva.");
+                result.IsSuccess = false;
+                result.Message = ex.Message;
             }
 
-            return resultOperation;
+            return result;
         }
 
-        public async Task<OperationResult> DisableAsync(DisableReservationDTO DisableReservationDT)
+        public async Task<OperationResult> DisableAsync(DisableReservationDetailDTO dto)
         {
-            var resultOperation = new OperationResult();
+            var result = new OperationResult();
 
             try
             {
-                LogInformation("Desactivando reserva ID: {ReservationId}", DisableReservationDT?.ReservationId);
-
-                if (DisableReservationDT == null)
+                using var connection = new SqlConnection(_connectionString);
+                using var command = new SqlCommand("dbo.DisableReservationDetail", connection)
                 {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "Error: El objeto DisableReservationDT no puede ser nulo.";
-                    return resultOperation;
-                }
+                    CommandType = CommandType.StoredProcedure
+                };
 
-                if (DisableReservationDT.ReservationId <= 0)
+                command.Parameters.AddWithValue("@Id", dto.Id);
+                command.Parameters.AddWithValue("@UpdatedAt", dto.UpdatedAt);
+
+                var p_result = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
                 {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'ReservationId' debe ser mayor a 0.";
-                    return resultOperation;
-                }
+                    Direction = ParameterDirection.Output
+                };
+                command.Parameters.Add(p_result);
 
-                if (DisableReservationDT.UpdateAT == DateTime.MinValue)
-                {
-                    resultOperation.IsSuccess = false;
-                    resultOperation.Message = "El campo 'UpdateAT' no puede estar vacío.";
-                    return resultOperation;
-                }
+                await connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
 
-                using (var connection = new SqlConnection(_connectionString))
-                using (var command = new SqlCommand("dbo.DisableReservation", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@ReservationId", DisableReservationDT.ReservationId);
-                    command.Parameters.AddWithValue("@UpdateAT", DisableReservationDT.UpdateAT);
-
-                    var p_result = new SqlParameter("@presult", SqlDbType.VarChar)
-                    {
-                        Direction = ParameterDirection.Output,
-                        Size = 1000
-                    };
-                    command.Parameters.Add(p_result);
-
-                    await connection.OpenAsync();
-                    await command.ExecuteNonQueryAsync();
-
-                    var mensajeSP = p_result.Value?.ToString();
-                    resultOperation.Message = mensajeSP;
-
-                    if (mensajeSP == "Reserva desactivada correctamente.")
-                    {
-                        resultOperation.IsSuccess = true;
-                        LogInformation(mensajeSP);
-                    }
-                    else
-                    {
-                        resultOperation.IsSuccess = false;
-                        LogError(new Exception("SP Execution Error"), mensajeSP);
-                    }
-                }
+                result.Message = p_result.Value?.ToString();
+                result.IsSuccess = result.Message == "Detalle de reserva desactivado correctamente.";
             }
             catch (Exception ex)
             {
-                LogError(ex, "Error al desactivar la reserva.");
-                resultOperation.IsSuccess = false;
-                resultOperation.Message = "Ocurrió un error: " + ex.Message;
+                LogError(ex, "Error al desactivar el detalle de reserva.");
+                result.IsSuccess = false;
+                result.Message = ex.Message;
             }
 
-            return resultOperation;
+            return result;
         }
 
         public async Task<OperationResult> GetAllAsync()
         {
-            OperationResult presult = new OperationResult();
+            var result = new OperationResult();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(this._connectionString))
-                using (SqlCommand command = new SqlCommand("dbo.GetActiveReservation", connection))
+                using var connection = new SqlConnection(_connectionString);
+                using var command = new SqlCommand("dbo.GetReservationDetails", connection)
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    await connection.OpenAsync();
+                    CommandType = CommandType.StoredProcedure
+                };
 
-                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                await connection.OpenAsync();
+
+                using var reader = await command.ExecuteReaderAsync();
+                var list = new List<GetReservationDetailDTO>();
+
+                while (await reader.ReadAsync())
+                {
+                    var detail = new GetReservationDetailDTO
                     {
-                        List<GetActiveReservation> reservations = new List<GetActiveReservation>();
+                        Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                        NightPrice = reader.GetDecimal(reader.GetOrdinal("NightPrice")),
+                        Subtotal = reader.GetDecimal(reader.GetOrdinal("Subtotal")),
+                        ReservationId = reader.GetInt32(reader.GetOrdinal("ReservationId")),
+                        RoomId = reader.GetInt32(reader.GetOrdinal("RoomId"))
+                    };
 
-                        if (!reader.HasRows)
-                        {
-                            presult.IsSuccess = true;
-                            presult.Data = reservations;
-                            presult.Message = "No hay reservas activas registradas.";
-                            return presult;
-                        }
-
-                        while (await reader.ReadAsync())
-                        {
-                            GetActiveReservation reservation = new GetActiveReservation
-                            {
-                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                CheckInDate = reader.GetDateTime(reader.GetOrdinal("CheckInDate")),
-                                CheckOutDate = reader.GetDateTime(reader.GetOrdinal("CheckOutDate")),
-                                Status = reader.GetString(reader.GetOrdinal("Status")),
-                                TotalAmount = reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
-                                UserId = reader.GetInt32(reader.GetOrdinal("UserId"))
-                            };
-
-                            reservations.Add(reservation);
-                        }
-
-                        presult.IsSuccess = true;
-                        presult.Data = reservations;
-                        presult.Message = "Reservas activas obtenidas correctamente.";
-                    }
+                    list.Add(detail);
                 }
+
+                result.IsSuccess = true;
+                result.Data = list;
+                result.Message = "Detalles de reserva obtenidos correctamente.";
             }
             catch (Exception ex)
             {
-                presult.IsSuccess = false;
-                presult.Message = $"Error al obtener las reservas activas: {ex.Message}";
-                LogError(ex, "Error al obtener las reservas activas.");
+                LogError(ex, "Error al obtener detalles de reserva.");
+                result.IsSuccess = false;
+                result.Message = ex.Message;
             }
 
-            return presult;
+            return result;
         }
-
     }
 }

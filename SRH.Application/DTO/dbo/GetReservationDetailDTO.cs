@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SRH.Application.DTO.dbo
 {
-    
-
-    public record DisableReservationDTO
+    public record GetReservationDetailDTO
     {
+        public int Id { get; init; }
+        public decimal NightPrice { get; init; }
+        public decimal Subtotal { get; init; }
         public int ReservationId { get; init; }
-        public DateTime UpdateAT { get; init; }
+        public int RoomId { get; init; }
     }
-
 }

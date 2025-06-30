@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace SRH.Application.DTO.dbo
 {
-    
-
-    public record DisableReservationDTO
+    public record DisableRoomCategoryDTO
     {
-        public int ReservationId { get; init; }
-        public DateTime UpdateAT { get; init; }
+        public int CategoryId { get; init; }
+        public DateTime UpdatedAt { get; init; }
     }
-
 }

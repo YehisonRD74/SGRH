@@ -1,15 +1,22 @@
-namespace SRH.Application.DTO.dbo;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public record GetActiveReservation
+namespace SRH.Application.DTO.dbo
 {
-    public int Id{ get; init; }
-    public DateTime CheckInDate { get; init; }
-    public DateTime CheckOutDate { get; init; }
-    public String Status { get; init; }
-    public decimal TotalAmount { get; init; }
-    public int UserId { get; init; }
-    
+    public record GetActiveReservation
+    {
+        public int Id { get; init; }
+        public DateTime CheckInDate { get; init; }
+        public DateTime CheckOutDate { get; init; }
+        public String Status { get; init; }
+        public decimal TotalAmount { get; init; }
+        public int UserId { get; init; }
 
-   
-  
+
+
+
+    }
 }
