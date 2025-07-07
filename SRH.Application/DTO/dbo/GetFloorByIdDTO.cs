@@ -1,6 +1,6 @@
 namespace SGRH.Application.DTO.dbo
 {
-    public record GetFloorByIdDTO
+    public record GetFloorByIdDto
     {
         public int Id { get; init; }
     }

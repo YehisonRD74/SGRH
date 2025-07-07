@@ -1,102 +1,116 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SGM.Application.Contracts.Repositories;
 using SGRH._Domain.Base;
 using SGRH.Persistences.Base;
+using SRH.Application.Contracts.Repositories.dbo;
 using SRH.Application.DTO.dbo;
 
-namespace SGM.Persistence.Repositories
+namespace SGRH.Persistences.Repositories
 {
     public class ReservationRepository : BaseRepository<ReservationRepository>, IReservationRepository
     {
         private readonly string _connectionString;
 
-        public ReservationRepository(string connectionString, ILogger<ReservationRepository> logger)
+        public ReservationRepository(string connectionString, ILogger<ReservationRepository>? logger)
             : base(logger)
         {
             _connectionString = connectionString;
         }
 
-        public async Task<OperationResult> AddAsync(CreateReservationDTO createReservationDTO)
+        [Obsolete("Obsolete")]
+        public async Task<OperationResult> AddAsync(CreateReservationDto createReservationDto)
         {
             var resultOperation = new OperationResult();
 
             try
             {
-                LogInformation("Creando reservación: {UserId}", createReservationDTO?.UserId);
-
-                if (createReservationDTO == null)
-                    return new OperationResult { IsSuccess = false, Message = "Error: El objeto CreateReservationDTO no puede ser nulo." };
-
-                if (string.IsNullOrWhiteSpace(createReservationDTO.CreatedBy))
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'CreatedBy' no puede estar vacío." };
-
-                if (createReservationDTO.CreatedBy.Length > 100)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'CreatedBy' no puede tener más de 100 caracteres." };
-
-                if (createReservationDTO.UserId <= 0)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'UserId' debe ser mayor a 0." };
-
-                if (createReservationDTO.CheckInDate == DateTime.MinValue)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'CheckInDate' no puede estar vacío." };
-
-                if (createReservationDTO.CheckOutDate == DateTime.MinValue)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'CheckOutDate' no puede estar vacío." };
-
-                if (createReservationDTO.CreatedAt == DateTime.MinValue)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'CreatedAt' no puede estar vacío." };
-
-                if (string.IsNullOrWhiteSpace(createReservationDTO.Status))
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'Status' no puede estar vacío." };
-
-                if (createReservationDTO.Status.Length > 20)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'Status' no puede tener más de 20 caracteres." };
-
-                if (createReservationDTO.TotalAmount <= 0)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'TotalAmount' debe ser mayor a 0." };
-
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.CreateReservation", connection)
+                if (createReservationDto?.UserId != null)
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
+                    if (createReservationDto?.UserId != null)
+                    {
+                        LogInformation("Creando reservación: {UserId}", createReservationDto?.UserId);
 
-                command.Parameters.AddWithValue("@CheckInDate", createReservationDTO.CheckInDate);
-                command.Parameters.AddWithValue("@CheckOutDate", createReservationDTO.CheckOutDate);
-                command.Parameters.AddWithValue("@Status", createReservationDTO.Status);
-                command.Parameters.AddWithValue("@TotalAmount", createReservationDTO.TotalAmount);
-                command.Parameters.AddWithValue("@UserId", createReservationDTO.UserId);
-                command.Parameters.AddWithValue("@CreatedBy", createReservationDTO.CreatedBy);
-                command.Parameters.AddWithValue("@CreatedAt", createReservationDTO.CreatedAt);
+                        if (string.IsNullOrWhiteSpace(createReservationDto.CreatedBy))
+                            return new OperationResult
+                                { IsSuccess = false, Message = "El campo 'CreatedBy' no puede estar vacío." };
 
-                var p_result = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                command.Parameters.Add(p_result);
+                        if (createReservationDto.CreatedBy.Length > 100)
+                            return new OperationResult
+                            {
+                                IsSuccess = false,
+                                Message = "El campo 'CreatedBy' no puede tener más de 100 caracteres."
+                            };
 
-                await connection.OpenAsync();
-                await command.ExecuteNonQueryAsync();
+                        if (createReservationDto.UserId <= 0)
+                            return new OperationResult
+                                { IsSuccess = false, Message = "El campo 'UserId' debe ser mayor a 0." };
 
-                var mensajeSP = p_result.Value?.ToString();
-                resultOperation.Message = mensajeSP;
+                        if (createReservationDto.CheckInDate == DateTime.MinValue)
+                            return new OperationResult
+                                { IsSuccess = false, Message = "El campo 'CheckInDate' no puede estar vacío." };
 
-                if (mensajeSP == "Reserva creada exitosamente.")
-                {
-                    resultOperation.IsSuccess = true;
-                    LogInformation(mensajeSP);
-                }
-                else
-                {
-                    resultOperation.IsSuccess = false;
-                    LogError(new Exception("SP Execution Error"), mensajeSP);
+                        if (createReservationDto.CheckOutDate == DateTime.MinValue)
+                            return new OperationResult
+                                { IsSuccess = false, Message = "El campo 'CheckOutDate' no puede estar vacío." };
+
+                        if (createReservationDto.CreatedAt == DateTime.MinValue)
+                            return new OperationResult
+                                { IsSuccess = false, Message = "El campo 'CreatedAt' no puede estar vacío." };
+
+                        if (string.IsNullOrWhiteSpace(createReservationDto.Status))
+                            return new OperationResult
+                                { IsSuccess = false, Message = "El campo 'Status' no puede estar vacío." };
+
+                        if (createReservationDto.Status.Length > 20)
+                            return new OperationResult
+                            {
+                                IsSuccess = false, Message = "El campo 'Status' no puede tener más de 20 caracteres."
+                            };
+
+                        if (createReservationDto.TotalAmount <= 0)
+                            return new OperationResult
+                                { IsSuccess = false, Message = "El campo 'TotalAmount' debe ser mayor a 0." };
+
+                        using var connection = new SqlConnection(_connectionString);
+                        using var command = new SqlCommand("dbo.CreateReservation", connection);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue("@CheckInDate", createReservationDto.CheckInDate);
+                        command.Parameters.AddWithValue("@CheckOutDate", createReservationDto.CheckOutDate);
+                        command.Parameters.AddWithValue("@Status", createReservationDto.Status);
+                        command.Parameters.AddWithValue("@TotalAmount", createReservationDto.TotalAmount);
+                        command.Parameters.AddWithValue("@UserId", createReservationDto.UserId);
+                        command.Parameters.AddWithValue("@CreatedBy", createReservationDto.CreatedBy);
+                        command.Parameters.AddWithValue("@CreatedAt", createReservationDto.CreatedAt);
+
+                        var pResult = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        command.Parameters.Add(pResult);
+
+                        await connection.OpenAsync();
+                        await command.ExecuteNonQueryAsync();
+
+                        var mensajeSp = pResult.Value?.ToString();
+                        resultOperation.Message = mensajeSp;
+
+                        if (mensajeSp == "Reserva creada exitosamente.")
+                        {
+                            resultOperation.IsSuccess = true;
+                            LogInformation(mensajeSp);
+                        }
+                        else
+                        {
+                            resultOperation.IsSuccess = false;
+                            if (mensajeSp != null) LogError(new Exception("SP Execution Error"), mensajeSp);
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception? ex)
             {
                 LogError(ex, "Error al crear la reserva.");
                 resultOperation.IsSuccess = false;
@@ -106,79 +120,89 @@ namespace SGM.Persistence.Repositories
             return resultOperation;
         }
 
-        public async Task<OperationResult> UpdateAsync(UpDateReservationDTO UpDateReservationDTO)
+        [Obsolete("Obsolete")]
+        public async Task<OperationResult> UpdateAsync(UpDateReservationDto upDateReservationDto)
         {
             var resultOperation = new OperationResult();
 
             try
             {
-                LogInformation("Actualizando reservación ID: {ReservationId}", UpDateReservationDTO?.ReservationId);
-
-                if (UpDateReservationDTO == null)
-                    return new OperationResult { IsSuccess = false, Message = "Error: El objeto UpDateReservationDTO no puede ser nulo." };
-
-                if (UpDateReservationDTO.ReservationId <= 0)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'ReservationId' debe ser mayor a 0." };
-
-                if (UpDateReservationDTO.UserId <= 0)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'UserId' debe ser mayor a 0." };
-
-                if (UpDateReservationDTO.CheckInDate == DateTime.MinValue)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'CheckInDate' no puede estar vacío." };
-
-                if (UpDateReservationDTO.CheckOutDate == DateTime.MinValue)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'CheckOutDate' no puede estar vacío." };
-
-                if (string.IsNullOrWhiteSpace(UpDateReservationDTO.Status))
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'Status' no puede estar vacío." };
-
-                if (UpDateReservationDTO.Status.Length > 20)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'Status' no puede tener más de 20 caracteres." };
-
-                if (UpDateReservationDTO.TotalAmount <= 0)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'TotalAmount' debe ser mayor a 0." };
-
-                if (UpDateReservationDTO.UpdateAT == DateTime.MinValue)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'UpdateAT' no puede estar vacío." };
-
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.UpdateReservation", connection)
+                if (upDateReservationDto?.ReservationId != null)
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
+                    LogInformation("Actualizando reservación ID: {ReservationId}", upDateReservationDto?.ReservationId);
 
-                command.Parameters.AddWithValue("@ReservationId", UpDateReservationDTO.ReservationId);
-                command.Parameters.AddWithValue("@CheckInDate", UpDateReservationDTO.CheckInDate);
-                command.Parameters.AddWithValue("@CheckOutDate", UpDateReservationDTO.CheckOutDate);
-                command.Parameters.AddWithValue("@Status", UpDateReservationDTO.Status);
-                command.Parameters.AddWithValue("@TotalAmount", UpDateReservationDTO.TotalAmount);
-                command.Parameters.AddWithValue("@UserId", UpDateReservationDTO.UserId);
-                command.Parameters.AddWithValue("@UpdateAT", UpDateReservationDTO.UpdateAT);
+                    if (upDateReservationDto.ReservationId <= 0)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'ReservationId' debe ser mayor a 0." };
 
-                var p_result = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                command.Parameters.Add(p_result);
+                    if (upDateReservationDto.UserId <= 0)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'UserId' debe ser mayor a 0." };
 
-                await connection.OpenAsync();
-                await command.ExecuteNonQueryAsync();
+                    if (upDateReservationDto.CheckInDate == DateTime.MinValue)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'CheckInDate' no puede estar vacío." };
 
-                var mensajeSP = p_result.Value?.ToString();
-                resultOperation.Message = mensajeSP;
+                    if (upDateReservationDto.CheckOutDate == DateTime.MinValue)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'CheckOutDate' no puede estar vacío." };
 
-                if (mensajeSP == "Reserva actualizada correctamente.")
-                {
-                    resultOperation.IsSuccess = true;
-                    LogInformation("Reserva ID {ReservationId} actualizada correctamente.", UpDateReservationDTO.ReservationId);
-                }
-                else
-                {
-                    resultOperation.IsSuccess = false;
-                    LogError(new Exception("SP Execution Error"), mensajeSP);
+                    if (string.IsNullOrWhiteSpace(upDateReservationDto.Status))
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'Status' no puede estar vacío." };
+
+                    if (upDateReservationDto.Status.Length > 20)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'Status' no puede tener más de 20 caracteres." };
+
+                    if (upDateReservationDto.TotalAmount <= 0)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'TotalAmount' debe ser mayor a 0." };
+
+                    if (upDateReservationDto.UpdateAT == DateTime.MinValue)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'UpdateAT' no puede estar vacío." };
+
+                    using var connection = new SqlConnection(_connectionString);
+                    using var command = new SqlCommand("dbo.UpdateReservation", connection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    command.Parameters.AddWithValue("@ReservationId", upDateReservationDto.ReservationId);
+                    command.Parameters.AddWithValue("@CheckInDate", upDateReservationDto.CheckInDate);
+                    command.Parameters.AddWithValue("@CheckOutDate", upDateReservationDto.CheckOutDate);
+                    command.Parameters.AddWithValue("@Status", upDateReservationDto.Status);
+                    command.Parameters.AddWithValue("@TotalAmount", upDateReservationDto.TotalAmount);
+                    command.Parameters.AddWithValue("@UserId", upDateReservationDto.UserId);
+                    command.Parameters.AddWithValue("@UpdateAT", upDateReservationDto.UpdateAT);
+
+                    var p_result = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(p_result);
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+
+                    var mensajeSp = p_result.Value?.ToString();
+                    resultOperation.Message = mensajeSp;
+
+                    if (mensajeSp == "Reserva actualizada correctamente.")
+                    {
+                        resultOperation.IsSuccess = true;
+                        LogInformation("Reserva ID {ReservationId} actualizada correctamente.",
+                            upDateReservationDto.ReservationId);
+                    }
+                    else
+                    {
+                        resultOperation.IsSuccess = false;
+                        LogError(new Exception("SP Execution Error"), mensajeSp);
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception? ex)
             {
                 LogError(ex, "Error al actualizar la reserva.");
                 resultOperation.IsSuccess = false;
@@ -188,56 +212,58 @@ namespace SGM.Persistence.Repositories
             return resultOperation;
         }
 
-        public async Task<OperationResult> DisableAsync(DisableReservationDTO DisableReservationDT)
+        [Obsolete("Obsolete")]
+        public async Task<OperationResult> DisableAsync(DisableReservationDto disableReservationDt)
         {
+            if (disableReservationDt == null) throw new ArgumentNullException(nameof(disableReservationDt));
             var resultOperation = new OperationResult();
 
             try
             {
-                LogInformation("Desactivando reserva ID: {ReservationId}", DisableReservationDT?.ReservationId);
-
-                if (DisableReservationDT == null)
-                    return new OperationResult { IsSuccess = false, Message = "Error: El objeto DisableReservationDT no puede ser nulo." };
-
-                if (DisableReservationDT.ReservationId <= 0)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'ReservationId' debe ser mayor a 0." };
-
-                if (DisableReservationDT.UpdateAT == DateTime.MinValue)
-                    return new OperationResult { IsSuccess = false, Message = "El campo 'UpdateAT' no puede estar vacío." };
-
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.DisableReservation", connection)
+                if (disableReservationDt?.ReservationId != null)
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
+                    LogInformation("Desactivando reserva ID: {ReservationId}", disableReservationDt?.ReservationId);
 
-                command.Parameters.AddWithValue("@ReservationId", DisableReservationDT.ReservationId);
-                command.Parameters.AddWithValue("@UpdateAT", DisableReservationDT.UpdateAT);
+                    if (disableReservationDt.ReservationId <= 0)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'ReservationId' debe ser mayor a 0." };
 
-                var p_result = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                command.Parameters.Add(p_result);
+                    if (disableReservationDt.UpdateAT == DateTime.MinValue)
+                        return new OperationResult
+                            { IsSuccess = false, Message = "El campo 'UpdateAT' no puede estar vacío." };
 
-                await connection.OpenAsync();
-                await command.ExecuteNonQueryAsync();
+                    using var connection = new SqlConnection(_connectionString);
+                    using var command = new SqlCommand($"dbo.DisableReservation", connection);
+                    command.CommandType = CommandType.StoredProcedure;
 
-                var mensajeSP = p_result.Value?.ToString();
-                resultOperation.Message = mensajeSP;
+                    command.Parameters.AddWithValue("@ReservationId", disableReservationDt.ReservationId);
+                    command.Parameters.AddWithValue("@UpdateAT", disableReservationDt.UpdateAT);
 
-                if (mensajeSP == "Reserva desactivada correctamente.")
-                {
-                    resultOperation.IsSuccess = true;
-                    LogInformation(mensajeSP);
-                }
-                else
-                {
-                    resultOperation.IsSuccess = false;
-                    LogError(new Exception("SP Execution Error"), mensajeSP);
+                    var pResult = new SqlParameter("@presult", SqlDbType.VarChar, 1000)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(pResult);
+
+                    await connection.OpenAsync();
+                    await command.ExecuteNonQueryAsync();
+
+                    var mensajeSp = pResult.Value?.ToString();
+                    resultOperation.Message = mensajeSp;
+
+                    if (mensajeSp == "Reserva desactivada correctamente.")
+                    {
+                        resultOperation.IsSuccess = true;
+                        LogInformation(mensajeSp);
+                    }
+                    else
+                    {
+                        resultOperation.IsSuccess = false;
+                        if (mensajeSp != null) LogError(new Exception("SP Execution Error"), mensajeSp);
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception? ex)
             {
                 LogError(ex, "Error al desactivar la reserva.");
                 resultOperation.IsSuccess = false;
@@ -247,6 +273,7 @@ namespace SGM.Persistence.Repositories
             return resultOperation;
         }
 
+        [Obsolete("Obsolete")]
         public async Task<OperationResult> GetAllAsync()
         {
             var presult = new OperationResult();
@@ -254,15 +281,13 @@ namespace SGM.Persistence.Repositories
             try
             {
                 using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.GetActiveReservation", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                using var command = new SqlCommand($"dbo.{nameof(GetActiveReservationDto)}", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
                 await connection.OpenAsync();
 
                 using var reader = await command.ExecuteReaderAsync();
-                var reservations = new List<GetActiveReservation>();
+                var reservations = new List<GetActiveReservationDto>();
 
                 if (!reader.HasRows)
                 {
@@ -274,7 +299,7 @@ namespace SGM.Persistence.Repositories
 
                 while (await reader.ReadAsync())
                 {
-                    var reservation = new GetActiveReservation
+                    var reservation = new GetActiveReservationDto()
                     {
                         Id = reader.GetInt32("ReservationId"),
                         CheckInDate = reader.GetDateTime("CheckInDate"),
@@ -293,7 +318,7 @@ namespace SGM.Persistence.Repositories
 
                 LogInformation("Reservas activas recuperadas exitosamente.");
             }
-            catch (Exception ex)
+            catch (Exception? ex)
             {
                 LogError(ex, "Error al obtener todas las reservas activas.");
                 presult.IsSuccess = false;

@@ -1,6 +1,6 @@
 namespace SGRH.Application.DTO.dbo
 {
-    public record UpdateRoomDTO
+    public record UpdateRoomDto
     { 
         public int Id { get; init; }
         public string Descripcion { get; init; }

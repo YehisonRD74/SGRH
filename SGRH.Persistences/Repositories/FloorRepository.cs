@@ -1,18 +1,16 @@
-using Microsoft.Extensions.Logging;
-using SGM.Application.Contracts.Repositories;
-using SGRH._Domain.Base;
-using SGRH.Application.DTO.dbo;
-using SGRH._Domain.Entities;
-using SGRH.Persistences.Context;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using SGRH._Domain.Base;
+using SGRH._Domain.Entities;
+using SGRH.Application.DTO.dbo;
+using SGRH.Persistences.Context;
+using SRH.Application.Contracts.Repositories.dbo;
+using SRH.Application.DTO.dbo;
 
-namespace SGM.Persistence.Repositories
+namespace SGRH.Persistences.Repositories
 {
-    public class FloorRepository :  IFloorRepository
+    public class FloorRepository : IFloorRepository
     {
         private readonly SGRHContext _context;
         private readonly ILogger<FloorRepository> _logger;
@@ -23,7 +21,7 @@ namespace SGM.Persistence.Repositories
             _logger = logger;
         }
 
-        public async Task<OperationResult> AddAsync(CreateFloorDTO entity)
+        public async Task<OperationResult> AddAsync(CreateFloorDto? entity)
         {
             if (entity == null)
                 return OperationResult.Failure("Error: El objeto CreateFloorDTO no puede ser nulo.");
@@ -46,12 +44,12 @@ namespace SGM.Persistence.Repositories
             }
         }
 
-        public Task<OperationResult> UpdateAsync(UpdateFloorDTO entity)
+        public Task<OperationResult> UpdateAsync(UpdateFloorDto entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<OperationResult> DisableAsync(DisableFloorDTO entity)
+        public async Task<OperationResult> DisableAsync(DisableFloorDto? entity)
         {
             if (entity == null)
                 return OperationResult.Failure("Error: El objeto DisableFloorDTO no puede ser nulo.");
@@ -71,7 +69,8 @@ namespace SGM.Persistence.Repositories
                 _context.Floor.Update(existingEntity);
                 await _context.SaveChangesAsync();
 
-                _logger.LogInformation("Piso con ID {FloorId} desactivado exitosamente por {User}.", entity.FloorId, Environment.UserName);
+                _logger.LogInformation("Piso con ID {FloorId} desactivado exitosamente por {User}.", entity.FloorId,
+                    Environment.UserName);
                 return OperationResult.Success("Piso desactivado exitosamente.");
             }
             catch (Exception e)
@@ -81,13 +80,13 @@ namespace SGM.Persistence.Repositories
             }
         }
 
-        public async Task<OperationResult> GetAllAsync(Expression<Func<Floor, bool>> filter)
+        public async Task<OperationResult> GetAllAsync(Expression<Func<Floor, bool>>? filter)
         {
             try
             {
                 _logger.LogInformation("Recuperando pisos");
                 var data = await _context.Floor.Where(filter).ToListAsync();
-                return OperationResult.Success(data,"Pisos recuperados exitosamente.");
+                return OperationResult.Success(data, "Pisos recuperados exitosamente.");
             }
             catch (Exception e)
             {
@@ -115,9 +114,11 @@ namespace SGM.Persistence.Repositories
             }
         }
 
-        public Task<bool> ExistAsync(Expression<Func<Floor, bool>> filter = null)
+        public Task<bool>? ExistAsync(Expression<Func<Floor, bool>>? filter)
         {
-            return _context.Floor.AnyAsync(filter);
+            if (filter != null) return _context.Floor.AnyAsync(filter);
+            return null;
         }
     }
+
 }

@@ -12,6 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SGH.Domain\SGH.Domain.csproj" />
+      <ProjectReference Include="..\SGRH.Infraestructure\SGRH.Infraestructure.csproj" />
       <ProjectReference Include="..\SGRH.Persistences\SGRH.Persistences.csproj" />
       <ProjectReference Include="..\SRH.Application\SRH.Application.csproj" />
     </ItemGroup>

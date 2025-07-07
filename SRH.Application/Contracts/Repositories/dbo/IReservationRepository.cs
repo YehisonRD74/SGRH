@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using SGRH._Domain.Entities; 
 using SGRH._Domain.Base;
 using SRH.Application.DTO.dbo;
 
-namespace SGM.Application.Contracts.Repositories
+namespace SRH.Application.Contracts.Repositories.dbo
 {
     public interface IReservationRepository 
     {
              
        
-               Task<OperationResult> AddAsync(CreateReservationDTO CreateReservationDTO);
+               Task<OperationResult> AddAsync(CreateReservationDto createReservationDto);
         
 
-               Task<OperationResult> UpdateAsync(UpDateReservationDTO UpDateReservationDTO);
+               Task<OperationResult> UpdateAsync(UpDateReservationDto upDateReservationDto);
        
-               Task<OperationResult> DisableAsync(DisableReservationDTO DisableReservationDTO);
+               Task<OperationResult> DisableAsync(DisableReservationDto disableReservationDto);
        
                Task<OperationResult> GetAllAsync();
                Task<OperationResult> GetByIdAsync(int id);

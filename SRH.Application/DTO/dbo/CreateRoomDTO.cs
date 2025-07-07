@@ -1,6 +1,6 @@
-namespace SGRH.Application.DTO.dbo
+namespace SRH.Application.DTO.dbo
 {
-    public record CreateRoomDTO
+    public record CreateRoomDto
     {
         public int NumeroHabitacion { get; init; }
         public string Estado { get; init; }

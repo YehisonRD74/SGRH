@@ -1,15 +1,23 @@
-
-
+using SGRH.Persistences.Repositories;
+using SRH.Application.Contracts.Repositories.dbo;
+using SRH.Application.Contracts.Repositories.Services;
+using SRH.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
+builder.Services.AddControllers(); 
+// Registrar servicios
+
+
+
+    
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configurar middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,6 +25,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+
+app.MapControllers(); 
+
 
 var summaries = new[]
 {

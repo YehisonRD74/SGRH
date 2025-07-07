@@ -1,6 +1,6 @@
 namespace SGRH.Application.DTO.dbo
 {
-    public record CreateFloorDTO
+    public record CreateFloorDto
     {
         
 

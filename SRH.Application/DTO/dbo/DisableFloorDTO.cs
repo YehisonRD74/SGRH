@@ -1,6 +1,6 @@
-namespace SGRH.Application.DTO.dbo
+namespace SRH.Application.DTO.dbo
 {
-    public record DisableFloorDTO
+    public record DisableFloorDto
     {
         public int FloorId { get; init; }
     }

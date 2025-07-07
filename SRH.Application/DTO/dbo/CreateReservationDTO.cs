@@ -1,6 +1,6 @@
 namespace SRH.Application.DTO.dbo
 {
-    public record CreateReservationDTO
+    public record CreateReservationDto
     {
         public DateTime CheckInDate { get; init; }
         public DateTime CheckOutDate { get; init; }

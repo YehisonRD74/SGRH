@@ -1,6 +1,6 @@
 namespace SRH.Application.DTO.dbo;
 
-public record GetActiveReservation
+public record GetActiveReservationDto
 {
     public int Id{ get; init; }
     public DateTime CheckInDate { get; init; }

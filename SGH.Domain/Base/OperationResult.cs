@@ -6,7 +6,7 @@ namespace SGRH._Domain.Base
     {
         public bool IsSuccess { get; set; }
 
-        public string Message { get; set; } = string.Empty;
+        public string? Message { get; set; } = string.Empty;
 
         public dynamic? Data { get; set; }
 
@@ -14,7 +14,7 @@ namespace SGRH._Domain.Base
         {
         }
 
-        public OperationResult(bool isSuccess, string message, dynamic? data)
+        public OperationResult(bool isSuccess, string? message, dynamic? data)
         {
             IsSuccess = isSuccess;
             Message = message;
@@ -22,12 +22,12 @@ namespace SGRH._Domain.Base
         }
 
         
-        public static OperationResult Success(dynamic? data, string message = null)
+        public static OperationResult Success(dynamic? data, string? message = null)
         {
             return new OperationResult(true, message, data);
         }
 
-        public static OperationResult Failure(string errorMessage)
+        public static OperationResult Failure(string? errorMessage)
         {
             return new OperationResult(false, errorMessage, null);
         }

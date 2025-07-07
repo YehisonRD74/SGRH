@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using SGRH._Domain.Base;
+﻿using SGRH._Domain.Base;
+using SGRH._Domain.Entities;
 using YourProject.Domain.Entities;
 
-namespace SGRH._Domain.Entities
+namespace SGRH._Domain.Entites
 {
     public class Reservation : BaseEntity
     {

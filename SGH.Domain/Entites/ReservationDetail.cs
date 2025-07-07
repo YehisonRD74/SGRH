@@ -1,4 +1,6 @@
-﻿namespace SGRH._Domain.Entities
+﻿using SGRH._Domain.Entites;
+
+namespace SGRH._Domain.Entities
 {
     public class ReservationDetail
     {

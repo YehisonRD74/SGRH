@@ -7,24 +7,24 @@ namespace SGRH.Persistences.Base
 {
     public abstract class BaseRepository<T>
     {
-        protected readonly ILogger<T> logger;
+        protected readonly ILogger<T>? logger;
 
-        protected BaseRepository(ILogger<T> logger)
+        protected BaseRepository(ILogger<T>? logger)
         {
-            logger = logger;
+            this.logger = logger;
         }
 
         protected BaseRepository()
         {
-            throw new NotImplementedException();
+            
         }
 
-        protected void LogInformation(string message, params object[] args)
+        protected void LogInformation(string? message, params object[] args)
         {
             logger.LogInformation(message, args);
         }
 
-        protected void LogError(Exception exception, string message, params object[] args)
+        protected void LogError(Exception? exception, string? message, params object[] args)
         {
             logger.LogError(exception, message, args);
         }
@@ -36,7 +36,7 @@ namespace SGRH.Persistences.Base
                 LogInformation("{Action} iniciado", actionName);
                 return await action();
             }
-            catch (Exception ex)
+            catch (Exception? ex)
             {
                 LogError(ex, "Error en {Action}", actionName);
                 return OperationResult.Failure($"Error en {actionName}");
@@ -50,7 +50,7 @@ namespace SGRH.Persistences.Base
                 LogInformation("{Action} iniciado", actionName);
                 return action();
             }
-            catch (Exception ex)
+            catch (Exception? ex)
             {
                 LogError(ex, "Error en {Action}", actionName);
                 return OperationResult.Failure($"Error en {actionName}");

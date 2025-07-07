@@ -2,19 +2,17 @@ using SGRH._Domain.Base;
 using SGRH.Application.DTO.dbo;
 using SRH.Application.DTO.dbo;
 
-namespace SGRH.Application.Interfaces.Repositories
+namespace SRH.Application.Contracts.Repositories.dbo
 {
     public interface IRoomRepository
     {
-        Task<OperationResult> AddAsync(CreateRoomDTO CreateRoomDTO);
-        
+        Task<OperationResult> AddAsync(CreateRoomDto? createRoomDto);
 
-        Task<OperationResult> UpdateAsync(UpdateRoomDTO UpdateRoomDTO);
-       
-        Task<OperationResult> DisableAsync(DisableRoomDTO DisableRoomDTO);
-       
+        Task<OperationResult> UpdateAsync(UpdateRoomDto? updateRoomDto);
+
+        Task<OperationResult> DisableAsync(DisableRoomDto? disableRoomDto);
+
         Task<OperationResult> GetAllAsync();
         Task<OperationResult> GetByIdAsync(int id);
-
     }
 }

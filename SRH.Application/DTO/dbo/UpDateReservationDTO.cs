@@ -1,6 +1,6 @@
 namespace SRH.Application.DTO.dbo;
 
-public record UpDateReservationDTO
+public record UpDateReservationDto
 {
     public int ReservationId{ get; init; }
     public DateTime CheckInDate { get; init; }

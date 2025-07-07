@@ -1,28 +1,29 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using SGM.Application.Contracts.Repositories;
 using SGRH._Domain.Base;
 using SGRH.Application.DTO.dbo;
-using SGRH.Application.Interfaces.Repositories;
+using SGRH.Persistences.Context;
+using SRH.Application.Contracts.Repositories.dbo;
+using SRH.Application.DTO.dbo;
 
-namespace SGM.Persistence.Repositories
+namespace SGRH.Persistences.Repositories
 {
     public class RoomRepository : IRoomRepository
     {
+        private readonly SGRHContext _context;
         private readonly string _connectionString;
         private readonly ILogger<RoomRepository> _logger;
 
-        public RoomRepository(string connectionString, ILogger<RoomRepository> logger)
+        public RoomRepository(SGRHContext context,string connectionString, ILogger<RoomRepository> logger)
         {
+            _context = context;
             _connectionString = connectionString;
             _logger = logger;
         }
 
-        public async Task<OperationResult> AddAsync(CreateRoomDTO dto)
+        [Obsolete("Obsolete")]
+        public async Task<OperationResult> AddAsync(CreateRoomDto? dto)
         {
             if (dto == null)
                 return OperationResult.Failure("El objeto CreateRoomDTO no puede ser nulo.");
@@ -32,10 +33,8 @@ namespace SGM.Persistence.Repositories
                 _logger.LogInformation("Creando habitación");
 
                 using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.AddRoom", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                using var command = new SqlCommand("dbo.AddRoom", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@NumeroHabitacion", dto.NumeroHabitacion);
                 command.Parameters.AddWithValue("@FloorId", dto.FloorId);
@@ -62,7 +61,8 @@ namespace SGM.Persistence.Repositories
             }
         }
 
-        public async Task<OperationResult> UpdateAsync(UpdateRoomDTO dto)
+        [Obsolete("Obsolete")]
+        public async Task<OperationResult> UpdateAsync(UpdateRoomDto? dto)
         {
             if (dto == null)
                 return OperationResult.Failure("El objeto UpdateRoomDTO no puede ser nulo.");
@@ -72,10 +72,8 @@ namespace SGM.Persistence.Repositories
                 _logger.LogInformation("Actualizando habitación con ID: {RoomId}", dto.Id);
 
                 using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.UpdateRoom", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                using var command = new SqlCommand("dbo.UpdateRoom", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@RoomId", dto.Id);
                 command.Parameters.AddWithValue("@NumeroHabitacion", dto.NumeroHabitacion);
@@ -105,7 +103,7 @@ namespace SGM.Persistence.Repositories
             }
         }
 
-        public async Task<OperationResult> DisableAsync(DisableRoomDTO dto)
+        public async Task<OperationResult> DisableAsync(DisableRoomDto? dto)
         {
             if (dto == null)
                 return OperationResult.Failure("El objeto DisableRoomDTO no puede ser nulo.");
@@ -143,6 +141,7 @@ namespace SGM.Persistence.Repositories
             }
         }
 
+        [Obsolete("Obsolete")]
         public async Task<OperationResult> GetAllAsync()
         {
             try
@@ -150,16 +149,14 @@ namespace SGM.Persistence.Repositories
                 _logger.LogInformation("Recuperando todas las habitaciones");
 
                 using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.GetAllRooms", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                using var command = new SqlCommand("dbo.GetAllRooms", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
                 await connection.OpenAsync();
 
                 using var reader = await command.ExecuteReaderAsync();
 
-                var rooms = new List<GetActiveRoomDTO>();
+                var rooms = new List<GetActiveRoomDto>();
 
                 if (!reader.HasRows)
                 {
@@ -169,7 +166,7 @@ namespace SGM.Persistence.Repositories
 
                 while (await reader.ReadAsync())
                 {
-                    var room = new GetActiveRoomDTO(
+                    var room = new GetActiveRoomDto(
                         RoomId: reader.IsDBNull(reader.GetOrdinal("Id")) ? 0 : reader.GetInt32(reader.GetOrdinal("Id")),
                         Number: reader.IsDBNull(reader.GetOrdinal("NumeroHabitacion")) ? 0 : reader.GetInt32(reader.GetOrdinal("NumeroHabitacion")),
                         Type: reader.IsDBNull(reader.GetOrdinal("Tipo")) ? string.Empty : reader.GetString(reader.GetOrdinal("Tipo")),
@@ -191,6 +188,7 @@ namespace SGM.Persistence.Repositories
             }
         }
 
+        [Obsolete("Obsolete")]
         public async Task<OperationResult> GetByIdAsync(int id)
         {
             try
@@ -198,10 +196,8 @@ namespace SGM.Persistence.Repositories
                 _logger.LogInformation("Recuperando habitación con ID: {RoomId}", id);
 
                 using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.GetRoomById", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
+                using var command = new SqlCommand("dbo.GetRoomById", connection);
+                command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@RoomId", id);
 
@@ -217,7 +213,7 @@ namespace SGM.Persistence.Repositories
 
                 await reader.ReadAsync();
 
-                var room = new GetActiveRoomDTO(
+                var room = new GetActiveRoomDto(
                     RoomId: reader.IsDBNull(reader.GetOrdinal("Id")) ? 0 : reader.GetInt32(reader.GetOrdinal("Id")),
                     Number: reader.IsDBNull(reader.GetOrdinal("NumeroHabitacion")) ? 0 : reader.GetInt32(reader.GetOrdinal("NumeroHabitacion")),
                     Type: reader.IsDBNull(reader.GetOrdinal("Tipo")) ? string.Empty : reader.GetString(reader.GetOrdinal("Tipo")),

@@ -1,6 +1,6 @@
 namespace SGRH.Application.DTO.dbo
 {
-    public record GetActiveRoomDTO
+    public record GetActiveRoomDto
     (
         int RoomId,
         int Number,
