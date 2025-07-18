@@ -24,20 +24,20 @@ public abstract class BaseService<T>
     {
         _logger.LogError(ex, message, args);
     }
-
-    protected async Task<OperationResult> TryCatchAsync(Func<Task<OperationResult>> action, string actionName)
-    {
-        try
-        {
-            LogInformation("{Action} iniciado", actionName);
-            return await action();
-        }
-        catch (Exception ex)
-        {
-            LogError(ex, "Error en {Action}", actionName);
-            return OperationResult.Failure($"Error en {actionName}: {ex.Message}");
-        }
-    }
+    //
+    // protected async Task<OperationResult> TryCatchAsync(Func<Task<OperationResult>> action, string actionName)
+    // {
+    //     try
+    //     {
+    //         LogInformation("{Action} iniciado", actionName);
+    //         return await action();
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         LogError(ex, "Error en {Action}", actionName);
+    //         return OperationResult.Failure($"Error en {actionName}: {ex.Message}");
+    //     }
+    // }
 
     protected BaseService() { }
 }

@@ -1,17 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using SGRH._Domain.Base;
+using SGRH._Domain.Entites;
+using SGRH._Domain.Entities;
 using SRH.Application.DTO.dbo;
 
-namespace SRH.Application.Contracts.Repositories.Services;
-
-public interface IReservationService
+namespace SRH.Application.Contracts.Repositories.Services
 {
-    Task<OperationResult> GetReservation();
+    public interface IReservationService
+    {
+        Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null);
 
-    Task<OperationResult> GetByIdReservation(int id, GetActiveReservationByIdDto dto);      
+        Task<OperationResult<Reservation>> GetReservationById(int id);
 
-    Task<OperationResult> UpDateReservation(UpDateReservationDto upDateReservationDto);
+        Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto);
 
-    Task<OperationResult> DisableReservation(DisableReservationDto disableReservationDto);
+        Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto);
 
-    Task<OperationResult> CreateReservation(CreateReservationDto createReservationDto);
+        Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto);
+    }
 }

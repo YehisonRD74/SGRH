@@ -1,6 +1,6 @@
 ﻿using SGRH._Domain.Base;
 
-namespace SGRH._Domain.Entities
+namespace SGRH._Domain.Entites
 {
     public class Floor : BaseEntity
     {
@@ -9,8 +9,10 @@ namespace SGRH._Domain.Entities
         public Floor(int entityFloorId, int floorNumber)
         {
             FloorNumber = floorNumber;
+
         }
 
-        protected Floor() : base() { }
+
+        public Floor() : base() { }
     }
 }

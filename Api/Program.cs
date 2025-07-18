@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using SGRH.Persistences.Context;
 using SGRH.Persistences.Repositories;
 using SRH.Application.Contracts.Repositories.dbo;
 using SRH.Application.Contracts.Repositories.Services;
@@ -5,19 +7,23 @@ using SRH.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddControllers(); 
-// Registrar servicios
-
-
-
-    
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<SGRHContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SGRHContext")));
+
+builder.Services.AddScoped<IFloorRepository, FloorRepository>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+
+builder.Services.AddScoped<IFloorService, FloorService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IRoomService, SRH.Application.Services.RoomService>();
+
 var app = builder.Build();
 
-// Configurar middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -25,23 +31,19 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
-
-app.MapControllers(); 
-
+app.MapControllers();
 
 var summaries = new[]
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    "Freezing", "Bracing", "Chilly", "Cool", "Mild",
+    "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
 app.MapGet("/weatherforecast", () =>
     {
         var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
+                new WeatherForecast(
                     DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                     Random.Shared.Next(-20, 55),
                     summaries[Random.Shared.Next(summaries.Length)]

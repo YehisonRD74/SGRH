@@ -9,7 +9,6 @@ public record UpDateReservationDto
     public decimal TotalAmount { get; init; }
     public int UserId { get; init; }
     public DateTime UpdateAT { get; init; }
-    
-    
-    
+    public int CustomerId { get; set; }
+    public string? UpdatedBy { get; set; }
 }

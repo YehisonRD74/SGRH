@@ -1,20 +1,19 @@
 using SGRH._Domain.Base;
-using SGRH._Domain.Entites;
-using SGRH._Domain.Entities;
 using SGRH.Application.DTO.dbo;
-using SGRH._Domain.Entites;
 using SRH.Application.DTO.dbo;
 
-namespace SRH.Application.Contracts.Repositories.Services;
-
-public interface IRoomService
+namespace SRH.Application.Contracts.Repositories.Services
 {
+    public interface IRoomService
+    {
+        Task<OperationResult<IEnumerable<GetActiveRoomDto>>> GetAllRoom();
 
-    Task<OperationResult> GetRoomByI(int id, GetActiveRoomByIdDto dto);
+        Task<OperationResult<GetActiveRoomDto>> GetRoomById(int id);
 
-    Task<OperationResult> UpDateRoom(UpdateRoomDto updateRoom);
+        Task<OperationResult<GetActiveRoomDto>> UpdateRoom(UpdateRoomDto updateRoomDto);
 
-    Task<OperationResult> DisableRoom(DisableRoomDto disableRoomDto);
-    Task<OperationResult> CreateRoom(CreateRoomDto createRoomDto);
+        Task<OperationResult<bool>> DisableRoom(DisableRoomDto disableRoomDto);
 
+        Task<OperationResult<GetActiveRoomDto>> CreateRoom(CreateRoomDto createRoomDto);
+    }
 }

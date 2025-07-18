@@ -2,6 +2,8 @@ namespace SRH.Application.DTO.dbo;
 
 public record GetActiveReservationDto
 {
+    public string CreatedBy;
+    public DateTime CreatedAt;
     public int Id{ get; init; }
     public DateTime CheckInDate { get; init; }
     public DateTime CheckOutDate { get; init; }

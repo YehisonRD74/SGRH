@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SGRH._Domain.Base;
+using SGRH._Domain.Entites;
 using SGRH.Application.DTO.dbo;
 using SRH.Application.Contracts.Repositories.dbo;
 using SRH.Application.Contracts.Repositories.Services;
@@ -15,132 +16,122 @@ public class FloorService : BaseService<FloorService>, IFloorService
     private readonly IConfiguration _configuration;
 
     public FloorService(IFloorRepository floorRepository, ILogger<FloorService> logger, IConfiguration configuration)
-        : base(logger) // Si `BaseService` tiene constructor con logger
+        : base(logger)
     {
         _floorRepository = floorRepository;
         this.logger = logger;
         _configuration = configuration;
     }
 
-    public async Task<OperationResult> GetFloor()
+    public async Task<OperationResult<IEnumerable<Floor>>> GetFloor()
     {
-        OperationResult operationResult = new OperationResult();
         try
         {
-            operationResult = await _floorRepository.GetAllAsync();
-            if (!operationResult.IsSuccess)
-            {
-                LogError($"Ocurrió un error al obtener los pisos: {operationResult.Message}");
-            }
-            LogInformation("Los pisos fueron obtenidos correctamente", operationResult);
+            var floors = await _floorRepository.GetAllFloor();
+            return OperationResult<IEnumerable<Floor>>.Success(floors, "Listado de pisos obtenido correctamente");
         }
         catch (Exception e)
         {
             LogError(e, $"Error al obtener los pisos: {e.Message}");
-            operationResult = OperationResult.Failure($"Error al obtener los pisos: {e.Message}");
+            return OperationResult<IEnumerable<Floor>>.Failure("Error: " + e.Message);
         }
-        return operationResult;
     }
 
-    public async Task<OperationResult> GetFloorByI(int id, GetFloorByIdDto dto)
+    public async Task<OperationResult<Floor>> GetFloorById(int id, GetFloorByIdDto dto)
     {
-        OperationResult operationResult = new OperationResult();
         try
         {
-            operationResult = await _floorRepository.GetByIdAsync(id);
-            if (!operationResult.IsSuccess)
-            {
-                LogError($"Ocurrió un error al obtener el piso: {operationResult.Message}");
-            }
-            LogInformation("El piso fue obtenido correctamente. DTO: {@dto}", dto);
+            var floor = await _floorRepository.GetFloorById(id);
+
+            if (floor == null)
+                return OperationResult<Floor>.Failure($"No se encontró ningún piso con el ID {id}");
+
+            return OperationResult<Floor>.Success(floor.Data!, "Piso encontrado correctamente");
         }
         catch (Exception e)
         {
-            LogError(e, $"Error al obtener el piso: {e.Message}");
-            operationResult = OperationResult.Failure($"Error al obtener el piso: {e.Message}");
+            LogError(e, $"Error al obtener piso por ID: {e.Message}");
+            return OperationResult<Floor>.Failure("Error: " + e.Message);
         }
-        return operationResult;
     }
 
-    public async Task<OperationResult> UpDateFloor(UpdateFloorDto upDateFloorDTO)
+    public async Task<OperationResult<Floor>> UpDateFloor(UpdateFloorDto updateFloorDto)
     {
-        OperationResult operationResult = new OperationResult();
         try
         {
-            LogInformation("Iniciando actualización del piso. Datos: {@upDateFloorDTO}", upDateFloorDTO);
-            if (upDateFloorDTO == null)
-            {
-                return OperationResult.Failure("No se pudo actualizar el piso");
-            }
+            var floor = await _floorRepository.GetFloorById(updateFloorDto.Id);
 
-            operationResult = await _floorRepository.UpdateAsync(upDateFloorDTO);
-            if (!operationResult.IsSuccess)
-            {
-                LogError($"Ocurrió un error al actualizar el piso: {operationResult.Message}");
-                return operationResult;
-            }
+            if (floor == null)
+                return OperationResult<Floor>.Failure($"Piso con ID {updateFloorDto.Id} no encontrado");
 
-            LogInformation("El piso fue actualizado correctamente. DTO: {@upDateFloorDTO}", upDateFloorDTO);
+            floor.Data.FloorNumber = updateFloorDto.FloorNumber;
+            floor.Data.UpdatedBy = updateFloorDto.UpdatedBy ?? "admin";
+            floor.Data.UpdatedAt = DateTime.UtcNow;
+            await _floorRepository.UpdateFloor(floor);
+
+            return OperationResult<Floor>.Success(floor.Data, "Piso actualizado exitosamente");
         }
         catch (Exception e)
         {
             LogError(e, $"Error al actualizar el piso: {e.Message}");
-            operationResult = OperationResult.Failure($"Error al actualizar el piso: {e.Message}");
+            return OperationResult<Floor>.Failure("Error: " + e.Message);
         }
-        return operationResult;
     }
 
-    public async Task<OperationResult> DisableFloor(DisableFloorDto? disableFloorDTO)
+    public async Task<OperationResult<bool>> DisableFloor(DisableFloorDto? disableFloorDto)
     {
-        OperationResult operationResult = new OperationResult();
         try
         {
-            if (disableFloorDTO == null)
-            {
-                return OperationResult.Failure("No se pudo desactivar el piso: objeto nulo");
-            }
+            if (disableFloorDto == null)
+                return OperationResult<bool>.Failure("Datos de deshabilitación inválidos");
 
-            operationResult = await _floorRepository.DisableAsync(disableFloorDTO);
-            if (!operationResult.IsSuccess)
-            {
-                LogError($"Ocurrió un error al desactivar el piso: {operationResult.Message}");
-                return operationResult;
-            }
+            var floor = await _floorRepository.GetFloorById(disableFloorDto.FloorId);
 
-            LogInformation("El piso fue desactivado correctamente. DTO: {@disableFloorDTO}", disableFloorDTO);
+            if (floor == null)
+                return OperationResult<bool>.Failure($"Piso con ID {disableFloorDto.FloorId} no encontrado");
+
+            floor.IsDisable = true;
+            floor.Data.DeletedAt = DateTime.UtcNow;
+            floor.Data.DeletedBy = disableFloorDto.DisabledBy ?? "admin";
+
+            await _floorRepository.UpdateFloor(floor);
+
+            return OperationResult<bool>.Success(true, "Piso deshabilitado correctamente");
         }
         catch (Exception e)
         {
-            LogError(e, $"Error al desactivar el piso: {e.Message}");
-            operationResult = OperationResult.Failure($"Error al desactivar el piso: {e.Message}");
+            LogError(e, $"Error al deshabilitar el piso: {e.Message}");
+            return OperationResult<bool>.Failure("Error: " + e.Message);
         }
-        return operationResult;
     }
 
-    public async Task<OperationResult> CreateFloor(CreateFloorDto? createFloorDto)
+    public async Task<OperationResult<CreateFloorDto>> CreateFloor(CreateFloorDto? createFloorDto)
     {
-        OperationResult operationResult = new OperationResult();
         try
         {
             if (createFloorDto == null)
-            {
-                return OperationResult.Failure("No se pudo crear el piso: objeto nulo");
-            }
+                return OperationResult<CreateFloorDto>.Failure("Datos de creación inválidos");
 
-            operationResult = await _floorRepository.AddAsync(createFloorDto);
-            if (!operationResult.IsSuccess)
+            var floor = new CreateFloorDto
             {
-                LogError($"Ocurrió un error al crear el piso: {operationResult.Message}");
-                return operationResult;
-            }
+                FloorNumber = createFloorDto.FloorNumber,
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = "admin",          
+                UpdatedAt = DateTime.UtcNow,
+                UpdatedBy = "admin",          
+                IsDeleted = false
+            };
 
-            LogInformation("El piso fue creado correctamente. DTO: {@createFloorDto}", createFloorDto);
+
+            await _floorRepository.CreateFloor(floor); 
+
+            return OperationResult<CreateFloorDto>.Success(floor, "Piso creado exitosamente"); 
         }
         catch (Exception e)
         {
             LogError(e, $"Error al crear el piso: {e.Message}");
-            operationResult = OperationResult.Failure($"Error al crear el piso: {e.Message}");
+            return OperationResult<CreateFloorDto>.Failure("Error: " + e.Message);
         }
-        return operationResult;
     }
+
 }

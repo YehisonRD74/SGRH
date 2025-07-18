@@ -1,13 +1,20 @@
 namespace SRH.Application.DTO.dbo
 {
-    public record CreateReservationDto
+    public class CreateReservationDto
     {
-        public DateTime CheckInDate { get; init; }
-        public DateTime CheckOutDate { get; init; }
-        public decimal TotalAmount { get; init; }
-        public int UserId { get; init; }
-        public string CreatedBy { get; init; }
-        public DateTime CreatedAt { get; init; }
-        public String Status { set; get; }
+        public int Id { get; set; }
+        public DateTime CheckInDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
+        public decimal TotalAmount { get; set; }
+        public int UserId { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string Status { get; set; }
+        public int CustomerId { get; set; }
+        public decimal TotalPrice { get; set; }
+        
+
+      
+        public CreateReservationDto() { }
     }
 }

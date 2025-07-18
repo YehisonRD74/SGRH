@@ -1,7 +1,7 @@
-﻿using SGRH._Domain.Base; 
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using SGRH._Domain.Base;
 
 namespace SGRH.Persistences.Base
 {
@@ -14,22 +14,19 @@ namespace SGRH.Persistences.Base
             this.logger = logger;
         }
 
-        protected BaseRepository()
-        {
-            
-        }
+        protected BaseRepository() {}
 
         protected void LogInformation(string? message, params object[] args)
         {
-            logger.LogInformation(message, args);
+            logger?.LogInformation(message ?? string.Empty, args);
         }
 
         protected void LogError(Exception? exception, string? message, params object[] args)
         {
-            logger.LogError(exception, message, args);
+            logger?.LogError(exception ?? new Exception("Error desconocido"), message ?? "Error", args);
         }
 
-        protected async Task<OperationResult> TryCatchAsync(Func<Task<OperationResult>> action, string actionName)
+        protected async Task<OperationResult<TResult>> TryCatchAsync<TResult>(Func<Task<OperationResult<TResult>>> action, string actionName)
         {
             try
             {
@@ -39,11 +36,11 @@ namespace SGRH.Persistences.Base
             catch (Exception? ex)
             {
                 LogError(ex, "Error en {Action}", actionName);
-                return OperationResult.Failure($"Error en {actionName}");
+                return OperationResult<TResult>.Failure($"Error en {actionName}: {ex?.Message}");
             }
         }
 
-        protected OperationResult TryCatch(Func<OperationResult> action, string actionName)
+        protected OperationResult<TResult> TryCatch<TResult>(Func<OperationResult<TResult>> action, string actionName)
         {
             try
             {
@@ -53,7 +50,7 @@ namespace SGRH.Persistences.Base
             catch (Exception? ex)
             {
                 LogError(ex, "Error en {Action}", actionName);
-                return OperationResult.Failure($"Error en {actionName}");
+                return OperationResult<TResult>.Failure($"Error en {actionName}: {ex?.Message}");
             }
         }
     }

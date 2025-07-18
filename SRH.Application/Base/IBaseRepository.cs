@@ -11,15 +11,15 @@ namespace SGM.Application.Contracts.Repositories
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
-        Task<OperationResult> GetByIdAsync(int id);
-
-        Task<OperationResult> AddAsync(TEntity TEntity);
-
-        Task<OperationResult> UpdateAsync(TEntity entity);
-
-        Task<OperationResult> DeleteAsync(TEntity entity);
-
-        Task<OperationResult> GetAllAsync();
+        // Task<OperationResult> GetByIdAsync(int id);
+        //
+        // Task<OperationResult> AddAsync(TEntity TEntity);
+        //
+        // Task<OperationResult> UpdateAsync(TEntity entity);
+        //
+        // Task<OperationResult> DeleteAsync(TEntity entity);
+        //
+        // Task<OperationResult> GetAllAsync();
 
      
     }

@@ -1,23 +1,30 @@
 ﻿using SGRH._Domain.Base;
 
-namespace SGRH._Domain.Entities
+namespace SGRH._Domain.Entites
 {
     public class Room : BaseEntity
     {
-        public string Estado { get; set; }
-        public int NumeroHabitacion { get; set; }
+        public string Status { get; set; }
+        public string NumeroHabitacion { get; set; }
         public String Type { get; set; }
         public decimal Price { get; set; }
         
         public int RoomCategoryId { get; set; }
+        public int FloorId { get; set; }
 
-        public Room(int numeroHabitacion, string estado, int roomCategoryId)
+
+        public Room(String numeroHabitacion, int RoomCategoryId, string status, string type)
         {
             NumeroHabitacion = numeroHabitacion;
-            Estado = estado;
-            RoomCategoryId = roomCategoryId;
+            Status = status;
+            RoomCategoryId = RoomCategoryId;
+            Type = type;
         }
 
-        protected Room() : base() { }
+
+        public Room() { }
+
+
+        
     }
 }

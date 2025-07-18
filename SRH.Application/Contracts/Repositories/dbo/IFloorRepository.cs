@@ -1,17 +1,27 @@
+using System;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using SGRH._Domain.Base;
+using SGRH._Domain.Entites;
 using SGRH._Domain.Entities;
 using SGRH.Application.DTO.dbo;
 using SRH.Application.DTO.dbo;
 
-namespace SRH.Application.Contracts.Repositories.dbo;
-
-public interface IFloorRepository
+namespace SRH.Application.Contracts.Repositories.dbo
 {
-    Task<OperationResult> AddAsync(CreateFloorDto? entity);
-    Task<OperationResult> UpdateAsync(UpdateFloorDto entity);
-    Task<OperationResult> DisableAsync(DisableFloorDto? entity);
-    Task<OperationResult> GetAllAsync(Expression<Func<Floor, bool>>? predicate = null);
-    Task<OperationResult> GetByIdAsync(int id);
-    Task<bool>? ExistAsync(Expression<Func<Floor, bool>>? predicate);
+    public interface IFloorRepository
+    {
+        Task<OperationResult<Floor>> CreateFloor(CreateFloorDto entity);
+        
+        Task<OperationResult<Floor>> UpdateFloor(OperationResult<Floor> entity);
+        
+        Task<OperationResult<Floor>> DisableFloor(DisableFloorDto entity);
+        
+        Task<IEnumerable<Floor>> GetAllFloor(Expression<Func<Floor, bool>>? predicate = null) ;
+        
+        Task<OperationResult<Floor>> GetFloorById(int id);
+        
+        Task<bool> ExistAsync(Expression<Func<Floor, bool>>? predicate);
+       
+    }
 }

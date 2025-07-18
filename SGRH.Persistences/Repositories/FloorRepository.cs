@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SGRH._Domain.Base;
+using SGRH._Domain.Entites;
 using SGRH._Domain.Entities;
 using SGRH.Application.DTO.dbo;
 using SGRH.Persistences.Context;
@@ -20,100 +21,160 @@ namespace SGRH.Persistences.Repositories
             _context = context;
             _logger = logger;
         }
-
-        public async Task<OperationResult> AddAsync(CreateFloorDto? entity)
+        
+        public async Task<OperationResult<Floor>> CreateFloor(CreateFloorDto? entity)
         {
-            if (entity == null)
-                return OperationResult.Failure("Error: El objeto CreateFloorDTO no puede ser nulo.");
-
             try
             {
-                _logger.LogInformation("Creando piso");
+                if (entity == null)
+                    return new OperationResult<Floor> { IsSuccess = false, Message = "Datos inválidos", Data = null! };
 
-                var floor = new Floor(entity.FloorId, entity.FloorNumer);
+                var floor = new Floor(entity.FloorId, entity.FloorNumber);
 
                 await _context.Floor.AddAsync(floor);
                 await _context.SaveChangesAsync();
 
-                return OperationResult.Success("Piso creado exitosamente.");
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = true,
+                    Message = "Piso creado exitosamente",
+                    Data = floor
+                };
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e, "Error al crear piso");
-                return OperationResult.Failure("Error al crear piso");
+                _logger.LogError(ex, "Error en AddAsync");
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                    Data = null!
+                };
             }
         }
 
-        public Task<OperationResult> UpdateAsync(UpdateFloorDto entity)
+        public async Task<OperationResult<Floor>> UpdateFloor(OperationResult<Floor> entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<OperationResult> DisableAsync(DisableFloorDto? entity)
-        {
-            if (entity == null)
-                return OperationResult.Failure("Error: El objeto DisableFloorDTO no puede ser nulo.");
-
             try
             {
-                _logger.LogInformation("Intentando desactivar piso con ID: {FloorId}", entity.FloorId);
+                if (entity?.Data == null)
+                {
+                    return new OperationResult<Floor>
+                    {
+                        IsSuccess = false,
+                        Message = "Datos inválidos: piso no proporcionado",
+                        Data = null
+                    };
+                }
 
-                var existingEntity = await _context.Floor.FindAsync(entity.FloorId);
-                if (existingEntity == null)
-                    return OperationResult.Failure("El piso no existe");
+                var existing = await _context.Floor.FindAsync(entity.Data.Id);
+                if (existing == null)
+                {
+                    return new OperationResult<Floor>
+                    {
+                        IsSuccess = false,
+                        Message = $"Piso con ID {entity.Data.Id} no encontrado",
+                        Data = null
+                    };
+                }
 
-                existingEntity.IsDeleted = true;
-                existingEntity.DeletedAt = DateTime.UtcNow;
-                existingEntity.DeletedBy = Environment.UserName;
+                // Actualizar campos necesarios
+                existing.FloorNumber = entity.Data.FloorNumber;
+                existing.UpdatedAt = entity.Data.UpdatedAt;
+                existing.UpdatedBy = entity.Data.UpdatedBy ?? "admin";
+                existing.IsDeleted = entity.Data.IsDeleted;
+                existing.DeletedAt = entity.Data.DeletedAt;
+                existing.DeletedBy = entity.Data.DeletedBy;
 
-                _context.Floor.Update(existingEntity);
+                _context.Floor.Update(existing);
                 await _context.SaveChangesAsync();
 
-                _logger.LogInformation("Piso con ID {FloorId} desactivado exitosamente por {User}.", entity.FloorId,
-                    Environment.UserName);
-                return OperationResult.Success("Piso desactivado exitosamente.");
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = true,
+                    Message = "Piso actualizado correctamente",
+                    Data = existing
+                };
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e, "Error al desactivar piso con ID: {FloorId}", entity?.FloorId);
-                return OperationResult.Failure("Error al desactivar piso");
-            }
-        }
-
-        public async Task<OperationResult> GetAllAsync(Expression<Func<Floor, bool>>? filter)
-        {
-            try
-            {
-                _logger.LogInformation("Recuperando pisos");
-                var data = await _context.Floor.Where(filter).ToListAsync();
-                return OperationResult.Success(data, "Pisos recuperados exitosamente.");
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Error al recuperar pisos");
-                return OperationResult.Failure("Error al recuperar pisos");
+                _logger.LogError(ex, "Error en UpdateFloor");
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = false,
+                    Message = $"Excepción: {ex.Message}",
+                    Data = null
+                };
             }
         }
 
-        public async Task<OperationResult> GetByIdAsync(int id)
+        public async Task<OperationResult<Floor>> DisableFloor(DisableFloorDto? entity)
         {
             try
             {
-                _logger.LogInformation("Recuperando piso con ID: {FloorId}", id);
-                var floor = await _context.Floor.FindAsync(id);
+                if (entity == null)
+                    return new OperationResult<Floor> { IsSuccess = false, Message = "Datos inválidos", Data = null! };
+
+                var floor = await _context.Floor.FindAsync(entity.FloorId);
                 if (floor == null)
-                    return OperationResult.Failure("El piso no existe");
+                    return new OperationResult<Floor> { IsSuccess = false, Message = "Piso no encontrado", Data = null! };
 
-                return OperationResult.Success(floor, "Piso recuperado exitosamente.");
+                
+                _context.Floor.Update(floor);
+                await _context.SaveChangesAsync();
 
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = true,
+                    Message = "Piso deshabilitado",
+                    Data = floor
+                };
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e, "Error al recuperar piso con ID: {FloorId}", id);
-                return OperationResult.Failure("Error al recuperar piso");
+                _logger.LogError(ex, "Error en DisableAsync");
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                    Data = null!
+                };
             }
         }
+        
+        public async Task<IEnumerable<Floor>> GetAllFloor(Expression<Func<Floor, bool>>? filter)
+        {
+            return await _context.Floor.ToListAsync();
+        }
+        
+        public async Task<OperationResult<Floor>> GetFloorById(int id)
+        {
+            try
+            {
+                var floor = await _context.Floor.FindAsync(id);
 
+                if (floor == null)
+                    return new OperationResult<Floor> { IsSuccess = false, Message = "Piso no encontrado", Data = null! };
+
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = true,
+                    Message = "Piso encontrado",
+                    Data = floor
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error en GetByIdAsync");
+                return new OperationResult<Floor>
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                    Data = null!
+                };
+            }
+        }
+        
         public Task<bool>? ExistAsync(Expression<Func<Floor, bool>>? filter)
         {
             if (filter != null) return _context.Floor.AnyAsync(filter);

@@ -1,10 +1,11 @@
-using System.Data;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using SGRH._Domain.Base;
+using SGRH._Domain.Entities;
 using SGRH.Application.DTO.dbo;
-using SGRH.Persistences.Context;
 using SRH.Application.Contracts.Repositories.dbo;
+using System.Linq.Expressions;
+using SGRH._Domain.Entites;
+using SGRH.Persistences.Context;
 using SRH.Application.DTO.dbo;
 
 namespace SGRH.Persistences.Repositories
@@ -12,224 +13,149 @@ namespace SGRH.Persistences.Repositories
     public class RoomRepository : IRoomRepository
     {
         private readonly SGRHContext _context;
-        private readonly string _connectionString;
-        private readonly ILogger<RoomRepository> _logger;
 
-        public RoomRepository(SGRHContext context,string connectionString, ILogger<RoomRepository> logger)
+        public RoomRepository(SGRHContext context)
         {
             _context = context;
-            _connectionString = connectionString;
-            _logger = logger;
         }
 
-        [Obsolete("Obsolete")]
-        public async Task<OperationResult> AddAsync(CreateRoomDto? dto)
+        public async Task<OperationResult<Room>> CreateRoom(CreateRoomDto dto)
         {
-            if (dto == null)
-                return OperationResult.Failure("El objeto CreateRoomDTO no puede ser nulo.");
-
             try
             {
-                _logger.LogInformation("Creando habitación");
-
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.AddRoom", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@NumeroHabitacion", dto.NumeroHabitacion);
-                command.Parameters.AddWithValue("@FloorId", dto.FloorId);
-                command.Parameters.AddWithValue("@Precio", dto.Price);
-
-                await connection.OpenAsync();
-                var rowsAffected = await command.ExecuteNonQueryAsync();
-
-                if (rowsAffected > 0)
+                var room = new Room
                 {
-                    _logger.LogInformation("Habitación creada exitosamente.");
-                    return OperationResult.Success("Habitación creada exitosamente.");
-                }
-                else
-                {
-                    _logger.LogWarning("No se pudo crear la habitación.");
-                    return OperationResult.Failure("No se pudo crear la habitación.");
-                }
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Error al crear habitación");
-                return OperationResult.Failure("Error al crear habitación: " + e.Message);
-            }
-        }
-
-        [Obsolete("Obsolete")]
-        public async Task<OperationResult> UpdateAsync(UpdateRoomDto? dto)
-        {
-            if (dto == null)
-                return OperationResult.Failure("El objeto UpdateRoomDTO no puede ser nulo.");
-
-            try
-            {
-                _logger.LogInformation("Actualizando habitación con ID: {RoomId}", dto.Id);
-
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.UpdateRoom", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                command.Parameters.AddWithValue("@RoomId", dto.Id);
-                command.Parameters.AddWithValue("@NumeroHabitacion", dto.NumeroHabitacion);
-                command.Parameters.AddWithValue("@Tipo", dto.Type);
-                command.Parameters.AddWithValue("@FloorId", dto.FloorId);
-                command.Parameters.AddWithValue("@Precio", dto.Price);
-                command.Parameters.AddWithValue("@Descripcion", dto.Descripcion);
-
-                await connection.OpenAsync();
-                var rowsAffected = await command.ExecuteNonQueryAsync();
-
-                if (rowsAffected > 0)
-                {
-                    _logger.LogInformation("Habitación actualizada exitosamente.");
-                    return OperationResult.Success("Habitación actualizada exitosamente.");
-                }
-                else
-                {
-                    _logger.LogWarning("No se pudo actualizar la habitación.");
-                    return OperationResult.Failure("No se pudo actualizar la habitación.");
-                }
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Error al actualizar habitación con ID: {RoomId}", dto.Id);
-                return OperationResult.Failure("Error al actualizar habitación: " + e.Message);
-            }
-        }
-
-        public async Task<OperationResult> DisableAsync(DisableRoomDto? dto)
-        {
-            if (dto == null)
-                return OperationResult.Failure("El objeto DisableRoomDTO no puede ser nulo.");
-
-            try
-            {
-                _logger.LogInformation("Desactivando habitación con ID: {RoomId}", dto.RoomId);
-
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.DisableRoom", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
+                    NumeroHabitacion = dto.NumeroHabitacion,
+                    Type = dto.Type,
+                    FloorId = dto.FloorId, 
+                    Price= dto.Price,
+                    Status = dto.Status
                 };
 
-                command.Parameters.AddWithValue("@RoomId", dto.RoomId);
+                _context.Room.Add(room);
+                await _context.SaveChangesAsync();
 
-                await connection.OpenAsync();
-                var rowsAffected = await command.ExecuteNonQueryAsync();
-
-                if (rowsAffected > 0)
+                return new OperationResult<Room>
                 {
-                    _logger.LogInformation("Habitación desactivada exitosamente.");
-                    return OperationResult.Success("Habitación desactivada exitosamente.");
-                }
-                else
-                {
-                    _logger.LogWarning("No se pudo desactivar la habitación.");
-                    return OperationResult.Failure("No se pudo desactivar la habitación.");
-                }
+                    IsSuccess = true,
+                    Message = "Habitación creada correctamente",
+                    Data = room
+                };
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e, "Error al desactivar habitación con ID: {RoomId}", dto.RoomId);
-                return OperationResult.Failure("Error al desactivar habitación: " + e.Message);
+                return new OperationResult<Room>
+                {
+                    IsSuccess = false,
+                    Message = $"Error: {ex.Message}",
+                    Data = null
+                };
             }
         }
 
-        [Obsolete("Obsolete")]
-        public async Task<OperationResult> GetAllAsync()
+        public async Task<OperationResult<Room>> UpdateRoom(UpdateRoomDto dto)
         {
             try
             {
-                _logger.LogInformation("Recuperando todas las habitaciones");
+                var room = await _context.Room.FindAsync(dto.Id);
+                if (room == null)
+                    return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
 
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.GetAllRooms", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                room.NumeroHabitacion = dto.NumeroHabitacion;
+                room.Type = dto.Type;
+                room.FloorId = dto.FloorId;
+                room.Price = dto.Price;
+                room.Status = dto.Status;
 
-                await connection.OpenAsync();
+                await _context.SaveChangesAsync();
 
-                using var reader = await command.ExecuteReaderAsync();
-
-                var rooms = new List<GetActiveRoomDto>();
-
-                if (!reader.HasRows)
+                return new OperationResult<Room>
                 {
-                    _logger.LogWarning("No se encontraron habitaciones.");
-                    return OperationResult.Failure("No se encontraron habitaciones.");
-                }
-
-                while (await reader.ReadAsync())
-                {
-                    var room = new GetActiveRoomDto(
-                        RoomId: reader.IsDBNull(reader.GetOrdinal("Id")) ? 0 : reader.GetInt32(reader.GetOrdinal("Id")),
-                        Number: reader.IsDBNull(reader.GetOrdinal("NumeroHabitacion")) ? 0 : reader.GetInt32(reader.GetOrdinal("NumeroHabitacion")),
-                        Type: reader.IsDBNull(reader.GetOrdinal("Tipo")) ? string.Empty : reader.GetString(reader.GetOrdinal("Tipo")),
-                        FloorId: reader.IsDBNull(reader.GetOrdinal("FloorId")) ? 0 : reader.GetInt32(reader.GetOrdinal("FloorId")),
-                        Price: reader.IsDBNull(reader.GetOrdinal("Precio")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Precio")),
-                        Description: reader.IsDBNull(reader.GetOrdinal("Descripcion")) ? string.Empty : reader.GetString(reader.GetOrdinal("Descripcion"))
-                    );
-
-                    rooms.Add(room);
-                }
-
-                _logger.LogInformation("Habitaciones recuperadas exitosamente.");
-                return OperationResult.Success(rooms, "Habitaciones recuperadas exitosamente.");
+                    IsSuccess = true,
+                    Message = "Habitación actualizada",
+                    Data = room
+                };
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e, "Error al recuperar habitaciones");
-                return OperationResult.Failure("Error al recuperar habitaciones: " + e.Message);
+                return new OperationResult<Room>
+                {
+                    IsSuccess = false,
+                    Message = $"Error: {ex.Message}",
+                    Data = null
+                };
             }
         }
 
-        [Obsolete("Obsolete")]
-        public async Task<OperationResult> GetByIdAsync(int id)
+        public async Task<OperationResult<Room>> DisableRoom(DisableRoomDto dto)
         {
             try
             {
-                _logger.LogInformation("Recuperando habitación con ID: {RoomId}", id);
+                var room = await _context.Room.FindAsync(dto.RoomId);
+                if (room == null)
+                    return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
 
-                using var connection = new SqlConnection(_connectionString);
-                using var command = new SqlCommand("dbo.GetRoomById", connection);
-                command.CommandType = CommandType.StoredProcedure;
+                room.Status = "Inactiva";
+                await _context.SaveChangesAsync();
 
-                command.Parameters.AddWithValue("@RoomId", id);
-
-                await connection.OpenAsync();
-
-                using var reader = await command.ExecuteReaderAsync();
-
-                if (!reader.HasRows)
+                return new OperationResult<Room>
                 {
-                    _logger.LogWarning("No se encontró la habitación con ID: {RoomId}", id);
-                    return OperationResult.Failure("No se encontró la habitación.");
-                }
-
-                await reader.ReadAsync();
-
-                var room = new GetActiveRoomDto(
-                    RoomId: reader.IsDBNull(reader.GetOrdinal("Id")) ? 0 : reader.GetInt32(reader.GetOrdinal("Id")),
-                    Number: reader.IsDBNull(reader.GetOrdinal("NumeroHabitacion")) ? 0 : reader.GetInt32(reader.GetOrdinal("NumeroHabitacion")),
-                    Type: reader.IsDBNull(reader.GetOrdinal("Tipo")) ? string.Empty : reader.GetString(reader.GetOrdinal("Tipo")),
-                    FloorId: reader.IsDBNull(reader.GetOrdinal("FloorId")) ? 0 : reader.GetInt32(reader.GetOrdinal("FloorId")),
-                    Price: reader.IsDBNull(reader.GetOrdinal("Precio")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Precio")),
-                    Description: reader.IsDBNull(reader.GetOrdinal("Descripcion")) ? string.Empty : reader.GetString(reader.GetOrdinal("Descripcion"))
-                );
-
-                _logger.LogInformation("Habitación recuperada exitosamente.");
-                return OperationResult.Success(room, "Habitación recuperada exitosamente.");
+                    IsSuccess = true,
+                    Message = "Habitación deshabilitada",
+                    Data = room
+                };
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e, "Error al recuperar habitación con ID: {RoomId}", id);
-                return OperationResult.Failure("Error al recuperar habitación: " + e.Message);
+                return new OperationResult<Room>
+                {
+                    IsSuccess = false,
+                    Message = $"Error: {ex.Message}",
+                    Data = null
+                };
             }
+        }
+
+        public async Task<OperationResult<Room>> GetRoomById(int id)
+        {
+            try
+            {
+                var room = await _context.Room.FindAsync(id);
+                if (room == null)
+                    return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
+
+                return new OperationResult<Room>
+                {
+                    IsSuccess = true,
+                    Message = "Habitación encontrada",
+                    Data = room
+                };
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<Room>
+                {
+                    IsSuccess = false,
+                    Message = $"Error: {ex.Message}",
+                    Data = null
+                };
+            }
+        }
+
+        public async Task<IEnumerable<Room>> GetAllRoom(Expression<Func<Room, bool>>? predicate = null)
+        {
+            if (predicate != null)
+                return await _context.Room.Where(predicate).ToListAsync();
+
+            return await _context.Room.ToListAsync();
+        }
+
+        public async Task<bool> ExistAsync(Expression<Func<Room, bool>>? predicate)
+        {
+            if (predicate == null)
+                return false;
+
+            return await _context.Room.AnyAsync(predicate);
         }
     }
 }

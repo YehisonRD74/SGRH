@@ -2,46 +2,22 @@
 using SGRH._Domain.Entities;
 using YourProject.Domain.Entities;
 
-namespace SGRH._Domain.Entites
+public class Reservation
 {
-    public class Reservation : BaseEntity
-    {
-        public DateTime CheckInDate { get; set; }
-        public DateTime CheckOutDate { get; set; }
-        public string Status { get; set; } 
-        public decimal TotalAmount { get; set; }
-        
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; } 
-        public ICollection<ReservationDetail> ReservationDetails { get; set; } 
+    public int Id { get; set; }
+    public DateTime CheckInDate { get; set; }
+    public DateTime CheckOutDate { get; set; }
+    public string Status { get; set; } = "Pending";
+    public decimal TotalAmount { get; set; }
+    public int UserId { get; set; }
+    public int CustomerId { get; set; }
+    public string CreatedBy { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; }
+    public string? UpdatedBy { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+    public bool IsActive { get; set; } = true;
 
-        public Reservation(DateTime checkInDate, DateTime checkOutDate, string status, decimal totalAmount, int customerId)
-        {
-            CheckInDate = checkInDate;
-            CheckOutDate = checkOutDate;
-            Status = status;
-            TotalAmount = totalAmount;
-            CustomerId = customerId;
-
-            ReservationDetails = new List<ReservationDetail>();
-        }
-
-        protected Reservation() : base() { }
-
-        public void UpdateDates(DateTime checkIn, DateTime checkOut)
-        {
-            CheckInDate = checkIn;
-            CheckOutDate = checkOut;
-        }
-
-        public void UpdateStatus(string status)
-        {
-            Status = status;
-        }
-
-        public void UpdateTotalAmount(decimal amount)
-        {
-            TotalAmount = amount;
-        }
-    }
+    public User User { get; set; }
+    public Customer Customer { get; set; }
+    public ICollection<ReservationDetail> ReservationDetails { get; set; }
 }

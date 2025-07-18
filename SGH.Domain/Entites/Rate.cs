@@ -1,21 +1,20 @@
-﻿namespace SGRH._Domain.Entities
+﻿using SGRH._Domain.Entities;
+
+namespace SGRH._Domain.Entites
 {
     public class Rate
     {
         public int Id { get; private set; }
         public string Season { get; private set; }
         public decimal RatePrice { get; private set; }
-
-        // Foreign Key
-        public int CategoryId { get; private set; }
         
         public RoomCategory RoomCategory { get; private set; }
-        public Rate(int id, string season, decimal ratePrice, int categoryId)
+        public Rate(int id, string season, decimal ratePrice, int roomcategoryId)
         {
             Id = id;
             Season = season;
             RatePrice = ratePrice;
-            CategoryId = categoryId;
+            roomcategoryId = roomcategoryId;
         }
     }
 }

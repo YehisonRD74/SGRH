@@ -1,13 +1,15 @@
-namespace SGRH.Application.DTO.dbo
+namespace SRH.Application.DTO.dbo
 {
     public record GetActiveRoomDto
     (
         int RoomId,
-        int Number,
+        string NumeroHabitacion,
         string Type,
         int FloorId,
         decimal Price,
-        string Description
+         string Status 
+        
+        
     );
 }
 

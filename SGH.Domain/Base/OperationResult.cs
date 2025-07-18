@@ -1,35 +1,35 @@
-﻿using SGRH._Domain.Entities;
+﻿namespace SGRH._Domain.Base;
 
-namespace SGRH._Domain.Base
+public class OperationResult<T>
 {
-    public class OperationResult
+    public bool IsSuccess { get; set; }
+    public string Message { get; set; } = string.Empty;
+    public T? Data { get; set; }
+    public string UpdatedBy { get; set; } = string.Empty;
+    public DateTime UpdatedAt { get; set; }
+    public bool IsDisable { get; set; }
+
+    public static OperationResult<T> Success(T data, string message = "", string updatedBy = "", DateTime? updatedAt = null)
     {
-        public bool IsSuccess { get; set; }
-
-        public string? Message { get; set; } = string.Empty;
-
-        public dynamic? Data { get; set; }
-
-        public OperationResult()
+        return new OperationResult<T>
         {
-        }
+            IsSuccess = true,
+            Message = message,
+            Data = data,
+            UpdatedBy = updatedBy,
+            UpdatedAt = updatedAt ?? DateTime.UtcNow
+        };
+    }
 
-        public OperationResult(bool isSuccess, string? message, dynamic? data)
+    public static OperationResult<T> Failure(string message, string updatedBy = "", DateTime? updatedAt = null)
+    {
+        return new OperationResult<T>
         {
-            IsSuccess = isSuccess;
-            Message = message;
-            Data = data;
-        }
-
-        
-        public static OperationResult Success(dynamic? data, string? message = null)
-        {
-            return new OperationResult(true, message, data);
-        }
-
-        public static OperationResult Failure(string? errorMessage)
-        {
-            return new OperationResult(false, errorMessage, null);
-        }
+            IsSuccess = false,
+            Message = message,
+            Data = default,
+            UpdatedBy = updatedBy,
+            UpdatedAt = updatedAt ?? DateTime.UtcNow
+        };
     }
 }
