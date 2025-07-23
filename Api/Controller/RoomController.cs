@@ -77,46 +77,33 @@ namespace Api.Controller
             return CreatedAtAction(nameof(GetRoomById), new { id = room.Id }, room);
         }
 
-        [HttpPost("UpdateRoom")]
-        public async Task<IActionResult> UpdateRoom([FromBody] Room room)
+        [HttpPost("UpdateRoom/{id}")]
+        public async Task<IActionResult> UpdateRoom([FromBody] Room room, int id)
         {
-            if (!RoomExists(room.Id))
-                return NotFound();
+            var entity = await _context.Room.FindAsync(id);
 
-            _context.Entry(room).State = EntityState.Modified;
-
-            try
+            if (entity != null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomExists(room.Id))
-                    return NotFound();
-                else
-                    throw;
+                entity.FloorId = room.FloorId;
+                entity.NumeroHabitacion = room.NumeroHabitacion;
+                entity.Price = room.Price;
+                entity.RoomCategoryId = room.RoomCategoryId;
             }
 
-            return NoContent();
+            await _context.SaveChangesAsync();
+            return Ok("Update entity");
         }
 
         [HttpPost("DisableRoom/{id}")]
         public async Task<IActionResult> DisableRoom(int id)
         {
             var room = await _context.Room.FindAsync(id);
-            if (room == null)
-                return NotFound(new
-                {
-                    isSuccess = false,
-                    message = $"No se encontró la habitación con ID {id}"
-                });
-
-            room.IsDeleted = true;
-            room.DeletedAt = DateTime.UtcNow;
-
-            _context.Entry(room).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
+            if (room != null)
+            {
+                room.IsDeleted = true;
+                room.DeletedAt = DateTime.UtcNow;
+                await _context.SaveChangesAsync();
+            }
             return Ok(new
             {
                 isSuccess = true,

@@ -8,154 +8,153 @@ using SGRH._Domain.Entites;
 using SGRH.Persistences.Context;
 using SRH.Application.DTO.dbo;
 
-namespace SGRH.Persistences.Repositories
+namespace SGRH.Persistences.Repositories;
+
+public class RoomRepository : IRoomRepository
 {
-    public class RoomRepository : IRoomRepository
+    private readonly SGRHContext _context;
+
+    public RoomRepository(SGRHContext context)
     {
-        private readonly SGRHContext _context;
+        _context = context;
+    }
 
-        public RoomRepository(SGRHContext context)
+    public async Task<OperationResult<Room>> CreateRoom(CreateRoomDto dto)
+    {
+        try
         {
-            _context = context;
-        }
+            var room = new Room
+            {
+                NumeroHabitacion = dto.NumeroHabitacion,
+                Type = dto.Type,
+                FloorId = dto.FloorId, 
+                Price= dto.Price,
+                Status = dto.Status
+            };
 
-        public async Task<OperationResult<Room>> CreateRoom(CreateRoomDto dto)
+            _context.Room.Add(room);
+            await _context.SaveChangesAsync();
+
+            return new OperationResult<Room>
+            {
+                IsSuccess = true,
+                Message = "Habitación creada correctamente",
+                Data = room
+            };
+        }
+        catch (Exception ex)
         {
-            try
+            return new OperationResult<Room>
             {
-                var room = new Room
-                {
-                    NumeroHabitacion = dto.NumeroHabitacion,
-                    Type = dto.Type,
-                    FloorId = dto.FloorId, 
-                    Price= dto.Price,
-                    Status = dto.Status
-                };
-
-                _context.Room.Add(room);
-                await _context.SaveChangesAsync();
-
-                return new OperationResult<Room>
-                {
-                    IsSuccess = true,
-                    Message = "Habitación creada correctamente",
-                    Data = room
-                };
-            }
-            catch (Exception ex)
-            {
-                return new OperationResult<Room>
-                {
-                    IsSuccess = false,
-                    Message = $"Error: {ex.Message}",
-                    Data = null
-                };
-            }
+                IsSuccess = false,
+                Message = $"Error: {ex.Message}",
+                Data = null
+            };
         }
+    }
 
-        public async Task<OperationResult<Room>> UpdateRoom(UpdateRoomDto dto)
+    public async Task<OperationResult<Room>> UpdateRoom(UpdateRoomDto dto)
+    {
+        try
         {
-            try
+            var room = await _context.Room.FindAsync(dto.Id);
+            if (room == null)
+                return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
+
+            room.NumeroHabitacion = dto.NumeroHabitacion;
+            room.Type = dto.Type;
+            room.FloorId = dto.FloorId;
+            room.Price = dto.Price;
+            room.Status = dto.Status;
+
+            await _context.SaveChangesAsync();
+
+            return new OperationResult<Room>
             {
-                var room = await _context.Room.FindAsync(dto.Id);
-                if (room == null)
-                    return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
-
-                room.NumeroHabitacion = dto.NumeroHabitacion;
-                room.Type = dto.Type;
-                room.FloorId = dto.FloorId;
-                room.Price = dto.Price;
-                room.Status = dto.Status;
-
-                await _context.SaveChangesAsync();
-
-                return new OperationResult<Room>
-                {
-                    IsSuccess = true,
-                    Message = "Habitación actualizada",
-                    Data = room
-                };
-            }
-            catch (Exception ex)
-            {
-                return new OperationResult<Room>
-                {
-                    IsSuccess = false,
-                    Message = $"Error: {ex.Message}",
-                    Data = null
-                };
-            }
+                IsSuccess = true,
+                Message = "Habitación actualizada",
+                Data = room
+            };
         }
-
-        public async Task<OperationResult<Room>> DisableRoom(DisableRoomDto dto)
+        catch (Exception ex)
         {
-            try
+            return new OperationResult<Room>
             {
-                var room = await _context.Room.FindAsync(dto.RoomId);
-                if (room == null)
-                    return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
-
-                room.Status = "Inactiva";
-                await _context.SaveChangesAsync();
-
-                return new OperationResult<Room>
-                {
-                    IsSuccess = true,
-                    Message = "Habitación deshabilitada",
-                    Data = room
-                };
-            }
-            catch (Exception ex)
-            {
-                return new OperationResult<Room>
-                {
-                    IsSuccess = false,
-                    Message = $"Error: {ex.Message}",
-                    Data = null
-                };
-            }
+                IsSuccess = false,
+                Message = $"Error: {ex.Message}",
+                Data = null
+            };
         }
+    }
 
-        public async Task<OperationResult<Room>> GetRoomById(int id)
+    public async Task<OperationResult<Room>> DisableRoom(DisableRoomDto dto)
+    {
+        try
         {
-            try
+            var room = await _context.Room.FindAsync(dto.RoomId);
+            if (room == null)
+                return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
+
+            room.Status = "Inactiva";
+            await _context.SaveChangesAsync();
+
+            return new OperationResult<Room>
             {
-                var room = await _context.Room.FindAsync(id);
-                if (room == null)
-                    return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
-
-                return new OperationResult<Room>
-                {
-                    IsSuccess = true,
-                    Message = "Habitación encontrada",
-                    Data = room
-                };
-            }
-            catch (Exception ex)
+                IsSuccess = true,
+                Message = "Habitación deshabilitada",
+                Data = room
+            };
+        }
+        catch (Exception ex)
+        {
+            return new OperationResult<Room>
             {
-                return new OperationResult<Room>
-                {
-                    IsSuccess = false,
-                    Message = $"Error: {ex.Message}",
-                    Data = null
-                };
-            }
+                IsSuccess = false,
+                Message = $"Error: {ex.Message}",
+                Data = null
+            };
         }
+    }
 
-        public async Task<IEnumerable<Room>> GetAllRoom(Expression<Func<Room, bool>>? predicate = null)
+    public async Task<OperationResult<Room>> GetRoomById(int id)
+    {
+        try
         {
-            if (predicate != null)
-                return await _context.Room.Where(predicate).ToListAsync();
+            var room = await _context.Room.FindAsync(id);
+            if (room == null)
+                return new OperationResult<Room> { IsSuccess = false, Message = "Habitación no encontrada" };
 
-            return await _context.Room.ToListAsync();
+            return new OperationResult<Room>
+            {
+                IsSuccess = true,
+                Message = "Habitación encontrada",
+                Data = room
+            };
         }
-
-        public async Task<bool> ExistAsync(Expression<Func<Room, bool>>? predicate)
+        catch (Exception ex)
         {
-            if (predicate == null)
-                return false;
-
-            return await _context.Room.AnyAsync(predicate);
+            return new OperationResult<Room>
+            {
+                IsSuccess = false,
+                Message = $"Error: {ex.Message}",
+                Data = null
+            };
         }
+    }
+
+    public async Task<IEnumerable<Room>> GetAllRoom(Expression<Func<Room, bool>>? predicate = null)
+    {
+        if (predicate != null)
+            return await _context.Room.Where(predicate).ToListAsync();
+
+        return await _context.Room.ToListAsync();
+    }
+
+    public async Task<bool> ExistAsync(Expression<Func<Room, bool>>? predicate)
+    {
+        if (predicate == null)
+            return false;
+
+        return await _context.Room.AnyAsync(predicate);
     }
 }

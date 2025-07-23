@@ -2,11 +2,11 @@
 
 namespace SGRH.Mobiles
 {
-    public static class MauiProgram
+    public static class MainProgram
     {
-        public static MauiApp CreateMauiApp()
+        public static MainActivity CreateMauiApp()
         {
-            var builder = MauiApp.CreateBuilder();
+            var builder = MainActivity.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>

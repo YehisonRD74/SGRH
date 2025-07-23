@@ -39,5 +39,7 @@ public abstract class BaseService<T>
     //     }
     // }
 
-    protected BaseService() { }
+    protected BaseService()
+    {
+    }
 }

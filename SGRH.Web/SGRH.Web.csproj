@@ -7,15 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SGH.Domain\SGH.Domain.csproj" />
+    <ProjectReference Include="..\SGRH.Domain\SGRH.Domain.csproj" />
     <ProjectReference Include="..\SGRH.Infraestructure\SGRH.Infraestructure.csproj" />
     <ProjectReference Include="..\SGRH.IOC\SGRH.IOC.csproj" />
     <ProjectReference Include="..\SGRH.Persistences\SGRH.Persistences.csproj" />
-    <ProjectReference Include="..\SRH.Application\SRH.Application.csproj" />
+    <ProjectReference Include="..\SRH.Application\SGRH.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,16 +1,11 @@
 namespace SRH.Application.DTO.dbo
 {
-    public record GetActiveRoomDto
-    (
+    public record GetActiveRoomDto(
         int RoomId,
         string NumeroHabitacion,
         string Type,
         int FloorId,
         decimal Price,
-         string Status 
-        
-        
+        string Status
     );
 }
-
-

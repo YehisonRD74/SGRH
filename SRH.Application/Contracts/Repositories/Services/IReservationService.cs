@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using SGRH._Domain.Base;
 using SGRH._Domain.Entites;
-using SGRH._Domain.Entities;
+using SGRH.Application.DTO.reservations;
 using SRH.Application.DTO.dbo;
 
-namespace SRH.Application.Contracts.Repositories.Services
+namespace SGRH.Application.Contracts.Repositories.Services
 {
     public interface IReservationService
     {
-        Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null);
+        Task<OperationResult<IEnumerable<ReservationDto>>> GetAllReservationDto(Expression<Func<Reservation, bool>>? predicate = null);
 
         Task<OperationResult<Reservation>> GetReservationById(int id);
 

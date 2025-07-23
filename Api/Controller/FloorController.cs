@@ -4,7 +4,7 @@ using SGRH.Application.DTO.dbo;
 using SRH.Application.Contracts.Repositories.Services;
 using SRH.Application.DTO.dbo;
 
-namespace Api.Controller  // Cambio a plural Controllers, convención común
+namespace Api.Controller  
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -20,7 +20,5 @@ namespace SGM.Application.Contracts.Repositories
         // Task<OperationResult> DeleteAsync(TEntity entity);
         //
         // Task<OperationResult> GetAllAsync();
-
-     
     }
 }

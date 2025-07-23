@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SGRH.Application.Contracts.Repositories.Services;
 using SRH.Application.Contracts.Repositories.Services;
 using SRH.Application.DTO.dbo;
 
-namespace Api.Controllers
+namespace Api.Controller
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -17,9 +18,9 @@ namespace Api.Controllers
         [HttpGet("GetAllReservations")]
         public async Task<IActionResult> GetAllReservations()
         {
-            var result = await _reservationService.GetAllReservation();
+            var result = await _reservationService.GetAllReservationDto();
 
-            if (result == null || !result.IsSuccess || result.Data == null)
+            if (!result.IsSuccess || result.Data == null)
                 return NotFound(new
                 {
                     result?.IsSuccess,
@@ -61,7 +62,7 @@ namespace Api.Controllers
         [HttpPost("CreateReservation")]
         public async Task<IActionResult> CreateReservation([FromBody] CreateReservationDto dto)
         {
-            if (!ModelState.IsValid || dto == null)
+            if (!ModelState.IsValid)
                 return BadRequest(new
                 {
                     IsSuccess = false,
