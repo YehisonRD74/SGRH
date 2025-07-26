@@ -26,11 +26,11 @@ namespace SGRH.Persistences.Repositories
             _context = context;
         }
 
-        public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? createReservationDto)
-{
+        public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? createReservationDto) 
+        {
     try
     {
-        // ✅ Validar que el DTO no sea nulo primero
+  
         if (createReservationDto == null)
         {
             return new OperationResult<Reservation>
@@ -41,7 +41,7 @@ namespace SGRH.Persistences.Repositories
             };
         }
 
-        // ✅ Validar que el usuario exista
+
         var userExists = await _context.User.AnyAsync(u => u.Id == createReservationDto.UserId);
         if (!userExists)
         {
@@ -62,7 +62,7 @@ namespace SGRH.Persistences.Repositories
             CheckInDate = createReservationDto.CheckInDate,
             CheckOutDate = createReservationDto.CheckOutDate,
             TotalAmount = createReservationDto.TotalAmount,
-            UserId = createReservationDto.UserId // ✅ Esta línea es esencial
+            UserId = createReservationDto.UserId 
         };
 
         await _context.Reservation.AddAsync(reservation);
@@ -160,12 +160,11 @@ namespace SGRH.Persistences.Repositories
 
 
 
-        public async Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null)
+        public async Task<OperationResult<IEnumerable<Reservation>?>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null)
         {
             try
             {
                 IQueryable<Reservation> query = _context.Reservation
-                    .Include(r => r.Customer)
                     .Include(r => r.User)
                     .Include(r => r.ReservationDetails);
 
@@ -176,7 +175,7 @@ namespace SGRH.Persistences.Repositories
 
                 var list = await query.ToListAsync();
 
-                return new OperationResult<IEnumerable<Reservation>>
+                return new OperationResult<IEnumerable<Reservation>?>
                 {
                     IsSuccess = true,
                     Message = list.Any() ? "Reservas obtenidas correctamente." : "No hay reservas disponibles.",
@@ -187,7 +186,7 @@ namespace SGRH.Persistences.Repositories
             {
                 var error = ex.InnerException?.Message ?? ex.Message;
 
-                return new OperationResult<IEnumerable<Reservation>>
+                return new OperationResult<IEnumerable<Reservation>?>
                 {
                     IsSuccess = false,
                     Message = $"Error al obtener reservas: {error}",

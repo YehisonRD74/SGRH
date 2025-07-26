@@ -14,8 +14,8 @@ namespace SRH.Application.Contracts.Repositories.Services
 
         Task<OperationResult<Floor>> UpDateFloor(UpdateFloorDto updateFloorDto);
 
-        Task<OperationResult<bool>> DisableFloor(DisableFloorDto? disableFloorDto);
+        Task<OperationResult<bool>> DisableFloor(DisableFloorDto disableFloorDto);
 
-        Task<OperationResult<CreateFloorDto>> CreateFloor(CreateFloorDto? createFloorDto);
+        Task<OperationResult<CreateFloorDto>> CreateFloor(CreateFloorDto createFloorDto);
     }
 }

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using SGRH.Persistences;
 
-namespace SGRH.Persistences.Factories
+namespace SGRH.Persistences
 {
     public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {

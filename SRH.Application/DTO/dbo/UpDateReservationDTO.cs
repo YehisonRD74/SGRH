@@ -2,7 +2,7 @@ namespace SRH.Application.DTO.dbo;
 
 public record UpDateReservationDto
 {
-    public int ReservationId{ get; init; }
+    public int ReservationId { get; init; }
     public DateTime CheckInDate { get; init; }
     public DateTime CheckOutDate { get; init; }
     public String Status { get; init; }

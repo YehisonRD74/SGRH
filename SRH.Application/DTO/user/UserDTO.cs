@@ -1,6 +1,6 @@
 namespace SGRH.Application.DTO.user
 {
-    public class User
+    public class UserDto
     {
         public int Id { get; set; }
 
@@ -13,11 +13,7 @@ namespace SGRH.Application.DTO.user
         public string PhoneNumber { get; set; } = string.Empty;
 
         public string Address { get; set; } = string.Empty;
-
-        public string Password { get; set; } = string.Empty;
-
-        public string Role { get; set; } = string.Empty;
-
+        
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }

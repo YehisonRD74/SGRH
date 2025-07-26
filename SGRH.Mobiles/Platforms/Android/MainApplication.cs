@@ -11,6 +11,6 @@ namespace SGRH.Mobiles
         {
         }
 
-        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+        protected override MauiApp CreateMauiApp() => MainProgram.CreateMauiApp();
     }
 }

@@ -1,4 +1,9 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using SGRH.Application.Contracts.Repositories.dbo;
+using SGRH.Application.Contracts.Repositories.Services;
+using SGRH.Application.Services;
+using SGRH.Application.Validators;
 using SGRH.Persistences.Context;
 using SGRH.Persistences.Repositories;
 using SRH.Application.Contracts.Repositories.dbo;
@@ -14,13 +19,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SGRHContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SGRHContext")));
 
+// Agrega esto para registrar automáticamente los validadores de FluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<CreateFloorValidator>();
+
 builder.Services.AddScoped<IFloorRepository, FloorRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 
 builder.Services.AddScoped<IFloorService, FloorService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
-builder.Services.AddScoped<IRoomService, SRH.Application.Services.RoomService>();
+builder.Services.AddScoped<IRoomService, RoomService>();
 
 var app = builder.Build();
 

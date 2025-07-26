@@ -1,7 +1,7 @@
 namespace SGRH.Application.DTO.dbo
 {
     public record UpdateRoomDto
-    { 
+    {
         public int Id { get; init; }
         public string Descripcion { get; init; }
         public decimal Price { get; init; }
@@ -10,6 +10,5 @@ namespace SGRH.Application.DTO.dbo
         public int FloorId { get; init; }
         public String Type { get; set; }
         public string Status { get; set; }
-
     }
 }

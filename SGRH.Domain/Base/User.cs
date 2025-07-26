@@ -3,27 +3,26 @@ using SGRH._Domain.Base;
 
 namespace SGRH._Domain.Base
 {
-    public abstract class User : BaseEntity
+    public class User
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public string PasswordHash { get; set; }
+        public int Id { get; set; }
 
-        public abstract string Rol { get; }
+        public string FirstName { get; set; } = string.Empty;
 
-        protected User(string firstName, string lastName, string email, string phoneNumber, string address, string passwordHash)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
-            PhoneNumber = phoneNumber;
-            Address = address;
-            PasswordHash = passwordHash;
-        }
+        public string LastName { get; set; } = string.Empty;
 
-        protected User() { }
+        public string Email { get; set; } = string.Empty;
+
+        public string PhoneNumber { get; set; } = string.Empty;
+
+        public string Address { get; set; } = string.Empty;
+
+        public string Password { get; set; } = string.Empty;
+
+        public string Role { get; set; } = string.Empty;
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
     }
 }

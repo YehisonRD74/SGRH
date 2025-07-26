@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using SGRH._Domain.Base;
 using SGRH._Domain.Entites;
 using SGRH._Domain.Entities;
+using SGRH.Application.Contracts.Repositories.dbo;
 using SGRH.Application.DTO.dbo;
 using SGRH.Persistences.Context;
 using SRH.Application.Contracts.Repositories.dbo;
@@ -78,7 +79,7 @@ namespace SGRH.Persistences.Repositories
                     };
                 }
 
-                // Actualizar campos necesarios
+                
                 existing.FloorNumber = entity.Data.FloorNumber;
                 existing.UpdatedAt = entity.Data.UpdatedAt;
                 existing.UpdatedBy = entity.Data.UpdatedBy ?? "admin";

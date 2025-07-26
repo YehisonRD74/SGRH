@@ -9,13 +9,14 @@ namespace SRH.Application.Contracts.Repositories.dbo
     public interface IReservationRepository
     {
         Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? createReservationDto);
-        
+
         Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto);
-        
+
         Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto);
-        
-        Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null);
-        
+
+        Task<OperationResult<IEnumerable<Reservation>?>> GetAllReservation(
+            Expression<Func<Reservation, bool>>? predicate = null);
+
         Task<OperationResult<Reservation>> GetReservationById(int id);
     }
 }

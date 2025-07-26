@@ -12,9 +12,10 @@ namespace SRH.Application.DTO.dbo
         public string Status { get; set; }
         public int CustomerId { get; set; }
         public decimal TotalPrice { get; set; }
-        
 
-      
-        public CreateReservationDto() { }
+
+        public CreateReservationDto()
+        {
+        }
     }
 }

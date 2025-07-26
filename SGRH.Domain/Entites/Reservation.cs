@@ -1,6 +1,5 @@
 ﻿using SGRH._Domain.Base;
 using SGRH._Domain.Entities;
-using YourProject.Domain.Entities;
 
 namespace SGRH._Domain.Entites;
 
@@ -14,6 +13,5 @@ public class Reservation: AuditEntity
     public int CustomerId { get; set; }
     public bool IsActive { get; set; } = true;
     public User? User { get; set; }
-    public Customer? Customer { get; set; }
     public ICollection<ReservationDetail>? ReservationDetails { get; set; }
 }

@@ -1,7 +1,5 @@
-
 namespace SGRH.Application.DTO.dbo
 {
-   
     public record CreateFloorDto
     {
         public int FloorId { get; init; }
@@ -15,5 +13,4 @@ namespace SGRH.Application.DTO.dbo
 
         public bool IsDeleted { get; set; }
     }
-    
 }
