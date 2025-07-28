@@ -8,9 +8,9 @@ namespace SGRH.Application.Contracts.Repositories.Services
 {
     public interface IReservationService
     {
-        Task<OperationResult<IEnumerable<ReservationDto>>> GetAllReservationDto(Expression<Func<Reservation, bool>>? predicate = null);
+        Task<OperationResult<IEnumerable<Reservation>>> GetReservation();
 
-        Task<OperationResult<Reservation>> GetReservationById(int id);
+        Task<OperationResult<Reservation>> GetReservationById(int id, GetActiveReservationDto dto);
 
         Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto);
 

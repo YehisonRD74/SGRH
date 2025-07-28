@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SGRH.Web.Models.RoomModels>
+
+@{
+    ViewData["Title"] = "Rooms List";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Room Number</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Floor</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NumeroHabitacion</td>
+                <td>@item.Type</td>
+                <td>@item.Price.ToString("C")</td>
+                <td>@item.Status</td>
+                <td>@item.FloorId</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

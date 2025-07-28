@@ -1,4 +1,6 @@
-﻿namespace SGRH.Mobiles
+﻿using static System.Net.Mime.MediaTypeNames;
+
+namespace SGRH.Mobiles
 {
     public partial class App : Application
     {

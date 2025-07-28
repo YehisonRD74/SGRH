@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SGRH._Domain.Entites;
 using SGRH._Domain.Entities;
+using SGRH.Application.DTO.dbo;
 using SGRH.Persistences.Context;
+using SRH.Application.Contracts.Repositories.Services;
 
 namespace Api.Controller
 {
@@ -11,35 +13,27 @@ namespace Api.Controller
     public class RoomController : ControllerBase
     {
         private readonly SGRHContext _context;
+        private readonly IRoomService _roomService;
 
-        public RoomController(SGRHContext context)
+
+        public RoomController(IRoomService roomService)
         {
-            _context = context;
+            _roomService = roomService;
         }
 
 
         [HttpGet("GetAllRoom")]
         public async Task<IActionResult> GetAllRoom()
         {
-            var rooms = await _context.Room
-                .Where(r => !r.IsDeleted)
-                .ToListAsync();
+            var result = await _roomService.GetAllRoom();
 
-            return Ok(rooms);
+            if (!result.IsSuccess)
+                return StatusCode(500, result.Message);
+
+            return Ok(result); 
         }
 
-        [HttpGet("GetRoomById/{id}")]
-        public async Task<IActionResult> GetRoomById(int id)
-        {
-            var room = await _context.Room
-                .Where(r => r.Id == id && !r.IsDeleted)
-                .FirstOrDefaultAsync();
 
-            if (room == null)
-                return NotFound();
-
-            return Ok(room);
-        }
 
         [HttpPost("CreateRoom")]
         public async Task<IActionResult> CreateRoom([FromBody] Room room)
@@ -74,7 +68,7 @@ namespace Api.Controller
             await _context.SaveChangesAsync();
 
 
-            return CreatedAtAction(nameof(GetRoomById), new { id = room.Id }, room);
+            return CreatedAtAction(nameof(GetActiveRoomByIdDto), new { id = room.Id }, room);
         }
 
         [HttpPost("UpdateRoom/{id}")]

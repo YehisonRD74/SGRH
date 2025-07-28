@@ -14,8 +14,7 @@ namespace SRH.Application.Contracts.Repositories.dbo
 
         Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto);
 
-        Task<OperationResult<IEnumerable<Reservation>?>> GetAllReservation(
-            Expression<Func<Reservation, bool>>? predicate = null);
+        Task<IEnumerable<Reservation>> GetAllResevation(Expression<Func<Reservation, bool>>? predicate = null);
 
         Task<OperationResult<Reservation>> GetReservationById(int id);
     }

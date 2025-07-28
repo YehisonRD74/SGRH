@@ -21,8 +21,10 @@ namespace Api.Controller
         public async Task<IActionResult> GetFloor()
         {
             var result = await _floorService.GetFloor();
+
             if (result.IsSuccess)
-            {
+         
+           {
                 return Ok(result);
             }
             return BadRequest(result);
@@ -32,7 +34,7 @@ namespace Api.Controller
         public async Task<IActionResult> GetFloorById(int id)
         {
             var dto = new GetFloorByIdDto { Id = id };
-            // Aquí corregí el método (antes GetFloorByI)
+         
             var result = await _floorService.GetFloorById(id, dto);
         
             if (!result.IsSuccess)
@@ -45,7 +47,7 @@ namespace Api.Controller
         public async Task<IActionResult> CreateFloor([FromBody] CreateFloorDto? dto)
         {
             //if (!ModelState.IsValid)
-              //  return BadRequest(ModelState);
+              // return BadRequest(ModelState);
         
             var result = await _floorService.CreateFloor(dto);
             return Ok(result);

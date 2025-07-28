@@ -4,6 +4,7 @@
     <projectFile profileName="IIS Express">Api/Api.csproj</projectFile>
     <projectFile profileName="http">Api/Api.csproj</projectFile>
     <projectFile profileName="https">Api/Api.csproj</projectFile>
+    <projectFile kind="Uwp">SGRH.Mobiles/SGRH.Mobiles.csproj</projectFile>
     <projectFile kind="XamarinIOS">SGRH.Mobiles/SGRH.Mobiles.csproj</projectFile>
     <projectFile kind="XamarinMacOS">SGRH.Mobiles/SGRH.Mobiles.csproj</projectFile>
     <projectFile profileName="IIS Express">SGRH.Web/SGRH.Web.csproj</projectFile>
@@ -14,67 +15,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4513bacd-2788-434e-b0da-0e72f7b77e1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SGRH.Domain/SGRH.Domain.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SRH.Application/DTO/reservations/ReservationDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SRH.Application/DTO/user/UserDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Controller/FloorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Controller/FloorController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Controller/ReservationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Controller/ReservationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Controller/RoomController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Controller/RoomController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Base/AuditEnty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Base/AuditEnty.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Base/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Base/BaseEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Base/OperationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Base/OperationResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Base/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Base/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/Administrador.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/Customer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/Employee.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/Floor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Entites/Floor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/Rate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Entites/Rate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/Reservation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Entites/Reservation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/ReservationDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Entites/ReservationDetail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/Room.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Entites/Room.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/Entites/RoomCategory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Domain/Entites/RoomCategory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGH.Domain/SGH.Domain.csproj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SGRH" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.IOC/SGRH.IOC.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.IOC/SGRH.IOC.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Infraestructure/SGRH.Infraestructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Infraestructure/SGRH.Infraestructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/MainProgram.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/Android/MainApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/Android/MainApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/MacCatalyst/AppDelegate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/MacCatalyst/AppDelegate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/Tizen/Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/Tizen/Main.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/Windows/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/Windows/App.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/iOS/AppDelegate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/Platforms/iOS/AppDelegate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Persistences/Repositories/FloorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persistences/Repositories/FloorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Persistences/Repositories/ReservationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persistences/Repositories/ReservationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Persistences/Repositories/RoomRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persistences/Repositories/RoomRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Persistences/SGRH.Persistences.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persistences/SGRH.Persistences.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Persistences/SGRHContextFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persistences/SGRHContextFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Web/SGRH.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Web/SGRH.Web.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Base/BaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Base/BaseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Base/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Base/IBaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/Services/IFloorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/Services/IFloorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/Services/IReservationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/Services/IReservationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/dbo/IFloorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/dbo/IFloorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/CreateFloorDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/CreateFloorDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/CreateReservationDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/CreateReservationDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/DisableReservationDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/DisableReservationDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/DisableRoomDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/DisableRoomDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/GetActiveReservation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/GetActiveReservation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/GetActiveRoomDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/GetActiveRoomDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/UpDateReservationDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/UpDateReservationDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/UpdateRoomDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/UpdateRoomDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/reservations/Reservation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/reservations/Reservation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/SRH.Application.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Services/FloorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Services/FloorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Services/ReservationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Services/ReservationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SRH.Application/Services/RoomService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Services/RoomService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,13 +29,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Junior28f"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/YehisonRD74/SGRH.git",
+    "accountId": "e6af3954-cdff-4fdc-9d87-0a21a61c1edb"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5c97f5415ab345ff8424e96123f0796f69908/f6/978fb76f/MediaTypeNames.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d7e2ce30531b7a2d56142411c5e51c3d516aafcb44e7628167b959660a65c/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="30FjoFs3QDL1vQA0HBn8GbqiafO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -102,7 +57,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.Api: IIS Express.executor": "Debug",
-    ".NET Launch Settings Profile.Api: http.executor": "Debug",
+    ".NET Launch Settings Profile.Api: http.executor": "Run",
     ".NET Launch Settings Profile.Api: https.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -192,6 +147,13 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="SGRH.Mobiles" type="UwpProject" factoryName="UWP">
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="SGRH.Mobiles" type="XamarinIOSProject" factoryName="Xamarin.iOS">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -218,6 +180,7 @@
       <option name="presentableId" value="Default" />
       <updated>1753230388818</updated>
       <workItem from="1753230389796" duration="3911000" />
+      <workItem from="1753489257503" duration="351000" />
     </task>
     <servers />
   </component>

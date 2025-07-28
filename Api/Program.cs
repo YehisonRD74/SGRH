@@ -23,11 +23,11 @@ builder.Services.AddDbContext<SGRHContext>(options =>
 builder.Services.AddValidatorsFromAssemblyContaining<CreateFloorValidator>();
 
 builder.Services.AddScoped<IFloorRepository, FloorRepository>();
-builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+//builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 
 builder.Services.AddScoped<IFloorService, FloorService>();
-builder.Services.AddScoped<IReservationService, ReservationService>();
+//builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 
 var app = builder.Build();

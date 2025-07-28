@@ -1,185 +1,152 @@
-using System.Linq.Expressions;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SGRH._Domain.Base;
 using SGRH._Domain.Entites;
 using SGRH.Application.Contracts.Repositories.Services;
 using SGRH.Application.DTO.reservations;
-using SGRH.Application.DTO.user;
 using SRH.Application.Contracts.Repositories.dbo;
 using SRH.Application.DTO.dbo;
 
-namespace SGRH.Application.Services
+namespace SGRH.Application.Services;
+
+public class ReservationService : BaseService<ReservationService>, IReservationService
 {
-    public class ReservationService : BaseService<Reservation>, IReservationService
+    private readonly IReservationRepository _reservationRepository;
+    private new readonly ILogger<ReservationService> _logger;
+    private readonly IConfiguration _configuration;
+    private readonly IValidator<CreateReservationDto> _createReservationValidator;
+
+    public ReservationService(
+        IReservationRepository reservationRepository,
+        ILogger<ReservationService> logger,
+        IConfiguration configuration,
+        IValidator<CreateReservationDto> createReservationValidator)
+        : base(logger)
     {
-        private readonly IReservationRepository _reservationRepository;
-        private readonly IConfiguration _configuration;
+        _reservationRepository = reservationRepository;
+        _logger = logger;
+        _configuration = configuration;
+        _createReservationValidator = createReservationValidator;
+    }
 
-        public ReservationService(IReservationRepository reservationRepository,
-            ILogger<Reservation> logger,
-            IConfiguration configuration)
-            : base(logger)
+    public async Task<OperationResult<IEnumerable<Reservation>>> GetReservation()
+    {
+        try
         {
-            _reservationRepository = reservationRepository;
-            _configuration = configuration;
+            var reservations = await _reservationRepository.GetAllResevation();
+            if (reservations != null && reservations.Any())
+                return OperationResult<IEnumerable<Reservation>>.Success(reservations, "Listado de reservas obtenido correctamente");
+
+            return OperationResult<IEnumerable<Reservation>>.Failure("No se encontraron reservas");
         }
-
-        public async Task<OperationResult<IEnumerable<ReservationDto>>> GetAllReservationDto(Expression<Func<Reservation, bool>>? predicate = null)
+        catch (Exception e)
         {
-            try
-            {
-                var result = await _reservationRepository.GetAllReservation(predicate);
-
-                var data = result.Data
-                    .Select(r => new ReservationDto
-                    {
-                        Id = r.Id,
-                        CheckInDate = r.CheckInDate,
-                        CheckOutDate = r.CheckOutDate,
-                        Status = r.Status,
-                        TotalAmount = r.TotalAmount,
-                        User =  new UserDto
-                        {
-                            Id = r.User!.Id,
-                            FirstName = r.User.FirstName,
-                            LastName = r.User.LastName,
-                            Email = r.User.Email,
-                            PhoneNumber = r.User.PhoneNumber,
-                            Address = r.User.Address,
-                            CreatedAt = r.User.CreatedAt,
-                            UpdatedAt = r.User.UpdatedAt
-                        },
-                        IsActive = r.IsActive
-                    });
-
-                return new OperationResult<IEnumerable<ReservationDto>>
-                {
-                    IsSuccess = true,
-                    Message = result.Message,
-                    Data = data
-                };
-            }
-            catch (Exception e)
-            {
-                LogError(e, $"Error al obtener las reservas: {e.Message}");
-                return new OperationResult<IEnumerable<ReservationDto>>
-                {
-                    IsSuccess = false,
-                    Message = $"Error al obtener reservas: {e.Message}",
-                    Data = null
-                };
-            }
+            LogError(e, $"Error al obtener las reservas: {e.Message}");
+            return OperationResult<IEnumerable<Reservation>>.Failure("Error: " + e.Message);
         }
+    }
 
-
-        public async Task<OperationResult<Reservation>> GetReservationById(int id)
+    public async Task<OperationResult<Reservation>> GetReservationById(int id, GetActiveReservationDto dto)
+    {
+        try
         {
-            try
+            var result = await _reservationRepository.GetReservationById(id);
+            if (result.Data != null && result.Data.IsActive == dto.IsActive)
             {
-                var result = await _reservationRepository.GetReservationById(id);
-
-                if (!result.IsSuccess || result.Data == null)
-                {
-                    LogError("Reserva no encontrada: {0}", result.Message);
-                    return OperationResult<Reservation>.Failure(result.Message);
-                }
-
-                LogInformation("Reserva obtenida correctamente.");
-                return OperationResult<Reservation>.Success(result.Data, result.Message);
+                return OperationResult<Reservation>.Success(result.Data, "Reserva obtenida correctamente");
             }
-            catch (Exception ex)
-            {
-                LogError(ex, "Excepción en GetReservationById.");
-                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
-            }
+
+            return OperationResult<Reservation>.Failure("Reserva no encontrada o no activa");
         }
-
-        public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto)
+        catch (Exception e)
         {
-            try
-            {
-                var result = await _reservationRepository.CreateReservation(createReservationDto);
-
-                if (!result.IsSuccess || result.Data == null)
-                {
-                    LogError("Error al crear la reserva: {0}", result.Message);
-                    return OperationResult<Reservation>.Failure(result.Message);
-                }
-
-                LogInformation("Reserva creada exitosamente.");
-                return OperationResult<Reservation>.Success(result.Data, result.Message);
-            }
-            catch (Exception ex)
-            {
-                LogError(ex, "Excepción en CreateReservation.");
-                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
-            }
+            LogError(e, $"Error en GetReservationById: {e.Message}");
+            return OperationResult<Reservation>.Failure("Error: " + e.Message);
         }
+    }
 
-        public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto)
+    public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto)
+    {
+        try
         {
-            try
-            {
-                var result = await _reservationRepository.UpdateReservation(updateReservationDto);
+            if (createReservationDto == null)
+                return OperationResult<Reservation>.Failure("Datos de creación inválidos");
 
-                if (!result.IsSuccess || result.Data == null)
-                {
-                    LogError("Error al actualizar la reserva: {0}", result.Message);
-                    return OperationResult<Reservation>.Failure(result.Message);
-                }
-
-                LogInformation("Reserva actualizada exitosamente.");
-                return OperationResult<Reservation>.Success(result.Data, result.Message);
-            }
-            catch (Exception ex)
+            ValidationResult validationResult = await _createReservationValidator.ValidateAsync(createReservationDto);
+            if (!validationResult.IsValid)
             {
-                LogError(ex, "Excepción en UpdateReservation.");
-                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
+                var errors = string.Join(" ", validationResult.Errors.Select(e => e.ErrorMessage));
+                LogError(new ValidationException(errors), $"Errores de validación al crear la reserva");
+                return OperationResult<Reservation>.Failure($"Errores de validación: {errors}");
             }
+
+            var result = await _reservationRepository.CreateReservation(createReservationDto);
+            if (!result.IsSuccess || result.Data == null)
+                return OperationResult<Reservation>.Failure(result.Message);
+
+            return OperationResult<Reservation>.Success(result.Data, "Reserva creada exitosamente");
         }
-
-        public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto)
+        catch (Exception e)
         {
-            try
-            {
-                var result = await _reservationRepository.DisableReservation(disableReservationDto);
+            LogError(e, $"Excepción en CreateReservation: {e.Message}");
+            return OperationResult<Reservation>.Failure("Error: " + e.Message);
+        }
+    }
 
-                if (!result.IsSuccess || result.Data == null)
-                {
-                    LogError("Error al deshabilitar la reserva: {0}", result.Message);
-                    return OperationResult<Reservation>.Failure(result.Message);
-                }
+    public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto dto)
+    {
+        try
+        {
+            var existing = await _reservationRepository.GetReservationById(dto.ReservationId);
+            if (existing.Data == null)
+                return OperationResult<Reservation>.Failure("Reserva no encontrada");
 
-                {
-                    var getResult =
-                        await _reservationRepository.GetReservationById(disableReservationDto.ReservationId);
+            // Aquí podrías mapear cambios si se trabaja directamente con la entidad
+            existing.Data.CheckInDate = dto.CheckInDate;
+            existing.Data.CheckOutDate = dto.CheckOutDate;
+            existing.Data.Status = dto.Status;
+            existing.Data.TotalAmount = dto.TotalAmount;
+            existing.Data.UpdatedAt = DateTime.UtcNow;
 
-                    if (!getResult.IsSuccess || getResult.Data == null)
-                    {
-                        LogError("Reserva no encontrada: {0}", getResult.Message);
-                        return OperationResult<Reservation>.Failure("Reserva no encontrada.");
-                    }
+            var result = await _reservationRepository.UpdateReservation(dto);
+            if (!result.IsSuccess || result.Data == null)
+                return OperationResult<Reservation>.Failure(result.Message);
 
+            return OperationResult<Reservation>.Success(result.Data, "Reserva actualizada exitosamente");
+        }
+        catch (Exception e)
+        {
+            LogError(e, $"Error al actualizar la reserva: {e.Message}");
+            return OperationResult<Reservation>.Failure("Error: " + e.Message);
+        }
+    }
 
-                    var disableResult = await _reservationRepository.DisableReservation(disableReservationDto);
+    public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto)
+    {
+        try
+        {
+            if (disableReservationDto == null)
+                return OperationResult<Reservation>.Failure("Datos inválidos");
 
-                    if (!disableResult.IsSuccess || disableResult.Data == null)
-                    {
-                        LogError("Error al deshabilitar la reserva: {0}", disableResult.Message);
-                        return OperationResult<Reservation>.Failure(disableResult.Message);
-                    }
+            var existing = await _reservationRepository.GetReservationById(disableReservationDto.ReservationId);
+            if (existing.Data == null)
+                return OperationResult<Reservation>.Failure("Reserva no encontrada");
 
-                    LogInformation("Reserva deshabilitada exitosamente.");
-                    return OperationResult<Reservation>.Success(disableResult.Data,
-                        "Reserva deshabilitada exitosamente");
-                }
-            }
-            catch (Exception ex)
-            {
-                LogError(ex, "Excepción en DisableReservation.");
-                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
-            }
+            existing.Data.IsActive = false;
+            existing.Data.UpdatedAt = DateTime.UtcNow;
+
+            var result = await _reservationRepository.DisableReservation(disableReservationDto);
+            if (!result.IsSuccess || result.Data == null)
+                return OperationResult<Reservation>.Failure(result.Message);
+
+            return OperationResult<Reservation>.Success(result.Data, "Reserva deshabilitada correctamente");
+        }
+        catch (Exception e)
+        {
+            LogError(e, $"Excepción en DisableReservation: {e.Message}");
+            return OperationResult<Reservation>.Failure("Error: " + e.Message);
         }
     }
 }

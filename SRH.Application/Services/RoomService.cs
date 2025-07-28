@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SGRH._Domain.Base;
+using SGRH._Domain.Entites;
 using SGRH._Domain.Entities;
 using SGRH.Application.DTO.dbo;
 using SRH.Application.Contracts.Repositories.dbo;
@@ -27,6 +28,7 @@ namespace SRH.Application.Services
             try
             {
                 var rooms = await _roomRepository.GetAllRoom();
+
 
                 var mapped = rooms.Select(room => new GetActiveRoomDto(
                     room.Id,
@@ -84,7 +86,7 @@ namespace SRH.Application.Services
                 return new OperationResult<GetActiveRoomDto>
                 {
                     IsSuccess = true,
-                    Message = result.Message,
+                    Message = "Habitaciones obtenitos exitosamente",
                     Data = dto
                 };
             }
@@ -128,7 +130,7 @@ namespace SRH.Application.Services
                 return new OperationResult<GetActiveRoomDto>
                 {
                     IsSuccess = true,
-                    Message = result.Message,
+                    Message = "Habitación creada exitosamente",
                     Data = dto
                 };
             }
@@ -160,6 +162,7 @@ namespace SRH.Application.Services
                     };
                 }
 
+
                 var dto = new GetActiveRoomDto(
                     result.Data.Id,
                     result.Data.NumeroHabitacion,
@@ -172,7 +175,7 @@ namespace SRH.Application.Services
                 return new OperationResult<GetActiveRoomDto>
                 {
                     IsSuccess = true,
-                    Message = result.Message,
+                    Message = "Habitación actualizada exitosamente",
                     Data = dto
                 };
             }
@@ -197,7 +200,7 @@ namespace SRH.Application.Services
                 return new OperationResult<bool>
                 {
                     IsSuccess = result.IsSuccess,
-                    Message = result.Message,
+                    Message = "Habitacion desabilitada exitosamente",
                     Data = result.IsSuccess
                 };
             }

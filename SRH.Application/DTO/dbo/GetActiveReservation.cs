@@ -10,4 +10,5 @@ public record GetActiveReservationDto
     public String Status { get; init; }
     public decimal TotalAmount { get; init; }
     public int UserId { get; init; }
+    public bool IsActive { get; internal set; }
 }

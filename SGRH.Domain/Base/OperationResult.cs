@@ -1,4 +1,6 @@
-﻿namespace SGRH._Domain.Base;
+﻿using SGRH._Domain.Entites;
+
+namespace SGRH._Domain.Base;
 
 public class OperationResult<T>
 {
@@ -32,4 +34,6 @@ public class OperationResult<T>
             UpdatedAt = updatedAt ?? DateTime.UtcNow
         };
     }
+
+   
 }
