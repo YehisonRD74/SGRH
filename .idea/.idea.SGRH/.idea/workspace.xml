@@ -17,8 +17,6 @@
     <list default="true" id="4513bacd-2788-434e-b0da-0e72f7b77e1c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SGRH" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Persitences/Context/ReservationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persitences/Context/ReservationContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Persitences/Repositories/ReservationRepositoryMock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persitences/Repositories/ReservationRepositoryMock.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +28,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -60,12 +59,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.Api: IIS Express.executor": "Debug",
-    ".NET Launch Settings Profile.Api: http.executor": "Debug",
-    ".NET Launch Settings Profile.Api: https.executor": "Debug",
+    ".NET Launch Settings Profile.Api: http.executor": "Run",
+    ".NET Launch Settings Profile.Api: https.executor": "Run",
+    ".NET Launch Settings Profile.SGRH.Web: http.executor": "dotTrace Profiler",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging Junior-FelicianoJavier",
+    "git-widget-placeholder": "Junior-FelicianoJavier",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -74,7 +74,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Api: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Api: https">
     <configuration name="Api: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Api/Api.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -150,6 +150,21 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="Unnamed" type="LaunchSettings" factoryName=".NET Launch Settings Profile" singleton="false" nameIsGenerated="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Api/Api.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="SGRH.Mobiles" type="UwpProject" factoryName="UWP">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -174,6 +189,17 @@
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.Api: http" />
+      <item itemvalue=".NET Launch Settings Profile.Api: https" />
+      <item itemvalue=".NET Launch Settings Profile.Api: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.SGRH.Web: http" />
+      <item itemvalue=".NET Launch Settings Profile.Unnamed" />
+      <item itemvalue=".NET Launch Settings Profile.SGRH.Web: IIS Express" />
+      <item itemvalue="iOS.SGRH.Mobiles" />
+      <item itemvalue="macOS.SGRH.Mobiles" />
+      <item itemvalue="UWP.SGRH.Mobiles" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -184,6 +210,7 @@
       <updated>1753230388818</updated>
       <workItem from="1753230389796" duration="3911000" />
       <workItem from="1753489257503" duration="351000" />
+      <workItem from="1753758737758" duration="2121000" />
     </task>
     <servers />
   </component>
