@@ -17,8 +17,8 @@ namespace SGRH.Persitences.Tests.Context
             optionsBuilder.UseInMemoryDatabase("Reservation");
         }
         public DbSet<Reservation> Reservation { get; set; }
-        public DbSet<User> User { set; get; }
-        public DbSet<Customer> Customer { get; set; } 
+        // public DbSet<User> User { set; get; }
+        // public DbSet<Customer> Customer { get; set; } 
         public DbSet<ReservationDetail> ReservationDetails { get; set; }  
 
     }

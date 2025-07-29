@@ -15,8 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4513bacd-2788-434e-b0da-0e72f7b77e1c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SGRH" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SGRH.Persitences/Context/ReservationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persitences/Context/ReservationContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SGRH.Persitences/Repositories/ReservationRepositoryMock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persitences/Repositories/ReservationRepositoryMock.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,23 +31,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Junior28f"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Junior28f&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/YehisonRD74/SGRH.git",
-    "accountId": "e6af3954-cdff-4fdc-9d87-0a21a61c1edb"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/YehisonRD74/SGRH.git&quot;,
+    &quot;accountId&quot;: &quot;e6af3954-cdff-4fdc-9d87-0a21a61c1edb&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5c97f5415ab345ff8424e96123f0796f69908/f6/978fb76f/MediaTypeNames.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d7e2ce30531b7a2d56142411c5e51c3d516aafcb44e7628167b959660a65c/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -57,12 +60,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.Api: IIS Express.executor": "Debug",
-    ".NET Launch Settings Profile.Api: http.executor": "Run",
+    ".NET Launch Settings Profile.Api: http.executor": "Debug",
     ".NET Launch Settings Profile.Api: https.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Junior-FelicianoJavier",
+    "git-widget-placeholder": "Merging Junior-FelicianoJavier",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -187,6 +190,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

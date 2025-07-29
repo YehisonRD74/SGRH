@@ -1,0 +1,1320 @@
+Index: SGRH.Persistences/Repositories/ReservationRepository.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Linq.Expressions;\r\nusing Microsoft.EntityFrameworkCore;\r\nusing Microsoft.Extensions.Logging;\r\nusing SGRH._Domain.Base;\r\nusing SGRH._Domain.Entites;\r\nusing SGRH.Application.Contracts.Repositories.Services;\r\nusing SGRH.Application.DTO.reservations;\r\nusing SGRH.Application.DTO.user;\r\nusing SGRH.Persistences.Context;\r\nusing SRH.Application.Contracts.Repositories.dbo;\r\nusing SRH.Application.DTO.dbo;\r\n\r\nnamespace SGRH.Persistences.Repositories\r\n{\r\n    public class ReservationRepository : IReservationRepository\r\n    {\r\n        private readonly SGRHContext _context;\r\n        private readonly ILogger<ReservationRepository> _logger;\r\n\r\n        public ReservationRepository(SGRHContext context, ILogger<ReservationRepository> logger)\r\n        {\r\n            _context = context;\r\n            _logger = logger;\r\n        }\r\n\r\n        public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? dto)\r\n        {\r\n            try\r\n            {\r\n                if (dto == null)\r\n                    return new OperationResult<Reservation> { IsSuccess = false, Message = \"Datos inválidos\", Data = null! };\r\n\r\n                var reservation = new Reservation\r\n                {\r\n                    CheckInDate = dto.CheckInDate,\r\n                    CheckOutDate = dto.CheckOutDate,\r\n                    Status = dto.Status,\r\n                    TotalAmount = dto.TotalAmount,\r\n                    UserId = dto.UserId,\r\n                    IsActive = true,\r\n                    CreatedAt = DateTime.UtcNow\r\n                };\r\n\r\n                await _context.Reservation.AddAsync(reservation);\r\n                await _context.SaveChangesAsync();\r\n\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = true,\r\n                    Message = \"Reserva creada exitosamente\",\r\n                    Data = reservation\r\n                };\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                _logger.LogError(ex, \"Error en CreateReservation\");\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = false,\r\n                    Message = ex.Message,\r\n                    Data = null!\r\n                };\r\n            }\r\n        }\r\n\r\n        public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto? dto)\r\n        {\r\n            try\r\n            {\r\n                if (dto == null)\r\n                    return new OperationResult<Reservation> { IsSuccess = false, Message = \"Datos inválidos\", Data = null! };\r\n\r\n                var existing = await _context.Reservation.FindAsync(dto.ReservationId);\r\n                if (existing == null)\r\n                    return new OperationResult<Reservation> { IsSuccess = false, Message = \"Reserva no encontrada\", Data = null! };\r\n\r\n                existing.CheckInDate = dto.CheckInDate;\r\n                existing.CheckOutDate = dto.CheckOutDate;\r\n                existing.Status = dto.Status;\r\n                existing.TotalAmount = dto.TotalAmount;\r\n                existing.UpdatedAt = DateTime.UtcNow;\r\n\r\n                _context.Reservation.Update(existing);\r\n                await _context.SaveChangesAsync();\r\n\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = true,\r\n                    Message = \"Reserva actualizada correctamente\",\r\n                    Data = existing\r\n                };\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                _logger.LogError(ex, \"Error en UpdateReservation\");\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = false,\r\n                    Message = ex.Message,\r\n                    Data = null!\r\n                };\r\n            }\r\n        }\r\n\r\n        public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto? dto)\r\n        {\r\n            try\r\n            {\r\n                if (dto == null)\r\n                    return new OperationResult<Reservation> { IsSuccess = false, Message = \"Datos inválidos\", Data = null! };\r\n\r\n                var reservation = await _context.Reservation.FindAsync(dto.ReservationId);\r\n                if (reservation == null)\r\n                    return new OperationResult<Reservation> { IsSuccess = false, Message = \"Reserva no encontrada\", Data = null! };\r\n\r\n                reservation.IsActive = false;\r\n                reservation.UpdatedAt = DateTime.UtcNow;\r\n\r\n                _context.Reservation.Update(reservation);\r\n                await _context.SaveChangesAsync();\r\n\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = true,\r\n                    Message = \"Reserva deshabilitada\",\r\n                    Data = reservation\r\n                };\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                _logger.LogError(ex, \"Error en DisableReservation\");\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = false,\r\n                    Message = ex.Message,\r\n                    Data = null!\r\n                };\r\n            }\r\n        }\r\n\r\n        public async Task<OperationResult<Reservation>> GetReservationById(int id)\r\n        {\r\n            try\r\n            {\r\n                var reservation = await _context.Reservation\r\n                    .Include(r => r.User)\r\n                    .FirstOrDefaultAsync(r => r.Id == id);\r\n\r\n                if (reservation == null)\r\n                    return new OperationResult<Reservation> { IsSuccess = false, Message = \"Reserva no encontrada\", Data = null! };\r\n\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = true,\r\n                    Message = \"Reserva encontrada\",\r\n                    Data = reservation\r\n                };\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n                _logger.LogError(ex, \"Error en GetReservationById\");\r\n                return new OperationResult<Reservation>\r\n                {\r\n                    IsSuccess = false,\r\n                    Message = ex.Message,\r\n                    Data = null!\r\n                };\r\n            }\r\n        }\r\n\r\n\r\n        public async Task<IEnumerable<Reservation>> GetAllResevation(Expression<Func<Reservation, bool>>? filter)\r\n        {\r\n            return await _context.Reservation.ToListAsync();\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SGRH.Persistences/Repositories/ReservationRepository.cs b/SGRH.Persistences/Repositories/ReservationRepository.cs
+--- a/SGRH.Persistences/Repositories/ReservationRepository.cs	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SGRH.Persistences/Repositories/ReservationRepository.cs	(date 1753747324137)
+@@ -1,177 +1,202 @@
+-using System.Linq.Expressions;
+-using Microsoft.EntityFrameworkCore;
+-using Microsoft.Extensions.Logging;
+-using SGRH._Domain.Base;
+-using SGRH._Domain.Entites;
+-using SGRH.Application.Contracts.Repositories.Services;
+-using SGRH.Application.DTO.reservations;
+-using SGRH.Application.DTO.user;
+-using SGRH.Persistences.Context;
+-using SRH.Application.Contracts.Repositories.dbo;
+-using SRH.Application.DTO.dbo;
+-
+-namespace SGRH.Persistences.Repositories
+-{
+-    public class ReservationRepository : IReservationRepository
+-    {
+-        private readonly SGRHContext _context;
+-        private readonly ILogger<ReservationRepository> _logger;
+-
+-        public ReservationRepository(SGRHContext context, ILogger<ReservationRepository> logger)
+-        {
+-            _context = context;
+-            _logger = logger;
+-        }
+-
+-        public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? dto)
+-        {
+-            try
+-            {
+-                if (dto == null)
+-                    return new OperationResult<Reservation> { IsSuccess = false, Message = "Datos inválidos", Data = null! };
+-
+-                var reservation = new Reservation
+-                {
+-                    CheckInDate = dto.CheckInDate,
+-                    CheckOutDate = dto.CheckOutDate,
+-                    Status = dto.Status,
+-                    TotalAmount = dto.TotalAmount,
+-                    UserId = dto.UserId,
+-                    IsActive = true,
+-                    CreatedAt = DateTime.UtcNow
+-                };
+-
+-                await _context.Reservation.AddAsync(reservation);
+-                await _context.SaveChangesAsync();
+-
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = true,
+-                    Message = "Reserva creada exitosamente",
+-                    Data = reservation
+-                };
+-            }
+-            catch (Exception ex)
+-            {
+-                _logger.LogError(ex, "Error en CreateReservation");
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = false,
+-                    Message = ex.Message,
+-                    Data = null!
+-                };
+-            }
+-        }
+-
+-        public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto? dto)
+-        {
+-            try
+-            {
+-                if (dto == null)
+-                    return new OperationResult<Reservation> { IsSuccess = false, Message = "Datos inválidos", Data = null! };
+-
+-                var existing = await _context.Reservation.FindAsync(dto.ReservationId);
+-                if (existing == null)
+-                    return new OperationResult<Reservation> { IsSuccess = false, Message = "Reserva no encontrada", Data = null! };
+-
+-                existing.CheckInDate = dto.CheckInDate;
+-                existing.CheckOutDate = dto.CheckOutDate;
+-                existing.Status = dto.Status;
+-                existing.TotalAmount = dto.TotalAmount;
+-                existing.UpdatedAt = DateTime.UtcNow;
+-
+-                _context.Reservation.Update(existing);
+-                await _context.SaveChangesAsync();
+-
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = true,
+-                    Message = "Reserva actualizada correctamente",
+-                    Data = existing
+-                };
+-            }
+-            catch (Exception ex)
+-            {
+-                _logger.LogError(ex, "Error en UpdateReservation");
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = false,
+-                    Message = ex.Message,
+-                    Data = null!
+-                };
+-            }
+-        }
+-
+-        public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto? dto)
+-        {
+-            try
+-            {
+-                if (dto == null)
+-                    return new OperationResult<Reservation> { IsSuccess = false, Message = "Datos inválidos", Data = null! };
+-
+-                var reservation = await _context.Reservation.FindAsync(dto.ReservationId);
+-                if (reservation == null)
+-                    return new OperationResult<Reservation> { IsSuccess = false, Message = "Reserva no encontrada", Data = null! };
+-
+-                reservation.IsActive = false;
+-                reservation.UpdatedAt = DateTime.UtcNow;
+-
+-                _context.Reservation.Update(reservation);
+-                await _context.SaveChangesAsync();
+-
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = true,
+-                    Message = "Reserva deshabilitada",
+-                    Data = reservation
+-                };
+-            }
+-            catch (Exception ex)
+-            {
+-                _logger.LogError(ex, "Error en DisableReservation");
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = false,
+-                    Message = ex.Message,
+-                    Data = null!
+-                };
+-            }
+-        }
+-
+-        public async Task<OperationResult<Reservation>> GetReservationById(int id)
+-        {
+-            try
+-            {
+-                var reservation = await _context.Reservation
+-                    .Include(r => r.User)
+-                    .FirstOrDefaultAsync(r => r.Id == id);
+-
+-                if (reservation == null)
+-                    return new OperationResult<Reservation> { IsSuccess = false, Message = "Reserva no encontrada", Data = null! };
+-
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = true,
+-                    Message = "Reserva encontrada",
+-                    Data = reservation
+-                };
+-            }
+-            catch (Exception ex)
+-            {
+-                _logger.LogError(ex, "Error en GetReservationById");
+-                return new OperationResult<Reservation>
+-                {
+-                    IsSuccess = false,
+-                    Message = ex.Message,
+-                    Data = null!
+-                };
+-            }
+-        }
+-
+-
+-        public async Task<IEnumerable<Reservation>> GetAllResevation(Expression<Func<Reservation, bool>>? filter)
+-        {
+-            return await _context.Reservation.ToListAsync();
+-        }
+-    }
+-}
++// using System.ClientModel.Primitives;
++// using System.Linq.Expressions;
++// using Microsoft.EntityFrameworkCore;
++// using Microsoft.Extensions.Logging;
++// using SGRH._Domain.Base;
++// using SGRH._Domain.Entites;
++// using SGRH.Persistences.Base;
++// using SGRH.Persistences.Context;
++// using SRH.Application.Contracts.Repositories.dbo;
++// using SRH.Application.DTO.dbo;
++// using System;
++// using System.Linq.Expressions;
++// using Microsoft.EntityFrameworkCore.Query;
++// using SGRH._Domain.Entities;
++//
++//
++// namespace SGRH.Persistences.Repositories
++// {
++//     public class ReservationRepository : BaseRepository<Reservation>, IReservationRepository
++//     {
++//         private readonly SGRHContext _context;
++//
++//         public ReservationRepository(SGRHContext context, ILogger<Reservation>? logger)
++//             : base(logger)
++//         {
++//             _context = context;
++//         }
++//
++//         public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? createReservationDto)
++// {
++//     try
++//     {
++//         // ✅ Validar que el DTO no sea nulo primero
++//         if (createReservationDto == null)
++//         {
++//             return new OperationResult<Reservation>
++//             {
++//                 IsSuccess = false,
++//                 Message = "Datos inválidos",
++//                 Data = null!
++//             };
++//         }
++//
++//         // ✅ Validar que el usuario exista
++//         var userExists = await _context.User.AnyAsync(u => u.Id == createReservationDto.UserId);
++//         if (!userExists)
++//         {
++//             return new OperationResult<Reservation>
++//             {
++//                 IsSuccess = false,
++//                 Message = $"El usuario con ID {createReservationDto.UserId} no existe.",
++//                 Data = null!
++//             };
++//         }
++//
++//         var reservation = new Reservation
++//         {
++//             CustomerId = createReservationDto.CustomerId,
++//             CreatedAt = createReservationDto.CreatedAt,
++//             Status = createReservationDto.Status,
++//             CreatedBy = createReservationDto.CreatedBy,
++//             CheckInDate = createReservationDto.CheckInDate,
++//             CheckOutDate = createReservationDto.CheckOutDate,
++//             TotalAmount = createReservationDto.TotalAmount,
++//             UserId = createReservationDto.UserId // ✅ Esta línea es esencial
++//         };
++//
++//         await _context.Reservation.AddAsync(reservation);
++//         await _context.SaveChangesAsync();
++//
++//         return new OperationResult<Reservation>
++//         {
++//             IsSuccess = true,
++//             Message = "Reserva Creada Exitosamente",
++//             Data = reservation
++//         };
++//     }
++//     catch (Exception ex)
++//     {
++//         var innerMessage = ex.InnerException?.Message ?? ex.Message;
++//
++//         LogError(ex, "Error al crear la reserva");
++//         return new OperationResult<Reservation>
++//         {
++//             IsSuccess = false,
++//             Message = $"Error al crear la reserva: {innerMessage}",
++//             Data = null!
++//         };
++//     }
++// }
++//
++//         public async Task<OperationResult<Reservation>> GetReservationById(int id)
++//         {
++//             try
++//             {
++//                 var reservation = await _context.Reservation.FindAsync(id);
++//
++//                 if (reservation == null)
++//                     return OperationResult<Reservation>.Failure("Reserva no encontrada");
++//
++//                 return OperationResult<Reservation>.Success(reservation, "Reserva encontrada exitosamente");
++//             }
++//             catch (Exception ex)
++//             {
++//                 LogError(ex, "Error al obtener la reserva por ID");
++//                 return OperationResult<Reservation>.Failure($"Error al buscar reserva: {ex.Message}");
++//             }
++//         }
++//
++//
++//         public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto)
++//         {
++//             try
++//             {
++//                 var reservation = await _context.Reservation.FindAsync(updateReservationDto.ReservationId);
++//                 if (reservation == null)
++//                     return OperationResult<Reservation>.Failure("Reserva no encontrada");
++//
++//                 reservation.Status = updateReservationDto.Status;
++//                 reservation.CheckInDate = updateReservationDto.CheckInDate;
++//                 reservation.CheckOutDate = updateReservationDto.CheckOutDate;
++//                 reservation.UpdatedBy = updateReservationDto.UpdatedBy;
++//                 reservation.UpdatedAt = DateTime.UtcNow;
++//
++//                 _context.Reservation.Update(reservation);
++//                 await _context.SaveChangesAsync();
++//
++//                 return OperationResult<Reservation>.Success(reservation, "Reserva actualizada exitosamente");
++//             }
++//             catch (Exception ex)
++//             {
++//                 LogError(ex, "Error al actualizar la reserva");
++//                 return OperationResult<Reservation>.Failure($"Error al actualizar reserva: {ex.Message}");
++//             }
++//         }
++//
++//
++//
++//         public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto)
++//         {
++//             try
++//             {
++//                 var reservation = await _context.Reservation.FindAsync(disableReservationDto.ReservationId);
++//                 if (reservation == null)
++//                     return OperationResult<Reservation>.Failure("Reserva no encontrada");
++//
++//                 reservation.IsActive = false; 
++//
++//                 _context.Reservation.Update(reservation);
++//                 await _context.SaveChangesAsync();
++//
++//                 return OperationResult<Reservation>.Success(reservation, "Reserva deshabilitada exitosamente");
++//             }
++//             catch (Exception ex)
++//             {
++//                 LogError(ex, "Error al deshabilitar la reserva");
++//                 return OperationResult<Reservation>.Failure($"Error al deshabilitar reserva: {ex.Message}");
++//             }
++//         }
++//
++//
++//
++//         public async Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null)
++//         {
++//             try
++//             {
++//                 IQueryable<Reservation> query = _context.Reservation
++//                     .Include(r => r.Customer)
++//                     .Include(r => r.User)
++//                     .Include(r => r.ReservationDetails);
++//
++//                 if (predicate != null)
++//                 {
++//                     query = query.Where(predicate);
++//                 }
++//
++//                 var list = await query.ToListAsync();
++//
++//                 return new OperationResult<IEnumerable<Reservation>>
++//                 {
++//                     IsSuccess = true,
++//                     Message = list.Any() ? "Reservas obtenidas correctamente." : "No hay reservas disponibles.",
++//                     Data = list
++//                 };
++//             }
++//             catch (Exception ex)
++//             {
++//                 var error = ex.InnerException?.Message ?? ex.Message;
++//
++//                 return new OperationResult<IEnumerable<Reservation>>
++//                 {
++//                     IsSuccess = false,
++//                     Message = $"Error al obtener reservas: {error}",
++//                     Data = null
++//                 };
++//             }
++//         }
++//
++//
++//
++//     }
++// }
+\ No newline at end of file
+Index: Api/Api.csproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><Project Sdk=\"Microsoft.NET.Sdk.Web\">\r\n\r\n  <PropertyGroup>\r\n    <TargetFramework>net8.0</TargetFramework>\r\n    <Nullable>enable</Nullable>\r\n    <ImplicitUsings>enable</ImplicitUsings>\r\n  </PropertyGroup>\r\n\r\n  <ItemGroup>\r\n    <PackageReference Include=\"Microsoft.AspNetCore.OpenApi\" Version=\"8.0.4\" />\r\n    <PackageReference Include=\"Microsoft.VisualStudio.Web.CodeGeneration.Design\" Version=\"8.0.4\" />\r\n    <PackageReference Include=\"Swashbuckle.AspNetCore\" Version=\"9.0.3\" />\r\n  </ItemGroup>\r\n\r\n  <ItemGroup>\r\n    <ProjectReference Include=\"..\\SGRH.IOC\\SGRH.IOC.csproj\" />\r\n    <ProjectReference Include=\"..\\SGRH.Persistences\\SGRH.Persistences.csproj\" />\r\n  </ItemGroup>\r\n\r\n</Project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Api/Api.csproj b/Api/Api.csproj
+--- a/Api/Api.csproj	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/Api/Api.csproj	(date 1753747152051)
+@@ -8,8 +8,7 @@
+ 
+   <ItemGroup>
+     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
+-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
+-    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
++    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+   </ItemGroup>
+ 
+   <ItemGroup>
+Index: Api/Controller/ReservationController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//using Microsoft.AspNetCore.Mvc;\r\n//using SGRH.Application.Contracts.Repositories.Services;\r\n//using SGRH.Application.DTO.dbo;\r\n//using SGRH.Application.Services;\r\n//using SRH.Application.Contracts.Repositories.Services;\r\n//using SRH.Application.DTO.dbo;\r\n\r\n//namespace Api.Controller\r\n//{\r\n//    [ApiController]\r\n//    [Route(\"api/[controller]\")]\r\n//    public class ReservationController : ControllerBase\r\n//    {\r\n//        private readonly IReservationService _reservationService;\r\n\r\n//        public ReservationController(IReservationService reservationService)\r\n//        {\r\n//            _reservationService = reservationService;\r\n//        }\r\n//        [HttpGet(\"GetAllReservations\")]\r\n//        public async Task<IActionResult> GetReservation()\r\n//        {\r\n//            var result = await _reservationService.GetReservation();\r\n\r\n//            if (result.IsSuccess) \r\n//            { \r\n//            return Ok(result);\r\n//        }\r\n//            return BadRequest(result)\r\n//        }\r\n\r\n\r\n\r\n\r\n//        [HttpGet(\"GetReservationBy/{id}\")]\r\n//        public async Task<IActionResult> GetReservationById(int id)\r\n//        {\r\n//            var dto = new GetActiveReservationByIdDto { Id = id };\r\n\r\n//            var result = await _reservationService.GetReservationById(id, dto);\r\n\r\n//            if (!result.IsSuccess)\r\n//                return NotFound(result);\r\n\r\n//            return Ok(result);\r\n//        }\r\n\r\n//        [HttpPost(\"CreateReservation\")]\r\n//        public async Task<IActionResult> CreateReservation([FromBody] CreateReservationDto dto)\r\n//        {\r\n//            if (!ModelState.IsValid)\r\n//                return BadRequest(new\r\n//                {\r\n//                    IsSuccess = false,\r\n//                    Message = \"Solicitud inválida.\",\r\n//                    Errors = ModelState\r\n//                });\r\n\r\n//            var result = await _reservationService.CreateReservation(dto);\r\n\r\n//            if (!result.IsSuccess || result.Data == null)\r\n//                return BadRequest(result);\r\n\r\n//            return Ok(result);\r\n//        }\r\n\r\n//        [HttpPost(\"UpdateReservation\")]\r\n//        public async Task<IActionResult> UpdateReservation([FromBody] UpDateReservationDto dto)\r\n//        {\r\n//            if (!ModelState.IsValid || dto == null)\r\n//                return BadRequest(new\r\n//                {\r\n//                    IsSuccess = false,\r\n//                    Message = \"Datos de actualización inválidos.\",\r\n//                    Errors = ModelState\r\n//                });\r\n\r\n//            var result = await _reservationService.UpdateReservation(dto);\r\n\r\n//            if (!result.IsSuccess)\r\n//                return BadRequest(result);\r\n\r\n//            return Ok(result);\r\n//        }\r\n\r\n//        [HttpPost(\"DisableReservation\")]\r\n//        public async Task<IActionResult> DisableReservation([FromBody] DisableReservationDto dto)\r\n//        {\r\n//            if (!ModelState.IsValid || dto == null)\r\n//                return BadRequest(new\r\n//                {\r\n//                    IsSuccess = false,\r\n//                    Message = \"Datos inválidos.\",\r\n//                    Errors = ModelState\r\n//                });\r\n\r\n//            var result = await _reservationService.DisableReservation(dto);\r\n\r\n//            if (!result.IsSuccess)\r\n//                return BadRequest(result);\r\n\r\n//            return Ok(result);\r\n//        }\r\n//    }\r\n//}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Api/Controller/ReservationController.cs b/Api/Controller/ReservationController.cs
+--- a/Api/Controller/ReservationController.cs	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/Api/Controller/ReservationController.cs	(date 1753747186520)
+@@ -1,105 +1,119 @@
+-//using Microsoft.AspNetCore.Mvc;
+-//using SGRH.Application.Contracts.Repositories.Services;
+-//using SGRH.Application.DTO.dbo;
+-//using SGRH.Application.Services;
+-//using SRH.Application.Contracts.Repositories.Services;
+-//using SRH.Application.DTO.dbo;
++using Microsoft.AspNetCore.Mvc;
++using SGRH.Application.Contracts.Repositories.Services;
++using SRH.Application.Contracts.Repositories.Services;
++using SRH.Application.DTO.dbo;
+ 
+-//namespace Api.Controller
+-//{
+-//    [ApiController]
+-//    [Route("api/[controller]")]
+-//    public class ReservationController : ControllerBase
+-//    {
+-//        private readonly IReservationService _reservationService;
++namespace Api.Controller
++{
++    [ApiController]
++    [Route("api/[controller]")]
++    public class ReservationController : ControllerBase
++    {
++        private readonly IReservationService _reservationService;
+ 
+-//        public ReservationController(IReservationService reservationService)
+-//        {
+-//            _reservationService = reservationService;
+-//        }
+-//        [HttpGet("GetAllReservations")]
+-//        public async Task<IActionResult> GetReservation()
+-//        {
+-//            var result = await _reservationService.GetReservation();
++        public ReservationController(IReservationService reservationService)
++        {
++            _reservationService = reservationService;
++        }
++        [HttpGet("GetAllReservations")]
++        public async Task<IActionResult> GetAllReservations()
++        {
++            var result = await _reservationService.GetAllReservationDto();
+ 
+-//            if (result.IsSuccess) 
+-//            { 
+-//            return Ok(result);
+-//        }
+-//            return BadRequest(result)
+-//        }
++            if (!result.IsSuccess || result.Data == null)
++                return NotFound(new
++                {
++                    result?.IsSuccess,
++                    result?.Message,
++                    Data = result?.Data
++                });
+ 
++            return Ok(new
++            {
++                result.IsSuccess,
++                result.Message,
++                Data = result.Data
++            });
++        }
+ 
+ 
+ 
+-//        [HttpGet("GetReservationBy/{id}")]
+-//        public async Task<IActionResult> GetReservationById(int id)
+-//        {
+-//            var dto = new GetActiveReservationByIdDto { Id = id };
++        [HttpGet("GetReservationBy/{id}")]
++        public async Task<IActionResult> GetReservationById(int id)
++        {
++            var result = await _reservationService.GetReservationById(id);
+ 
+-//            var result = await _reservationService.GetReservationById(id, dto);
++            if (result == null || !result.IsSuccess || result.Data == null)
++                return NotFound(new
++                {
++                    result?.IsSuccess,
++                    result?.Message,
++                    Data = result
++                });
+ 
+-//            if (!result.IsSuccess)
+-//                return NotFound(result);
++            return Ok(new
++            {
++                result.IsSuccess,
++                result.Message,
++                Data = result.Data
++            });
++        }
+ 
+-//            return Ok(result);
+-//        }
++        [HttpPost("CreateReservation")]
++        public async Task<IActionResult> CreateReservation([FromBody] CreateReservationDto dto)
++        {
++            if (!ModelState.IsValid)
++                return BadRequest(new
++                {
++                    IsSuccess = false,
++                    Message = "Solicitud inválida.",
++                    Errors = ModelState
++                });
+ 
+-//        [HttpPost("CreateReservation")]
+-//        public async Task<IActionResult> CreateReservation([FromBody] CreateReservationDto dto)
+-//        {
+-//            if (!ModelState.IsValid)
+-//                return BadRequest(new
+-//                {
+-//                    IsSuccess = false,
+-//                    Message = "Solicitud inválida.",
+-//                    Errors = ModelState
+-//                });
++            var result = await _reservationService.CreateReservation(dto);
+ 
+-//            var result = await _reservationService.CreateReservation(dto);
++            if (!result.IsSuccess || result.Data == null)
++                return BadRequest(result);
+ 
+-//            if (!result.IsSuccess || result.Data == null)
+-//                return BadRequest(result);
++            return Ok(result);
++        }
+ 
+-//            return Ok(result);
+-//        }
++        [HttpPost("UpdateReservation")]
++        public async Task<IActionResult> UpdateReservation([FromBody] UpDateReservationDto dto)
++        {
++            if (!ModelState.IsValid || dto == null)
++                return BadRequest(new
++                {
++                    IsSuccess = false,
++                    Message = "Datos de actualización inválidos.",
++                    Errors = ModelState
++                });
+ 
+-//        [HttpPost("UpdateReservation")]
+-//        public async Task<IActionResult> UpdateReservation([FromBody] UpDateReservationDto dto)
+-//        {
+-//            if (!ModelState.IsValid || dto == null)
+-//                return BadRequest(new
+-//                {
+-//                    IsSuccess = false,
+-//                    Message = "Datos de actualización inválidos.",
+-//                    Errors = ModelState
+-//                });
++            var result = await _reservationService.UpdateReservation(dto);
+ 
+-//            var result = await _reservationService.UpdateReservation(dto);
++            if (!result.IsSuccess)
++                return BadRequest(result);
+ 
+-//            if (!result.IsSuccess)
+-//                return BadRequest(result);
++            return Ok(result);
++        }
+ 
+-//            return Ok(result);
+-//        }
++        [HttpPost("DisableReservation")]
++        public async Task<IActionResult> DisableReservation([FromBody] DisableReservationDto dto)
++        {
++            if (!ModelState.IsValid || dto == null)
++                return BadRequest(new
++                {
++                    IsSuccess = false,
++                    Message = "Datos inválidos.",
++                    Errors = ModelState
++                });
+ 
+-//        [HttpPost("DisableReservation")]
+-//        public async Task<IActionResult> DisableReservation([FromBody] DisableReservationDto dto)
+-//        {
+-//            if (!ModelState.IsValid || dto == null)
+-//                return BadRequest(new
+-//                {
+-//                    IsSuccess = false,
+-//                    Message = "Datos inválidos.",
+-//                    Errors = ModelState
+-//                });
++            var result = await _reservationService.DisableReservation(dto);
+ 
+-//            var result = await _reservationService.DisableReservation(dto);
++            if (!result.IsSuccess)
++                return BadRequest(result);
+ 
+-//            if (!result.IsSuccess)
+-//                return BadRequest(result);
+-
+-//            return Ok(result);
+-//        }
+-//    }
+-//}
++            return Ok(result);
++        }
++    }
++}
+Index: Api/appsettings.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n    \"ConnectionStrings\": {\r\n        \"SGRHContext\": \"Server=DESKTOP-MLNOSVV;Database=SGRHDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True\"\r\n    },\r\n  \"Logging\": {\r\n    \"LogLevel\": {\r\n      \"Default\": \"Information\",\r\n      \"Microsoft.AspNetCore\": \"Warning\"\r\n    }\r\n  },\r\n  \"AllowedHosts\": \"*\"\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Api/appsettings.json b/Api/appsettings.json
+--- a/Api/appsettings.json	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/Api/appsettings.json	(date 1753747177433)
+@@ -1,7 +1,7 @@
+ {
+-    "ConnectionStrings": {
+-        "SGRHContext": "Server=DESKTOP-MLNOSVV;Database=SGRHDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+-    },
++  "ConnectionStrings": {
++    "SGRHContext": "Server=localhost;Database=SGRHDB;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
++  },
+   "Logging": {
+     "LogLevel": {
+       "Default": "Information",
+Index: SRH.Application/Services/ReservationService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using FluentValidation;\r\nusing FluentValidation.Results;\r\nusing Microsoft.Extensions.Configuration;\r\nusing Microsoft.Extensions.Logging;\r\nusing SGRH._Domain.Base;\r\nusing SGRH._Domain.Entites;\r\nusing SGRH.Application.Contracts.Repositories.Services;\r\nusing SGRH.Application.DTO.reservations;\r\nusing SRH.Application.Contracts.Repositories.dbo;\r\nusing SRH.Application.DTO.dbo;\r\n\r\nnamespace SGRH.Application.Services;\r\n\r\npublic class ReservationService : BaseService<ReservationService>, IReservationService\r\n{\r\n    private readonly IReservationRepository _reservationRepository;\r\n    private new readonly ILogger<ReservationService> _logger;\r\n    private readonly IConfiguration _configuration;\r\n    private readonly IValidator<CreateReservationDto> _createReservationValidator;\r\n\r\n    public ReservationService(\r\n        IReservationRepository reservationRepository,\r\n        ILogger<ReservationService> logger,\r\n        IConfiguration configuration,\r\n        IValidator<CreateReservationDto> createReservationValidator)\r\n        : base(logger)\r\n    {\r\n        _reservationRepository = reservationRepository;\r\n        _logger = logger;\r\n        _configuration = configuration;\r\n        _createReservationValidator = createReservationValidator;\r\n    }\r\n\r\n    public async Task<OperationResult<IEnumerable<Reservation>>> GetReservation()\r\n    {\r\n        try\r\n        {\r\n            var reservations = await _reservationRepository.GetAllResevation();\r\n            if (reservations != null && reservations.Any())\r\n                return OperationResult<IEnumerable<Reservation>>.Success(reservations, \"Listado de reservas obtenido correctamente\");\r\n\r\n            return OperationResult<IEnumerable<Reservation>>.Failure(\"No se encontraron reservas\");\r\n        }\r\n        catch (Exception e)\r\n        {\r\n            LogError(e, $\"Error al obtener las reservas: {e.Message}\");\r\n            return OperationResult<IEnumerable<Reservation>>.Failure(\"Error: \" + e.Message);\r\n        }\r\n    }\r\n\r\n    public async Task<OperationResult<Reservation>> GetReservationById(int id, GetActiveReservationDto dto)\r\n    {\r\n        try\r\n        {\r\n            var result = await _reservationRepository.GetReservationById(id);\r\n            if (result.Data != null && result.Data.IsActive == dto.IsActive)\r\n            {\r\n                return OperationResult<Reservation>.Success(result.Data, \"Reserva obtenida correctamente\");\r\n            }\r\n\r\n            return OperationResult<Reservation>.Failure(\"Reserva no encontrada o no activa\");\r\n        }\r\n        catch (Exception e)\r\n        {\r\n            LogError(e, $\"Error en GetReservationById: {e.Message}\");\r\n            return OperationResult<Reservation>.Failure(\"Error: \" + e.Message);\r\n        }\r\n    }\r\n\r\n    public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto)\r\n    {\r\n        try\r\n        {\r\n            if (createReservationDto == null)\r\n                return OperationResult<Reservation>.Failure(\"Datos de creación inválidos\");\r\n\r\n            ValidationResult validationResult = await _createReservationValidator.ValidateAsync(createReservationDto);\r\n            if (!validationResult.IsValid)\r\n            {\r\n                var errors = string.Join(\" \", validationResult.Errors.Select(e => e.ErrorMessage));\r\n                LogError(new ValidationException(errors), $\"Errores de validación al crear la reserva\");\r\n                return OperationResult<Reservation>.Failure($\"Errores de validación: {errors}\");\r\n            }\r\n\r\n            var result = await _reservationRepository.CreateReservation(createReservationDto);\r\n            if (!result.IsSuccess || result.Data == null)\r\n                return OperationResult<Reservation>.Failure(result.Message);\r\n\r\n            return OperationResult<Reservation>.Success(result.Data, \"Reserva creada exitosamente\");\r\n        }\r\n        catch (Exception e)\r\n        {\r\n            LogError(e, $\"Excepción en CreateReservation: {e.Message}\");\r\n            return OperationResult<Reservation>.Failure(\"Error: \" + e.Message);\r\n        }\r\n    }\r\n\r\n    public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto dto)\r\n    {\r\n        try\r\n        {\r\n            var existing = await _reservationRepository.GetReservationById(dto.ReservationId);\r\n            if (existing.Data == null)\r\n                return OperationResult<Reservation>.Failure(\"Reserva no encontrada\");\r\n\r\n            // Aquí podrías mapear cambios si se trabaja directamente con la entidad\r\n            existing.Data.CheckInDate = dto.CheckInDate;\r\n            existing.Data.CheckOutDate = dto.CheckOutDate;\r\n            existing.Data.Status = dto.Status;\r\n            existing.Data.TotalAmount = dto.TotalAmount;\r\n            existing.Data.UpdatedAt = DateTime.UtcNow;\r\n\r\n            var result = await _reservationRepository.UpdateReservation(dto);\r\n            if (!result.IsSuccess || result.Data == null)\r\n                return OperationResult<Reservation>.Failure(result.Message);\r\n\r\n            return OperationResult<Reservation>.Success(result.Data, \"Reserva actualizada exitosamente\");\r\n        }\r\n        catch (Exception e)\r\n        {\r\n            LogError(e, $\"Error al actualizar la reserva: {e.Message}\");\r\n            return OperationResult<Reservation>.Failure(\"Error: \" + e.Message);\r\n        }\r\n    }\r\n\r\n    public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto)\r\n    {\r\n        try\r\n        {\r\n            if (disableReservationDto == null)\r\n                return OperationResult<Reservation>.Failure(\"Datos inválidos\");\r\n\r\n            var existing = await _reservationRepository.GetReservationById(disableReservationDto.ReservationId);\r\n            if (existing.Data == null)\r\n                return OperationResult<Reservation>.Failure(\"Reserva no encontrada\");\r\n\r\n            existing.Data.IsActive = false;\r\n            existing.Data.UpdatedAt = DateTime.UtcNow;\r\n\r\n            var result = await _reservationRepository.DisableReservation(disableReservationDto);\r\n            if (!result.IsSuccess || result.Data == null)\r\n                return OperationResult<Reservation>.Failure(result.Message);\r\n\r\n            return OperationResult<Reservation>.Success(result.Data, \"Reserva deshabilitada correctamente\");\r\n        }\r\n        catch (Exception e)\r\n        {\r\n            LogError(e, $\"Excepción en DisableReservation: {e.Message}\");\r\n            return OperationResult<Reservation>.Failure(\"Error: \" + e.Message);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SRH.Application/Services/ReservationService.cs b/SRH.Application/Services/ReservationService.cs
+--- a/SRH.Application/Services/ReservationService.cs	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SRH.Application/Services/ReservationService.cs	(date 1753747246637)
+@@ -1,152 +1,174 @@
+-using FluentValidation;
+-using FluentValidation.Results;
++using System;
++using System.Collections.Generic;
++using System.Linq.Expressions;
++using System.Threading.Tasks;
+ using Microsoft.Extensions.Configuration;
+ using Microsoft.Extensions.Logging;
+ using SGRH._Domain.Base;
+ using SGRH._Domain.Entites;
+-using SGRH.Application.Contracts.Repositories.Services;
+-using SGRH.Application.DTO.reservations;
++using SGRH._Domain.Entities;
+ using SRH.Application.Contracts.Repositories.dbo;
++using SRH.Application.Contracts.Repositories.Services;
+ using SRH.Application.DTO.dbo;
+ 
+-namespace SGRH.Application.Services;
+-
+-public class ReservationService : BaseService<ReservationService>, IReservationService
++namespace SRH.Application.Services
+ {
+-    private readonly IReservationRepository _reservationRepository;
+-    private new readonly ILogger<ReservationService> _logger;
+-    private readonly IConfiguration _configuration;
+-    private readonly IValidator<CreateReservationDto> _createReservationValidator;
++    public class ReservationService : BaseService<Reservation>, IReservationService
++    {
++        private readonly IReservationRepository _reservationRepository;
++        private readonly IConfiguration _configuration;
+ 
+-    public ReservationService(
+-        IReservationRepository reservationRepository,
+-        ILogger<ReservationService> logger,
+-        IConfiguration configuration,
+-        IValidator<CreateReservationDto> createReservationValidator)
+-        : base(logger)
+-    {
+-        _reservationRepository = reservationRepository;
+-        _logger = logger;
+-        _configuration = configuration;
+-        _createReservationValidator = createReservationValidator;
+-    }
++        public ReservationService(IReservationRepository reservationRepository,
++                                  ILogger<Reservation> logger,
++                                  IConfiguration configuration)
++            : base(logger)
++        {
++            _reservationRepository = reservationRepository;
++            _configuration = configuration;
++        }
+ 
+-    public async Task<OperationResult<IEnumerable<Reservation>>> GetReservation()
+-    {
+-        try
+-        {
+-            var reservations = await _reservationRepository.GetAllResevation();
+-            if (reservations != null && reservations.Any())
+-                return OperationResult<IEnumerable<Reservation>>.Success(reservations, "Listado de reservas obtenido correctamente");
++        public async Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null)
++        {
++            try
++            {
++                var result = await _reservationRepository.GetAllReservation(predicate);
+ 
+-            return OperationResult<IEnumerable<Reservation>>.Failure("No se encontraron reservas");
+-        }
+-        catch (Exception e)
+-        {
+-            LogError(e, $"Error al obtener las reservas: {e.Message}");
+-            return OperationResult<IEnumerable<Reservation>>.Failure("Error: " + e.Message);
+-        }
+-    }
++                if (!result.IsSuccess)
++                {
++                    return new OperationResult<IEnumerable<Reservation>>
++                    {
++                        IsSuccess = false,
++                        Message = result.Message,
++                        Data = null
++                    };
++                }
++
++                return new OperationResult<IEnumerable<Reservation>>
++                {
++                    IsSuccess = true,
++                    Message = result.Message,
++                    Data = result.Data
++                };
++            }
++            catch (Exception e)
++            {
++                LogError(e, $"Error al obtener las reservas: {e.Message}");
++
++                return new OperationResult<IEnumerable<Reservation>>
++                {
++                    IsSuccess = false,
++                    Message = $"Error: {e.Message}",
++                    Data = null
++                };
++            }
++        }
+ 
+-    public async Task<OperationResult<Reservation>> GetReservationById(int id, GetActiveReservationDto dto)
+-    {
+-        try
+-        {
+-            var result = await _reservationRepository.GetReservationById(id);
+-            if (result.Data != null && result.Data.IsActive == dto.IsActive)
+-            {
+-                return OperationResult<Reservation>.Success(result.Data, "Reserva obtenida correctamente");
+-            }
++
++
++        public async Task<OperationResult<Reservation>> GetReservationById(int id)
++        {
++            try
++            {
++                var result = await _reservationRepository.GetReservationById(id);
++
++                if (!result.IsSuccess || result.Data == null)
++                {
++                    LogError("Reserva no encontrada: {0}", result.Message);
++                    return OperationResult<Reservation>.Failure(result.Message);
++                }
+ 
+-            return OperationResult<Reservation>.Failure("Reserva no encontrada o no activa");
+-        }
+-        catch (Exception e)
+-        {
+-            LogError(e, $"Error en GetReservationById: {e.Message}");
+-            return OperationResult<Reservation>.Failure("Error: " + e.Message);
+-        }
+-    }
++                LogInformation("Reserva obtenida correctamente.");
++                return OperationResult<Reservation>.Success(result.Data, result.Message);
++            }
++            catch (Exception ex)
++            {
++                LogError(ex, "Excepción en GetReservationById.");
++                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
++            }
++        }
+ 
+-    public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto)
+-    {
+-        try
+-        {
+-            if (createReservationDto == null)
+-                return OperationResult<Reservation>.Failure("Datos de creación inválidos");
+-
+-            ValidationResult validationResult = await _createReservationValidator.ValidateAsync(createReservationDto);
+-            if (!validationResult.IsValid)
++        public async Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto)
++        {
++            try
+             {
+-                var errors = string.Join(" ", validationResult.Errors.Select(e => e.ErrorMessage));
+-                LogError(new ValidationException(errors), $"Errores de validación al crear la reserva");
+-                return OperationResult<Reservation>.Failure($"Errores de validación: {errors}");
+-            }
+-
+-            var result = await _reservationRepository.CreateReservation(createReservationDto);
+-            if (!result.IsSuccess || result.Data == null)
+-                return OperationResult<Reservation>.Failure(result.Message);
++                var result = await _reservationRepository.CreateReservation(createReservationDto);
++
++                if (!result.IsSuccess || result.Data == null)
++                {
++                    LogError("Error al crear la reserva: {0}", result.Message);
++                    return OperationResult<Reservation>.Failure(result.Message);
++                }
+ 
+-            return OperationResult<Reservation>.Success(result.Data, "Reserva creada exitosamente");
+-        }
+-        catch (Exception e)
+-        {
+-            LogError(e, $"Excepción en CreateReservation: {e.Message}");
+-            return OperationResult<Reservation>.Failure("Error: " + e.Message);
+-        }
+-    }
++                LogInformation("Reserva creada exitosamente.");
++                return OperationResult<Reservation>.Success(result.Data, result.Message);
++            }
++            catch (Exception ex)
++            {
++                LogError(ex, "Excepción en CreateReservation.");
++                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
++            }
++        }
+ 
+-    public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto dto)
+-    {
+-        try
+-        {
+-            var existing = await _reservationRepository.GetReservationById(dto.ReservationId);
+-            if (existing.Data == null)
+-                return OperationResult<Reservation>.Failure("Reserva no encontrada");
++        public async Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto)
++        {
++            try
++            {
++                var result = await _reservationRepository.UpdateReservation(updateReservationDto);
+ 
+-            // Aquí podrías mapear cambios si se trabaja directamente con la entidad
+-            existing.Data.CheckInDate = dto.CheckInDate;
+-            existing.Data.CheckOutDate = dto.CheckOutDate;
+-            existing.Data.Status = dto.Status;
+-            existing.Data.TotalAmount = dto.TotalAmount;
+-            existing.Data.UpdatedAt = DateTime.UtcNow;
+-
+-            var result = await _reservationRepository.UpdateReservation(dto);
+-            if (!result.IsSuccess || result.Data == null)
+-                return OperationResult<Reservation>.Failure(result.Message);
++                if (!result.IsSuccess || result.Data == null)
++                {
++                    LogError("Error al actualizar la reserva: {0}", result.Message);
++                    return OperationResult<Reservation>.Failure(result.Message);
++                }
+ 
+-            return OperationResult<Reservation>.Success(result.Data, "Reserva actualizada exitosamente");
+-        }
+-        catch (Exception e)
+-        {
+-            LogError(e, $"Error al actualizar la reserva: {e.Message}");
+-            return OperationResult<Reservation>.Failure("Error: " + e.Message);
+-        }
+-    }
+-
+-    public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto)
+-    {
+-        try
+-        {
+-            if (disableReservationDto == null)
+-                return OperationResult<Reservation>.Failure("Datos inválidos");
+-
+-            var existing = await _reservationRepository.GetReservationById(disableReservationDto.ReservationId);
+-            if (existing.Data == null)
+-                return OperationResult<Reservation>.Failure("Reserva no encontrada");
+-
+-            existing.Data.IsActive = false;
+-            existing.Data.UpdatedAt = DateTime.UtcNow;
+-
+-            var result = await _reservationRepository.DisableReservation(disableReservationDto);
++                LogInformation("Reserva actualizada exitosamente.");
++                return OperationResult<Reservation>.Success(result.Data, result.Message);
++            }
++            catch (Exception ex)
++            {
++                LogError(ex, "Excepción en UpdateReservation.");
++                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
++            }
++        }
++        public async Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto)
++        {
++            try
++                var result = await _reservationRepository.DisableReservation(disableReservationDto);
++
+             if (!result.IsSuccess || result.Data == null)
++            {
++                LogError("Error al deshabilitar la reserva: {0}", result.Message);
+                 return OperationResult<Reservation>.Failure(result.Message);
++            }
++
++            {
++             
++                var getResult = await _reservationRepository.GetReservationById(disableReservationDto.ReservationId);
++
++                if (!getResult.IsSuccess || getResult.Data == null)
++                {
++                    LogError("Reserva no encontrada: {0}", getResult.Message);
++                    return OperationResult<Reservation>.Failure("Reserva no encontrada.");
++                }
++
++              
++                var disableResult = await _reservationRepository.DisableReservation(disableReservationDto);
+ 
+-            return OperationResult<Reservation>.Success(result.Data, "Reserva deshabilitada correctamente");
+-        }
+-        catch (Exception e)
+-        {
+-            LogError(e, $"Excepción en DisableReservation: {e.Message}");
+-            return OperationResult<Reservation>.Failure("Error: " + e.Message);
++                if (!disableResult.IsSuccess || disableResult.Data == null)
++                {
++                    LogError("Error al deshabilitar la reserva: {0}", disableResult.Message);
++                    return OperationResult<Reservation>.Failure(disableResult.Message);
++                }
++
++                LogInformation("Reserva deshabilitada exitosamente.");
++                return OperationResult<Reservation>.Success(disableResult.Data, "Reserva deshabilitada exitosamente");
++            }
++            catch (Exception ex)
++            {
++                LogError(ex, "Excepción en DisableReservation.");
++                return OperationResult<Reservation>.Failure($"Error: {ex.Message}");
++            }
+         }
++
+     }
+ }
+Index: SGRH.Web/Views/Floor/index.cshtml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>@model IEnumerable<SGRH.Web.Models.FloorModels>\r\n\r\n@{\r\n    ViewData[\"Title\"] = \"Floor\";\r\n}\r\n\r\n<h1>@ViewData[\"Title\"]</h1>\r\n\r\n<p>\r\n    <a asp-action=\"Create\">Create New</a>\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.floorNumber)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.id)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.createdAt)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.createdBy)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.updatedAt)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.updatedBy)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.isDeleted)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.deletedBy)\r\n            </th>\r\n            <th>\r\n                @Html.DisplayNameFor(model => model.deletedAt)\r\n            </th>\r\n            <th></th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n@foreach (var item in Model) {\r\n        <tr>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.floorNumber)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.id)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.createdAt)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.createdBy)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.updatedAt)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.updatedBy)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.isDeleted)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.deletedBy)\r\n            </td>\r\n            <td>\r\n                @Html.DisplayFor(modelItem => item.deletedAt)\r\n            </td>\r\n            <td>\r\n                @Html.ActionLink(\"Edit\", \"Edit\", new {  id=item.id }) |\r\n                @Html.ActionLink(\"Details\", \"Details\", new {  id=item.id }) |\r\n             \r\n            </td>\r\n        </tr>\r\n}\r\n    </tbody>\r\n</table>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SGRH.Web/Views/Floor/index.cshtml b/SGRH.Web/Views/Floor/index.cshtml
+--- a/SGRH.Web/Views/Floor/index.cshtml	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SGRH.Web/Views/Floor/index.cshtml	(date 1753745747968)
+@@ -1,10 +1,7 @@
+-@model IEnumerable<SGRH.Web.Models.FloorModels>
+ 
+ @{
+-    ViewData["Title"] = "Floor";
+ }
+ 
+-<h1>@ViewData["Title"]</h1>
+ 
+ <p>
+     <a asp-action="Create">Create New</a>
+@@ -13,31 +10,22 @@
+     <thead>
+         <tr>
+             <th>
+-                @Html.DisplayNameFor(model => model.floorNumber)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.id)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.createdAt)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.createdBy)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.updatedAt)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.updatedBy)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.isDeleted)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.deletedBy)
+             </th>
+             <th>
+-                @Html.DisplayNameFor(model => model.deletedAt)
+             </th>
+             <th></th>
+         </tr>
+@@ -46,36 +34,24 @@
+ @foreach (var item in Model) {
+         <tr>
+             <td>
+-                @Html.DisplayFor(modelItem => item.floorNumber)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.id)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.createdAt)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.createdBy)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.updatedAt)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.updatedBy)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.isDeleted)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.deletedBy)
+             </td>
+             <td>
+-                @Html.DisplayFor(modelItem => item.deletedAt)
+             </td>
+             <td>
+-                @Html.ActionLink("Edit", "Edit", new {  id=item.id }) |
+-                @Html.ActionLink("Details", "Details", new {  id=item.id }) |
+-             
+             </td>
+         </tr>
+ }
+Index: .idea/.idea.SGRH/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoGeneratedRunConfigurationManager\">\r\n    <projectFile profileName=\"IIS Express\">Api/Api.csproj</projectFile>\r\n    <projectFile profileName=\"http\">Api/Api.csproj</projectFile>\r\n    <projectFile profileName=\"https\">Api/Api.csproj</projectFile>\r\n    <projectFile kind=\"Uwp\">SGRH.Mobiles/SGRH.Mobiles.csproj</projectFile>\r\n    <projectFile kind=\"XamarinIOS\">SGRH.Mobiles/SGRH.Mobiles.csproj</projectFile>\r\n    <projectFile kind=\"XamarinMacOS\">SGRH.Mobiles/SGRH.Mobiles.csproj</projectFile>\r\n    <projectFile profileName=\"IIS Express\">SGRH.Web/SGRH.Web.csproj</projectFile>\r\n    <projectFile profileName=\"http\">SGRH.Web/SGRH.Web.csproj</projectFile>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4513bacd-2788-434e-b0da-0e72f7b77e1c\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/SGRH\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/SGRH\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"DpaMonitoringSettings\">\r\n    <option name=\"firstShow\" value=\"false\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"Junior28f\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/YehisonRD74/SGRH.git\",\r\n    \"accountId\": \"e6af3954-cdff-4fdc-9d87-0a21a61c1edb\"\r\n  }\r\n}]]></component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5c97f5415ab345ff8424e96123f0796f69908/f6/978fb76f/MediaTypeNames.cs\" root0=\"SKIP_HIGHLIGHTING\" />\r\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d7e2ce30531b7a2d56142411c5e51c3d516aafcb44e7628167b959660a65c/ServiceProvider.cs\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"30FjoFs3QDL1vQA0HBn8GbqiafO\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \".NET Launch Settings Profile.Api: IIS Express.executor\": \"Debug\",\r\n    \".NET Launch Settings Profile.Api: http.executor\": \"Run\",\r\n    \".NET Launch Settings Profile.Api: https.executor\": \"Debug\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"Junior-FelicianoJavier\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\".NET Launch Settings Profile.Api: http\">\r\n    <configuration name=\"Api: IIS Express\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/Api/Api.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"IIS Express\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Api: http\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/Api/Api.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"http\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Api: https\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/Api/Api.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"https\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SGRH.Web: IIS Express\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/SGRH.Web/SGRH.Web.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"IIS Express\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SGRH.Web: http\" type=\"LaunchSettings\" factoryName=\".NET Launch Settings Profile\">\r\n      <option name=\"LAUNCH_PROFILE_PROJECT_FILE_PATH\" value=\"$PROJECT_DIR$/SGRH.Web/SGRH.Web.csproj\" />\r\n      <option name=\"LAUNCH_PROFILE_TFM\" value=\"net8.0\" />\r\n      <option name=\"LAUNCH_PROFILE_NAME\" value=\"http\" />\r\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\r\n      <option name=\"USE_MONO\" value=\"0\" />\r\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\r\n      <option name=\"GENERATE_APPLICATIONHOST_CONFIG\" value=\"1\" />\r\n      <option name=\"SHOW_IIS_EXPRESS_OUTPUT\" value=\"0\" />\r\n      <option name=\"SEND_DEBUG_REQUEST\" value=\"1\" />\r\n      <option name=\"ADDITIONAL_IIS_EXPRESS_ARGUMENTS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SGRH.Mobiles\" type=\"UwpProject\" factoryName=\"UWP\">\r\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj\" />\r\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"SGRH.Mobiles\" type=\"XamarinIOSProject\" factoryName=\"Xamarin.iOS\">\r\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj\" />\r\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n      <option name=\"IS_PASS_PARENT_ENVS\" value=\"false\" />\r\n      <option name=\"EXTRA_MLAUNCH_PARAMETERS\" value=\"\" />\r\n      <option name=\"PLATFORM_TYPE\" value=\"IOS\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"SGRH.Mobiles\" type=\"XamarinMacProject\" factoryName=\"Xamarin.Mac\">\r\n      <option name=\"PROJECT_PATH\" value=\"$PROJECT_DIR$/SGRH.Mobiles/SGRH.Mobiles.csproj\" />\r\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\r\n      <option name=\"PASS_PARENT_ENVS_MAC\" value=\"1\" />\r\n      <method v=\"2\">\r\n        <option name=\"Build\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4513bacd-2788-434e-b0da-0e72f7b77e1c\" name=\"Changes\" comment=\"\" />\r\n      <created>1753230388818</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1753230388818</updated>\r\n      <workItem from=\"1753230389796\" duration=\"3911000\" />\r\n      <workItem from=\"1753489257503\" duration=\"351000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"false\" />\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\r\n          <properties exception=\"System.OperationCanceledException\" breakIfHandledByOtherCode=\"false\" displayValue=\"System.OperationCanceledException\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\r\n          <properties exception=\"System.Threading.Tasks.TaskCanceledException\" breakIfHandledByOtherCode=\"false\" displayValue=\"System.Threading.Tasks.TaskCanceledException\" />\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"DotNet_Exception_Breakpoints\">\r\n          <properties exception=\"System.Threading.ThreadAbortException\" breakIfHandledByOtherCode=\"false\" displayValue=\"System.Threading.ThreadAbortException\" />\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.SGRH/.idea/workspace.xml b/.idea/.idea.SGRH/.idea/workspace.xml
+--- a/.idea/.idea.SGRH/.idea/workspace.xml	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/.idea/.idea.SGRH/.idea/workspace.xml	(date 1753747364340)
+@@ -15,8 +15,19 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="4513bacd-2788-434e-b0da-0e72f7b77e1c" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SGRH/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Api/Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Api.csproj" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Api/Controller/ReservationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Api/Controller/ReservationController.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Api/appsettings.json" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/SGRH" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Mobiles/App.xaml.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SGRH.Persistences/Repositories/ReservationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Persistences/Repositories/ReservationRepository.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SGRH.Web/SGRH.Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Web/SGRH.Web.csproj" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SGRH.Web/Views/Floor/index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.Web/Views/Floor/index.cshtml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SGRH.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SGRH.sln" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/Services/IReservationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/Services/IReservationService.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SRH.Application/DTO/dbo/GetActiveReservation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/DTO/dbo/GetActiveReservation.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/SRH.Application/Services/ReservationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SRH.Application/Services/ReservationService.cs" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -42,10 +53,13 @@
+   }
+ }]]></component>
+   <component name="HighlightingSettingsPerFile">
+-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5c97f5415ab345ff8424e96123f0796f69908/f6/978fb76f/MediaTypeNames.cs" root0="SKIP_HIGHLIGHTING" />
+     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bd1d5c50194fea68ff3559c160230b0ab50f5acf4ce3061bffd6d62958e2182/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d7e2ce30531b7a2d56142411c5e51c3d516aafcb44e7628167b959660a65c/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
+   </component>
++  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
++  <component name="ProblemsViewState">
++    <option name="selectedTabId" value="Toolset" />
++  </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 0
+ }</component>
+@@ -56,13 +70,10 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+-    ".NET Launch Settings Profile.Api: IIS Express.executor": "Debug",
+-    ".NET Launch Settings Profile.Api: http.executor": "Run",
+-    ".NET Launch Settings Profile.Api: https.executor": "Debug",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    ".NET Launch Settings Profile.Api: http.executor": "Debug",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.git.unshallow": "true",
+-    "git-widget-placeholder": "Junior-FelicianoJavier",
++    "git-widget-placeholder": "Merging Junior-FelicianoJavier",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -180,13 +191,13 @@
+       <option name="presentableId" value="Default" />
+       <updated>1753230388818</updated>
+       <workItem from="1753230389796" duration="3911000" />
+-      <workItem from="1753489257503" duration="351000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+   <component name="VcsManagerConfiguration">
+     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+Index: SRH.Application/DTO/dbo/GetActiveReservation.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>namespace SRH.Application.DTO.dbo;\r\n\r\npublic record GetActiveReservationDto\r\n{\r\n    public string CreatedBy;\r\n    public DateTime CreatedAt;\r\n    public int Id { get; init; }\r\n    public DateTime CheckInDate { get; init; }\r\n    public DateTime CheckOutDate { get; init; }\r\n    public String Status { get; init; }\r\n    public decimal TotalAmount { get; init; }\r\n    public int UserId { get; init; }\r\n    public bool IsActive { get; internal set; }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SRH.Application/DTO/dbo/GetActiveReservation.cs b/SRH.Application/DTO/dbo/GetActiveReservation.cs
+--- a/SRH.Application/DTO/dbo/GetActiveReservation.cs	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SRH.Application/DTO/dbo/GetActiveReservation.cs	(date 1753747238377)
+@@ -4,11 +4,14 @@
+ {
+     public string CreatedBy;
+     public DateTime CreatedAt;
+-    public int Id { get; init; }
++    public int Id{ get; init; }
+     public DateTime CheckInDate { get; init; }
+     public DateTime CheckOutDate { get; init; }
+     public String Status { get; init; }
+     public decimal TotalAmount { get; init; }
+     public int UserId { get; init; }
+-    public bool IsActive { get; internal set; }
++    
++
++   
++  
+ }
+\ No newline at end of file
+Index: SGRH.sln
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nMicrosoft Visual Studio Solution File, Format Version 12.00\r\n# Visual Studio Version 17\r\nVisualStudioVersion = 17.11.35222.181\r\nMinimumVisualStudioVersion = 10.0.40219.1\r\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Core\", \"Core\", \"{AB839FE1-E16F-4454-B5CE-D36D133979F7}\"\r\nEndProject\r\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Infraestructure\", \"Infraestructure\", \"{ADF7B544-74E5-4C25-8912-5809BF903E5E}\"\r\nEndProject\r\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"IOC\", \"IOC\", \"{DCE175A6-A148-4F94-BF1C-24BAC692AE27}\"\r\nEndProject\r\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Presentation\", \"Presentation\", \"{12C98D1B-A209-488C-955C-23080D743B4E}\"\r\nEndProject\r\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Test\", \"Test\", \"{7611D705-A5DD-41B3-96F4-3DC64DCCAC32}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.Infraestructure\", \"SGRH.Infraestructure\\SGRH.Infraestructure.csproj\", \"{A4AFA052-B2D7-4CEB-9635-524F8002CF57}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.Persistences\", \"SGRH.Persistences\\SGRH.Persistences.csproj\", \"{EEDF2611-9DC7-4E23-8763-1BA5420A9915}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.Web\", \"SGRH.Web\\SGRH.Web.csproj\", \"{D33AC271-2485-4FF7-AE23-108E4AF8B248}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.Domain\", \"SGRH.Domain\\SGRH.Domain.csproj\", \"{77CD3252-0723-4438-9B28-03753308E17D}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.IOC\", \"SGRH.IOC\\SGRH.IOC.csproj\", \"{1E130A26-C892-496B-A8D1-A930F5830CA0}\"\r\nEndProject\r\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"API\", \"API\", \"{B82D2E93-EB4B-4916-9BA1-3827749925C3}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Model\", \"Model\\Model.csproj\", \"{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4}\"\r\nEndProject\r\nProject(\"{2150E333-8FDC-42A3-9474-1A3956D46DE8}\") = \"Application\", \"Application\", \"{284FF3E6-C880-447E-8251-3D63E2B87A99}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.Application\", \"SRH.Application\\SGRH.Application.csproj\", \"{8D428DDD-8CC5-443C-8050-4443E3218452}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"Api\", \"Api\\Api.csproj\", \"{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.Application.Tests\", \"FloorRepository\\SGRH.Application.Tests.csproj\", \"{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}\"\r\nEndProject\r\nProject(\"{9A19103F-16F7-4668-BE54-9A1E7A4F7556}\") = \"SGRH.Persitences.Tests\", \"SGRH.Persitences\\SGRH.Persitences.Tests.csproj\", \"{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}\"\r\nEndProject\r\nGlobal\r\n\tGlobalSection(SolutionConfigurationPlatforms) = preSolution\r\n\t\tDebug|Any CPU = Debug|Any CPU\r\n\t\tRelease|Any CPU = Release|Any CPU\r\n\tEndGlobalSection\r\n\tGlobalSection(ProjectConfigurationPlatforms) = postSolution\r\n\t\t{A4AFA052-B2D7-4CEB-9635-524F8002CF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{A4AFA052-B2D7-4CEB-9635-524F8002CF57}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{A4AFA052-B2D7-4CEB-9635-524F8002CF57}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{A4AFA052-B2D7-4CEB-9635-524F8002CF57}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{EEDF2611-9DC7-4E23-8763-1BA5420A9915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{EEDF2611-9DC7-4E23-8763-1BA5420A9915}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{EEDF2611-9DC7-4E23-8763-1BA5420A9915}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{EEDF2611-9DC7-4E23-8763-1BA5420A9915}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{D33AC271-2485-4FF7-AE23-108E4AF8B248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{D33AC271-2485-4FF7-AE23-108E4AF8B248}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{D33AC271-2485-4FF7-AE23-108E4AF8B248}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{D33AC271-2485-4FF7-AE23-108E4AF8B248}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{77CD3252-0723-4438-9B28-03753308E17D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{77CD3252-0723-4438-9B28-03753308E17D}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{77CD3252-0723-4438-9B28-03753308E17D}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{77CD3252-0723-4438-9B28-03753308E17D}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{1E130A26-C892-496B-A8D1-A930F5830CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{1E130A26-C892-496B-A8D1-A930F5830CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{1E130A26-C892-496B-A8D1-A930F5830CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{1E130A26-C892-496B-A8D1-A930F5830CA0}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{8D428DDD-8CC5-443C-8050-4443E3218452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{8D428DDD-8CC5-443C-8050-4443E3218452}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{8D428DDD-8CC5-443C-8050-4443E3218452}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{8D428DDD-8CC5-443C-8050-4443E3218452}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\t\t{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n\t\t{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n\t\t{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Release|Any CPU.ActiveCfg = Release|Any CPU\r\n\t\t{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Release|Any CPU.Build.0 = Release|Any CPU\r\n\tEndGlobalSection\r\n\tGlobalSection(SolutionProperties) = preSolution\r\n\t\tHideSolutionNode = FALSE\r\n\tEndGlobalSection\r\n\tGlobalSection(NestedProjects) = preSolution\r\n\t\t{A4AFA052-B2D7-4CEB-9635-524F8002CF57} = {ADF7B544-74E5-4C25-8912-5809BF903E5E}\r\n\t\t{EEDF2611-9DC7-4E23-8763-1BA5420A9915} = {ADF7B544-74E5-4C25-8912-5809BF903E5E}\r\n\t\t{D33AC271-2485-4FF7-AE23-108E4AF8B248} = {12C98D1B-A209-488C-955C-23080D743B4E}\r\n\t\t{77CD3252-0723-4438-9B28-03753308E17D} = {AB839FE1-E16F-4454-B5CE-D36D133979F7}\r\n\t\t{1E130A26-C892-496B-A8D1-A930F5830CA0} = {DCE175A6-A148-4F94-BF1C-24BAC692AE27}\r\n\t\t{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4} = {AB839FE1-E16F-4454-B5CE-D36D133979F7}\r\n\t\t{8D428DDD-8CC5-443C-8050-4443E3218452} = {284FF3E6-C880-447E-8251-3D63E2B87A99}\r\n\t\t{7874EA20-3F5C-4D59-B66D-9C8BFCF36909} = {B82D2E93-EB4B-4916-9BA1-3827749925C3}\r\n\t\t{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052} = {7611D705-A5DD-41B3-96F4-3DC64DCCAC32}\r\n\t\t{FD7B05A9-18F2-43D0-AA69-D96F13E311EC} = {7611D705-A5DD-41B3-96F4-3DC64DCCAC32}\r\n\tEndGlobalSection\r\n\tGlobalSection(ExtensibilityGlobals) = postSolution\r\n\t\tSolutionGuid = {59FEA820-78CE-403B-8572-B412195C5EC4}\r\n\tEndGlobalSection\r\nEndGlobal\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SGRH.sln b/SGRH.sln
+--- a/SGRH.sln	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SGRH.sln	(date 1753747254100)
+@@ -19,23 +19,21 @@
+ EndProject
+ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGRH.Web", "SGRH.Web\SGRH.Web.csproj", "{D33AC271-2485-4FF7-AE23-108E4AF8B248}"
+ EndProject
+-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGRH.Domain", "SGRH.Domain\SGRH.Domain.csproj", "{77CD3252-0723-4438-9B28-03753308E17D}"
++Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGRH.Mobiles", "SGRH.Mobiles\SGRH.Mobiles.csproj", "{2AB62324-83F5-40B1-8E85-42BBDD05FD6C}"
++EndProject
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGH.Domain", "SGH.Domain\SGH.Domain.csproj", "{77CD3252-0723-4438-9B28-03753308E17D}"
+ EndProject
+-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGRH.IOC", "SGRH.IOC\SGRH.IOC.csproj", "{1E130A26-C892-496B-A8D1-A930F5830CA0}"
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGRH.IOC", "SGRH.IOC\SGRH.IOC.csproj", "{1E130A26-C892-496B-A8D1-A930F5830CA0}"
+ EndProject
+ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{B82D2E93-EB4B-4916-9BA1-3827749925C3}"
+ EndProject
+-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4}"
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4}"
+ EndProject
+ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{284FF3E6-C880-447E-8251-3D63E2B87A99}"
+ EndProject
+-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGRH.Application", "SRH.Application\SGRH.Application.csproj", "{8D428DDD-8CC5-443C-8050-4443E3218452}"
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRH.Application", "SRH.Application\SRH.Application.csproj", "{8D428DDD-8CC5-443C-8050-4443E3218452}"
+ EndProject
+-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}"
+-EndProject
+-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGRH.Application.Tests", "FloorRepository\SGRH.Application.Tests.csproj", "{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}"
+-EndProject
+-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGRH.Persitences.Tests", "SGRH.Persitences\SGRH.Persitences.Tests.csproj", "{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}"
++Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}"
+ EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+@@ -55,6 +53,11 @@
+ 		{D33AC271-2485-4FF7-AE23-108E4AF8B248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{D33AC271-2485-4FF7-AE23-108E4AF8B248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+ 		{D33AC271-2485-4FF7-AE23-108E4AF8B248}.Release|Any CPU.Build.0 = Release|Any CPU
++		{2AB62324-83F5-40B1-8E85-42BBDD05FD6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
++		{2AB62324-83F5-40B1-8E85-42BBDD05FD6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{2AB62324-83F5-40B1-8E85-42BBDD05FD6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
++		{2AB62324-83F5-40B1-8E85-42BBDD05FD6C}.Release|Any CPU.Build.0 = Release|Any CPU
++		{2AB62324-83F5-40B1-8E85-42BBDD05FD6C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+ 		{77CD3252-0723-4438-9B28-03753308E17D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+ 		{77CD3252-0723-4438-9B28-03753308E17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{77CD3252-0723-4438-9B28-03753308E17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+@@ -75,14 +78,6 @@
+ 		{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+ 		{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}.Release|Any CPU.Build.0 = Release|Any CPU
+-		{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052}.Release|Any CPU.Build.0 = Release|Any CPU
+-		{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{FD7B05A9-18F2-43D0-AA69-D96F13E311EC}.Release|Any CPU.Build.0 = Release|Any CPU
+ 	EndGlobalSection
+ 	GlobalSection(SolutionProperties) = preSolution
+ 		HideSolutionNode = FALSE
+@@ -91,13 +86,12 @@
+ 		{A4AFA052-B2D7-4CEB-9635-524F8002CF57} = {ADF7B544-74E5-4C25-8912-5809BF903E5E}
+ 		{EEDF2611-9DC7-4E23-8763-1BA5420A9915} = {ADF7B544-74E5-4C25-8912-5809BF903E5E}
+ 		{D33AC271-2485-4FF7-AE23-108E4AF8B248} = {12C98D1B-A209-488C-955C-23080D743B4E}
+-		{77CD3252-0723-4438-9B28-03753308E17D} = {AB839FE1-E16F-4454-B5CE-D36D133979F7}
++		{2AB62324-83F5-40B1-8E85-42BBDD05FD6C} = {12C98D1B-A209-488C-955C-23080D743B4E}
+ 		{1E130A26-C892-496B-A8D1-A930F5830CA0} = {DCE175A6-A148-4F94-BF1C-24BAC692AE27}
+ 		{C6DAB27C-7F21-4531-B8C4-AB86D4A6A7F4} = {AB839FE1-E16F-4454-B5CE-D36D133979F7}
+ 		{8D428DDD-8CC5-443C-8050-4443E3218452} = {284FF3E6-C880-447E-8251-3D63E2B87A99}
++		{77CD3252-0723-4438-9B28-03753308E17D} = {AB839FE1-E16F-4454-B5CE-D36D133979F7}
+ 		{7874EA20-3F5C-4D59-B66D-9C8BFCF36909} = {B82D2E93-EB4B-4916-9BA1-3827749925C3}
+-		{2D6B0F1D-F8CC-4E4E-8C9D-09F1A898D052} = {7611D705-A5DD-41B3-96F4-3DC64DCCAC32}
+-		{FD7B05A9-18F2-43D0-AA69-D96F13E311EC} = {7611D705-A5DD-41B3-96F4-3DC64DCCAC32}
+ 	EndGlobalSection
+ 	GlobalSection(ExtensibilityGlobals) = postSolution
+ 		SolutionGuid = {59FEA820-78CE-403B-8572-B412195C5EC4}
+Index: SGRH.Web/SGRH.Web.csproj
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><Project Sdk=\"Microsoft.NET.Sdk.Web\">\r\n\r\n  <PropertyGroup>\r\n    <TargetFramework>net8.0</TargetFramework>\r\n    <Nullable>enable</Nullable>\r\n    <ImplicitUsings>enable</ImplicitUsings>\r\n  </PropertyGroup>\r\n\r\n  <ItemGroup>\r\n    <PackageReference Include=\"Microsoft.VisualStudio.Web.CodeGeneration.Design\" Version=\"8.0.7\" />\r\n  </ItemGroup>\r\n\r\n  <ItemGroup>\r\n    <ProjectReference Include=\"..\\SGRH.Domain\\SGRH.Domain.csproj\" />\r\n    <ProjectReference Include=\"..\\SGRH.Infraestructure\\SGRH.Infraestructure.csproj\" />\r\n    <ProjectReference Include=\"..\\SGRH.IOC\\SGRH.IOC.csproj\" />\r\n    <ProjectReference Include=\"..\\SGRH.Persistences\\SGRH.Persistences.csproj\" />\r\n    <ProjectReference Include=\"..\\SRH.Application\\SGRH.Application.csproj\" />\r\n  </ItemGroup>\r\n\r\n</Project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SGRH.Web/SGRH.Web.csproj b/SGRH.Web/SGRH.Web.csproj
+--- a/SGRH.Web/SGRH.Web.csproj	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SGRH.Web/SGRH.Web.csproj	(date 1753745411806)
+@@ -7,7 +7,7 @@
+   </PropertyGroup>
+ 
+   <ItemGroup>
+-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
++    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+   </ItemGroup>
+ 
+   <ItemGroup>
+Index: SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Linq.Expressions;\r\nusing SGRH._Domain.Base;\r\nusing SRH.Application.DTO.dbo;\r\nusing System.Threading.Tasks;\r\nusing SGRH._Domain.Entites;\r\n\r\nnamespace SRH.Application.Contracts.Repositories.dbo\r\n{\r\n    public interface IReservationRepository\r\n    {\r\n        Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? createReservationDto);\r\n\r\n        Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto);\r\n\r\n        Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto);\r\n\r\n        Task<IEnumerable<Reservation>> GetAllResevation(Expression<Func<Reservation, bool>>? predicate = null);\r\n\r\n        Task<OperationResult<Reservation>> GetReservationById(int id);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs b/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs
+--- a/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SRH.Application/Contracts/Repositories/dbo/IReservationRepository.cs	(date 1753747216839)
+@@ -9,13 +9,13 @@
+     public interface IReservationRepository
+     {
+         Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto? createReservationDto);
+-
++        
+         Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto);
+-
++        
+         Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto);
+-
+-        Task<IEnumerable<Reservation>> GetAllResevation(Expression<Func<Reservation, bool>>? predicate = null);
+-
++        
++        Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null);
++        
+         Task<OperationResult<Reservation>> GetReservationById(int id);
+     }
+ }
+\ No newline at end of file
+Index: SRH.Application/Contracts/Repositories/Services/IReservationService.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Linq.Expressions;\r\nusing SGRH._Domain.Base;\r\nusing SGRH._Domain.Entites;\r\nusing SGRH.Application.DTO.reservations;\r\nusing SRH.Application.DTO.dbo;\r\n\r\nnamespace SGRH.Application.Contracts.Repositories.Services\r\n{\r\n    public interface IReservationService\r\n    {\r\n        Task<OperationResult<IEnumerable<Reservation>>> GetReservation();\r\n\r\n        Task<OperationResult<Reservation>> GetReservationById(int id, GetActiveReservationDto dto);\r\n\r\n        Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto);\r\n\r\n        Task<OperationResult<Reservation>> UpdateReservation(UpDateReservationDto updateReservationDto);\r\n\r\n        Task<OperationResult<Reservation>> DisableReservation(DisableReservationDto disableReservationDto);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SRH.Application/Contracts/Repositories/Services/IReservationService.cs b/SRH.Application/Contracts/Repositories/Services/IReservationService.cs
+--- a/SRH.Application/Contracts/Repositories/Services/IReservationService.cs	(revision 2c46a3d8a15e187a8dbfbcbf7c9c0f1e941f0385)
++++ b/SRH.Application/Contracts/Repositories/Services/IReservationService.cs	(date 1753747223364)
+@@ -1,16 +1,19 @@
++using System;
++using System.Collections.Generic;
+ using System.Linq.Expressions;
++using System.Threading.Tasks;
+ using SGRH._Domain.Base;
+ using SGRH._Domain.Entites;
+-using SGRH.Application.DTO.reservations;
++using SGRH._Domain.Entities;
+ using SRH.Application.DTO.dbo;
+ 
+-namespace SGRH.Application.Contracts.Repositories.Services
++namespace SRH.Application.Contracts.Repositories.Services
+ {
+     public interface IReservationService
+     {
+-        Task<OperationResult<IEnumerable<Reservation>>> GetReservation();
++        Task<OperationResult<IEnumerable<Reservation>>> GetAllReservation(Expression<Func<Reservation, bool>>? predicate = null);
+ 
+-        Task<OperationResult<Reservation>> GetReservationById(int id, GetActiveReservationDto dto);
++        Task<OperationResult<Reservation>> GetReservationById(int id);
+ 
+         Task<OperationResult<Reservation>> CreateReservation(CreateReservationDto createReservationDto);
+ 
