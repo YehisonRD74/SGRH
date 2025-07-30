@@ -1,15 +1,19 @@
-﻿namespace SGRH.Web.Models
+﻿using System.Text.Json.Serialization;
+
+namespace SGRH.Web.Models
 {
     public class RoomModels
     {
-  
-        public string Status { get; set; }
+        [JsonPropertyName("roomId")]
+        public int Id { get; set; }
+
         public string NumeroHabitacion { get; set; }
         public string Type { get; set; }
         public int Price { get; set; }
-        public int RoomCategoryId { get; set; }
         public int FloorId { get; set; }
-        public int Id { get; set; }
+        public string Status { get; set; }
+
+        public int RoomCategoryId { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }

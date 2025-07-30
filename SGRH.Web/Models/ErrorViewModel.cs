@@ -1,4 +1,4 @@
-namespace SGRH.Web.Models
+﻿namespace SGRH.Web.Models
 {
     public class ErrorViewModel
     {

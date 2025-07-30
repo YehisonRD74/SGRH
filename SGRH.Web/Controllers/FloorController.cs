@@ -51,9 +51,54 @@ namespace SGRH.Web.Controllers
         }
 
         // GET: FloorController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            if(id <= 0)
+            {
+                return NotFound();
+            }   
+            GetFloorResponse getFloorResponse = null;
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7114/");
+                    var response = await client.GetAsync($"api/Floor/GetFloorById/{id}");
+
+
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseString = await response.Content.ReadAsStringAsync();
+                        getFloorResponse = System.Text.Json.JsonSerializer.Deserialize<GetFloorResponse>(responseString);
+                    }
+                    else
+                    {
+                        getFloorResponse = new GetFloorResponse
+                        {
+                            isSuccess = false,
+                            message = "Error al obtener los datos del piso."
+                        };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                getFloorResponse = new GetFloorResponse
+                {
+                    isSuccess = false,
+                    message = $"Error durante la transacion {ex.Message}."
+                };
+            }
+            if (getFloorResponse?.data == null || getFloorResponse.data.id == 0)
+            {
+                TempData["Error"] = "No se encontró el piso.";
+                return RedirectToAction("Index");
+            }
+
+            return View(getFloorResponse.data);
         }
 
         // GET: FloorController/Create
@@ -65,38 +110,137 @@ namespace SGRH.Web.Controllers
         // POST: FloorController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(FloorCreateModels model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                // Agregar valores automáticos
+                model.CreatedAt = DateTime.UtcNow;
+                model.UpdatedAt = DateTime.UtcNow;
+                model.CreatedBy = "admin"; // O toma del usuario autenticado
+                model.UpdatedBy = "admin";
+                model.IsDeleted = false;
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7114/");
+
+                    var response = await client.PostAsJsonAsync("api/Floor/CreateFloor", model);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        TempData["Success"] = "Piso creado correctamente.";
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Error al crear el piso.");
+                        return View(model);
+                    }
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, $"Error inesperado: {ex.Message}");
+                return View(model);
             }
         }
 
+
         // GET: FloorController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+            GetFloorResponse getFloorResponse = null;
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7114/");
+                    var response = await client.GetAsync($"api/Floor/GetFloor/{id}");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseString = await response.Content.ReadAsStringAsync();
+                        getFloorResponse = System.Text.Json.JsonSerializer.Deserialize<GetFloorResponse>(responseString);
+                    }
+                    else
+                    {
+                        getFloorResponse = new GetFloorResponse
+                        {
+                            isSuccess = false,
+                            message = "Error al obtener los datos del piso."
+                        };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                getFloorResponse = new GetFloorResponse
+                {
+                    isSuccess = false,
+                    message = $"Error durante la transacion {ex.Message}."
+                };
+            }
+            return View(getFloorResponse.data);
         }
 
         // POST: FloorController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(FloorEditModels model)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return View(model);
+            }
+
+            try
+            { 
+                GetFloorEditResponse editResponse;
+
+                model.UpdatedAt = DateTime.UtcNow;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7114/");
+                    HttpResponseMessage response = await client.PostAsJsonAsync("api/Floor/updateFloor", model);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        TempData["Error"] = "Error al actualizar el piso.";
+                        return View(model);
+                    }
+
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    editResponse = System.Text.Json.JsonSerializer.Deserialize<GetFloorEditResponse>(responseString);
+
+                    if (editResponse != null && editResponse.IsSuccess)
+                    {
+                        TempData["Success"] = "Piso actualizado correctamente.";
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        TempData["Error"] = editResponse?.Message ?? "Error desconocido al actualizar el piso.";
+                        return View(model);
+                    }
+                }
             }
             catch
             {
-                return View();
+                TempData["Error"] = "Ocurrió un error inesperado al actualizar el piso.";
+                return View(model);
             }
         }
+
 
         // GET: FloorController/Delete/5
         public ActionResult Delete(int id)
