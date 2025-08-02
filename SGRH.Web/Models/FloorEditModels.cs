@@ -1,4 +1,6 @@
-﻿namespace SGRH.Web.Models
+﻿using System.Collections.Generic;
+
+namespace SGRH.Web.Models
 {
     public class FloorEditModels
     {
@@ -18,5 +20,11 @@
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
         public FloorEditModels Data { get; set; }
+    }
+    public class GetAllFloorEditResponse
+    {
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
+        public List<FloorEditModels> Data { get; set; }
     }
 }

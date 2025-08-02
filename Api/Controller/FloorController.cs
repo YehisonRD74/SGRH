@@ -46,8 +46,7 @@ namespace Api.Controller
         [HttpPost("CreateFloor")]
         public async Task<IActionResult> CreateFloor([FromBody] CreateFloorDto? dto)
         {
-            //if (!ModelState.IsValid)
-              // return BadRequest(ModelState);
+           
         
             var result = await _floorService.CreateFloor(dto);
             return Ok(result);

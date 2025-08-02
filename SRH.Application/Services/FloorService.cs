@@ -17,7 +17,7 @@ public class FloorService : BaseService<FloorService>, IFloorService
     private new readonly ILogger<FloorService> _logger;
     private readonly IConfiguration _configuration;
     private readonly IValidator<CreateFloorDto> _createFloorValidator;
-    
+
     public FloorService(IFloorRepository floorRepository, ILogger<FloorService> logger,
         IConfiguration configuration, IValidator<CreateFloorDto> createFloorValidator)
         : base(logger)
@@ -80,7 +80,7 @@ public class FloorService : BaseService<FloorService>, IFloorService
             LogError(e, $"Error al actualizar el piso: {e.Message}");
             return OperationResult<Floor>.Failure("Error: " + e.Message);
         }
-        return OperationResult<Floor>.Failure("Piso no encontrado"); 
+        return OperationResult<Floor>.Failure("Piso no encontrado");
     }
 
     public async Task<OperationResult<bool>> DisableFloor(DisableFloorDto? disableFloorDto)
@@ -136,12 +136,14 @@ public class FloorService : BaseService<FloorService>, IFloorService
             };
 
             await _floorRepository.CreateFloor(floorEntity);
-            return OperationResult<CreateFloorDto>.Success(createFloorDto, "Piso creado exitosamente");
+
+
+            return OperationResult<CreateFloorDto>.Success(floorEntity, "Piso creado exitosamente");
         }
         catch (Exception e)
         {
             LogError(e, $"Error al crear el piso: {e.Message}");
             return OperationResult<CreateFloorDto>.Failure("Error: " + e.Message);
         }
-    } 
+    }
 }

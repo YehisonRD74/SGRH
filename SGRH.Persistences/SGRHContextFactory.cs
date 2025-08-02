@@ -1,18 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using SGRH.Persistences;
+using SGRH.Persistences.Context;
 
 namespace SGRH.Persistences
 {
-    public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+    public class AppDbContextFactory : IDesignTimeDbContextFactory<SGRHContext>
     {
-        public AppDbContext CreateDbContext(string[] args)
+        public SGRHContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<SGRHContext>();
 
             optionsBuilder.UseSqlServer("Server=localhost;Database=SGRHDB;Trusted_Connection=True;TrustServerCertificate=True;");
 
-            return new AppDbContext(optionsBuilder.Options);
+            return new SGRHContext(optionsBuilder.Options);
         }
     }
 }

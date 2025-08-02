@@ -1,30 +1,56 @@
 ﻿@model SGRH.Web.Models.FloorCreateModels
 
 @{
-    ViewData["Title"] = "Crear Floor";
+    ViewData["Title"] = "Crear Piso";
 }
 
-<h2>Crear Piso</h2>
+<h2>@ViewData["Title"]</h2>
 
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="FloorNumber" class="control-label"></label>
+        <label asp-for="FloorNumber"></label>
         <input asp-for="FloorNumber" class="form-control" />
         <span asp-validation-for="FloorNumber" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="CreatedBy" class="control-label"></label>
+        <label asp-for="CreatedBy"></label>
         <input asp-for="CreatedBy" class="form-control" />
         <span asp-validation-for="CreatedBy" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Crear</button>
+    <div class="form-group">
+        <label asp-for="CreatedAt"></label>
+        <input asp-for="CreatedAt" type="datetime-local" class="form-control" />
+        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UpdatedBy"></label>
+        <input asp-for="UpdatedBy" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UpdatedAt"></label>
+        <input asp-for="UpdatedAt" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="IsDeleted" class="form-check-input" />
+        <label asp-for="IsDeleted" class="form-check-label"></label>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DeletedBy"></label>
+        <input asp-for="DeletedBy" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DeletedAt"></label>
+        <input asp-for="DeletedAt" type="datetime-local" class="form-control" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">Guardar</button>
     <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 </form>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
