@@ -1,10 +1,14 @@
-﻿@model IEnumerable<SGRH.Web.Models.RoomModels>
+﻿@using SGRH.Web.Models.Room
+@model IEnumerable<RoomModels>
+
 
 @{
     ViewData["Title"] = "Rooms List";
 }
 
 <h1>@ViewData["Title"]</h1>
+
+
 
 <p>
     <a asp-action="Create" class="btn btn-success">Create New</a>
@@ -25,14 +29,14 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.NumeroHabitacion</td>
-                <td>@item.Type</td>
-                <td>@item.Price.ToString("C")</td>
-                <td>@item.Status</td>
-                <td>@item.FloorId</td>
+                <td>@item.numeroHabitacion</td>
+                <td>@item.type</td>
+                <td>@item.price.ToString("C")</td>
+                <td>@item.status</td>
+                <td>@item.floorId</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.roomId" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.roomId" class="btn btn-sm btn-info">Details</a>
                 </td>
             </tr>
         }

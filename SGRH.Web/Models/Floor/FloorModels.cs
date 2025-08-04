@@ -16,17 +16,17 @@ namespace SGRH.Web.Models
         public string DeletedBy { get; internal set; }
         public DateTime? DeletedAt { get; internal set; }
 
-        public FloorModels(int floorNumber,int id, DateTime createdAt, string createdBy, DateTime? updatedAt = null, string updatedBy = null, bool isDeleted = false, string deletedBy = null, DateTime? deletedAt = null)
+        public FloorModels(int FloorNumber,int id, DateTime createdAt, string createdBy, DateTime? updatedAt = null, string updatedBy = null, bool isDeleted = false, string deletedBy = null, DateTime? deletedAt = null)
         {
-            FloorNumber = floorNumber;
+            FloorNumber = FloorNumber;
              Id = id;
-            CreatedAt = createdAt;
-            CreatedBy = createdBy;
-            UpdatedAt = updatedAt;
-            UpdatedBy = updatedBy;
-            IsDeleted = isDeleted;
-            DeletedBy = deletedBy;
-            DeletedAt = deletedAt;
+            CreatedAt = CreatedAt;
+            CreatedBy = CreatedBy;
+            UpdatedAt = UpdatedAt;
+            UpdatedBy = UpdatedBy;
+            IsDeleted = IsDeleted;
+            DeletedBy = DeletedBy;
+            DeletedAt = DeletedAt;
            
         }
 

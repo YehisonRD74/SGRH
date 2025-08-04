@@ -33,6 +33,20 @@ namespace Api.Controller
             return Ok(result); 
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRoomById(int id)
+        {
+            var result = await _roomService.GetRoomById(id);
+
+            if (!result.IsSuccess)
+            {
+          
+                return NotFound(result.Message);
+            }
+
+            return Ok(result);
+        }
+
 
 
         [HttpPost("CreateRoom")]

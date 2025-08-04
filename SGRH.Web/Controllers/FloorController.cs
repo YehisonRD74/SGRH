@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SGRH.Web.Models;
 using SGRH.Web.Services;
 using System.Threading.Tasks;
 using SGRH.Web.Services.Interface;

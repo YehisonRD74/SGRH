@@ -17,6 +17,15 @@ builder.Services.AddHttpClient<IFloorService, FloorService>(client =>
     client.BaseAddress = new Uri(floorApiBaseUrl);
 });
 
+var roomApiBaseUrl = builder.Configuration["RoomApi:BaseUrl"];
+
+builder.Services.AddHttpClient<IRoomService, RoomService>(client =>
+{
+    client.BaseAddress = new Uri(roomApiBaseUrl);
+});
+
+
+
 
 // Agrega servicios MVC
 builder.Services.AddControllersWithViews();

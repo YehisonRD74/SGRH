@@ -1,66 +1,40 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using SGRH.Web.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using SGRH.Web.Models.Room;
+using SGRH.Web.Services.Interface;
+using System.Threading.Tasks;
 
 namespace SGRH.Web.Controllers
 {
     public class RoomController : Controller
     {
+        private readonly IRoomService _roomService;
+
+        public RoomController(IRoomService roomService)
+        {
+            _roomService = roomService;
+        }
+
         // GET: RoomController
         public async Task<IActionResult> Index()
         {
-            GetAllRoomResponse getAllRoomResponse = null;
-
-
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri("https://localhost:7114/");
-                    var response = await client.GetAsync("api/Room/GetAllRoom");
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseString = await response.Content.ReadAsStringAsync();
-                        getAllRoomResponse = System.Text.Json.JsonSerializer.Deserialize<GetAllRoomResponse>(
-                            responseString,
-                            new System.Text.Json.JsonSerializerOptions
-                            {
-                                PropertyNameCaseInsensitive = true
-                            });
-                    }
-                    else
-                    {
-                        getAllRoomResponse = new GetAllRoomResponse
-                        {
-                            IsSuccess = false,
-                            Message = "Error al obtener los datos de las habitaciones.",
-                            Data = new List<RoomModels>()
-                        };
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                getAllRoomResponse = new GetAllRoomResponse
-                {
-                    IsSuccess = false,
-                    Message = $"Error durante la transacción: {ex.Message}.",
-                    Data = new List<RoomModels>()
-                };
-            }
-
-            return View(getAllRoomResponse.Data); 
+            var rooms = await _roomService.GetAllRoomsAsync();
+            return View(rooms);
         }
 
         // GET: RoomController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var room = await _roomService.GetRoomByIdAsync(id);
+            if (room != null)
+            {
+                return View(room);
+            }
+
+            return NotFound();
         }
 
         // GET: RoomController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -68,58 +42,83 @@ namespace SGRH.Web.Controllers
         // POST: RoomController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(RoomModels room)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var success = await _roomService.CreateRoomAsync(room);
+                if (success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ModelState.AddModelError(string.Empty, "Error al crear la habitación.");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(room);
         }
 
         // GET: RoomController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var room = await _roomService.GetRoomByIdAsync(id);
+            if (room != null)
+            {
+                return View(room); // Puedes mapearlo a RoomEditModels si es necesario
+            }
+
+            return NotFound();
         }
 
         // POST: RoomController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, RoomEditModels room)
         {
-            try
+            if (id != room.roomId)
             {
-                return RedirectToAction(nameof(Index));
+                return BadRequest();
             }
-            catch
+
+            if (ModelState.IsValid)
             {
-                return View();
+                var success = await _roomService.UpdateRoomAsync(id, room);
+                if (success)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
+                ModelState.AddModelError(string.Empty, "Error al actualizar la habitación.");
             }
+
+            return View(room);
         }
 
         // GET: RoomController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var room = await _roomService.GetRoomByIdAsync(id);
+            if (room != null)
+            {
+                return View(room);
+            }
+
+            return NotFound();
         }
 
         // POST: RoomController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
+            var success = await _roomService.DisableRoomAsync(id);
+            if (success)
             {
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            ModelState.AddModelError(string.Empty, "Error al deshabilitar la habitación.");
+            return RedirectToAction(nameof(Delete), new { id });
         }
     }
 }

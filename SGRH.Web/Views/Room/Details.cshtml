@@ -1,0 +1,36 @@
+﻿@model SGRH.Web.Models.Room.RoomModels
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Room Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.roomId)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.roomId)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.numeroHabitacion)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.numeroHabitacion)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.type)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.type)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.floorId)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.floorId)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.price)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.price)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.status)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.status)</dd>
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { Id = Model.roomId }) |
+    <a asp-action="Index">Back to List</a>
+</div>
