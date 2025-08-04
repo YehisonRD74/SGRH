@@ -12,6 +12,7 @@ using SRH.Application.Contracts.Repositories.Services;
 
 using SGRH.Persistences.Repositories;
 using SGRH.Application.Services;
+using SGRH.Application.Contracts.Repositories.dbo;
 
 namespace SGRH.IOC.Dependencies
 {

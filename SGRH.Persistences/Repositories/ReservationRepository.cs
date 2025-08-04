@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SGRH._Domain.Base;
 using SGRH._Domain.Entites;
+using SGRH.Application.Contracts.Repositories.dbo;
 using SGRH.Persistences.Context;
 using SRH.Application.DTO.dbo;
 
