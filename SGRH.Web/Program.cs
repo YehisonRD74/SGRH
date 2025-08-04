@@ -10,9 +10,11 @@ builder.Services.AddDbContext<SGRHContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SGRHContext")));
 
 // Registro del servicio que consume la API externa
+var floorApiBaseUrl = builder.Configuration["FloorApi:BaseUrl"];
+
 builder.Services.AddHttpClient<IFloorService, FloorService>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7114/");
+    client.BaseAddress = new Uri(floorApiBaseUrl);
 });
 
 

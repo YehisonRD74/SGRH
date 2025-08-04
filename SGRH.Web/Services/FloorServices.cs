@@ -2,6 +2,7 @@
 {
     using SGRH.Web.Models;
     using SGRH.Web.Models.Floor;
+    using SGRH.Web.Response;
     using SGRH.Web.Services.Interface;
     using System;
     using System.Collections.Generic;
@@ -21,27 +22,43 @@
 
         public async Task<List<FloorModels>> GetAllAsync()
         {
+            try
+            {
+                
+                if (_httpClient.BaseAddress == null)
+                {
+                    throw new InvalidOperationException("HttpClient BaseAddress is not set.");
+                }
+            }
+            catch (Exception ex)
+            {
+             
+                throw new Exception("Error initializing HttpClient: " + ex.Message);
+            }
             var response = await _httpClient.GetAsync("api/Floor/GetAllFloor");
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<GetAllFloorResponse>();
-                return result?.Data ?? new List<FloorModels>();
+                var result = await response.Content.ReadFromJsonAsync<GetAllFloorCreateResponse>();
+                return result?.data ?? new List<FloorModels>();
+
+               
             }
             return new List<FloorModels>();
+
         }
 
-        public async Task<FloorModels> GetByIdAsync(int id)
+        public async Task<FloorModels?> GetByIdAsync(int id)
         {
             var response = await _httpClient.GetAsync($"api/Floor/GetFloorById/{id}");
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<GetFloorResponse>();
-                return result?.data;
+                var result = await response.Content.ReadFromJsonAsync<GetFloorCreateResponse>();
+                return result?.Data;
             }
             return null;
         }
 
-        public async Task<bool> CreateAsync(FloorCreateModels model)
+        public async Task<bool> CreateAsync(CreateFloor model)
         {
             model.CreatedAt = DateTime.UtcNow;
             model.UpdatedAt = DateTime.UtcNow;
@@ -66,6 +83,7 @@
             return response.IsSuccessStatusCode;
         }
 
+        
     }
 
 }

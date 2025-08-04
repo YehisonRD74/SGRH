@@ -3,6 +3,7 @@ using SGRH.Web.Models;
 using SGRH.Web.Services;
 using System.Threading.Tasks;
 using SGRH.Web.Services.Interface;
+using SGRH.Web.Models.Floor;
 
 namespace SGRH.Web.Controllers
 {
@@ -42,7 +43,7 @@ namespace SGRH.Web.Controllers
         // POST: Floor/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(FloorCreateModels model)
+        public async Task<IActionResult> Create(CreateFloor model)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +68,7 @@ namespace SGRH.Web.Controllers
             var editModel = new FloorEditModels(
       floor.FloorNumber,
       floor.Id,
-      floor.CreateAt,
+      floor.CreatedAt,
       floor.CreatedBy,
       floor.UpdatedAt,
       floor.UpdatedBy,
@@ -107,7 +108,7 @@ namespace SGRH.Web.Controllers
             var deleteModel = new FloorEditModels(
       floor.FloorNumber,
       floor.Id,
-      floor.CreateAt,
+      floor.CreatedAt,
       floor.CreatedBy,
       floor.UpdatedAt,
       floor.UpdatedBy,
