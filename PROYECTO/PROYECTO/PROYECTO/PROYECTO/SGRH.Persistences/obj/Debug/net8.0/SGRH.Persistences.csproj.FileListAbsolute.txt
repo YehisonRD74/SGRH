@@ -1,0 +1,70 @@
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure.deps.json
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure.runtimeconfig.json
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\testhost.exe
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\testhost.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\es\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\es\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.TestPlatform.AdapterUtilities.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.deps.json
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.runtimeconfig.json
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.pdb
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Application.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Domain.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Domain.pdb
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Application.pdb
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure.pdb
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.csproj.AssemblyReference.cache
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.GeneratedMSBuildEditorConfig.editorconfig
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.gentestingplatformentrypointinputcache.cache
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.genautoregisteredextensionsinputcache.cache
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.AssemblyInfoInputs.cache
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.AssemblyInfo.cs
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.csproj.CoreCompileInputs.cache
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.sourcelink.json
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Per.E5FCAC82.Up2Date
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\refint\SGRH.Persistences.dll
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.pdb
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.genruntimeconfig.cache
+C:\WORKSPACE\ITLA\FELICIANO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\ref\SGRH.Persistences.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.csproj.AssemblyReference.cache
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.gentestingplatformentrypointinputcache.cache
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.genautoregisteredextensionsinputcache.cache
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.AssemblyInfoInputs.cache
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.AssemblyInfo.cs
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.csproj.CoreCompileInputs.cache
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.sourcelink.json
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\testhost.exe
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\testhost.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.TestPlatform.AdapterUtilities.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.deps.json
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.runtimeconfig.json
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Persistences.pdb
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Application.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Domain.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Domain.pdb
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Application.pdb
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Per.E5FCAC82.Up2Date
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\refint\SGRH.Persistences.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.pdb
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\SGRH.Persistences.genruntimeconfig.cache
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\obj\Debug\net8.0\ref\SGRH.Persistences.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\es\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\es\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure1.deps.json
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure1.runtimeconfig.json
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure1.dll
+C:\Users\TOSHIBA\Desktop\PROGRAMACION 2\PROYECTO\PROYECTO\PROYECTO\PROYECTO\PROYECTO\SGRH.Persistences\bin\Debug\net8.0\SGRH.Infraestructure1.pdb
