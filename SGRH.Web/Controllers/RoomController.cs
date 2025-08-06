@@ -25,12 +25,12 @@ namespace SGRH.Web.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var room = await _roomService.GetRoomByIdAsync(id);
-            if (room != null)
+            if (room == null)
             {
-                return View(room);
+                return NotFound();
             }
 
-            return NotFound();
+            return View(room);
         }
 
         // GET: RoomController/Create
@@ -43,6 +43,7 @@ namespace SGRH.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RoomModels room)
+           
         {
             if (ModelState.IsValid)
             {
@@ -62,12 +63,12 @@ namespace SGRH.Web.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var room = await _roomService.GetRoomByIdAsync(id);
-            if (room != null)
+            if (room == null)
             {
-                return View(room); // Puedes mapearlo a RoomEditModels si es necesario
+                return NotFound();
             }
 
-            return NotFound();
+            return View(room); // Puedes mapear a RoomEditModels si lo necesitas
         }
 
         // POST: RoomController/Edit/5
@@ -98,12 +99,12 @@ namespace SGRH.Web.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var room = await _roomService.GetRoomByIdAsync(id);
-            if (room != null)
+            if (room == null)
             {
-                return View(room);
+                return NotFound();
             }
 
-            return NotFound();
+            return View(room);
         }
 
         // POST: RoomController/Delete/5

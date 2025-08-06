@@ -67,7 +67,7 @@ namespace SGRH.Web.Services
 
         public async Task<List<RoomModels>> GetAllRoomsAsync()
         {
-            var response = await ExecuteApiCallAsync<GetAllRoomResponse>(() => _httpClient.GetAsync("api/Room/GetAllRoom"));
+            var response = await ExecuteApiCallAsync<GetAllRoomCreateResponse>(() => _httpClient.GetAsync("api/Room/GetAllRoom"));
             _logger.LogInformation("Datos de habitaciones obtenidos correctamente.");
             return response?.Data ?? new List<RoomModels>();
         }
@@ -146,6 +146,11 @@ namespace SGRH.Web.Services
             }
             _logger.LogWarning("Fallo al deshabilitar la habitación con ID {Id}.", id);
             return false;
+        }
+
+        public Task<bool> CreateAsync(object model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

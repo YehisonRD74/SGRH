@@ -3,32 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\controllers\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\services\\interface\\iroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\services\\interface\\iroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallfloorcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallfloorcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\models\\room\\createroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\createroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\room\\roommodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roommodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\base\\roombase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\base\\roombase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\response\\getallroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\base\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\base\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\sgrh.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\sgrh.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\room\\roomcreatemodales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roomcreatemodales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\services\\interface\\iroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\services\\interface\\iroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\room\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\room\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\services\\floorservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\services\\floorservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\api\\controller\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|solutionrelative:api\\controller\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,112 +51,140 @@
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\models\\room\\roomeditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roomeditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\services\\floorservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\services\\floorservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\base\\floorbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\base\\floorbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\controllers\\floorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\controllers\\floorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\api\\1api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|solutionrelative:api\\1api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\room\\roommodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roommodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\services\\interface\\ifloorservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\services\\interface\\ifloorservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\models\\room\\roomcreatemodales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roomcreatemodales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\response\\getroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\response\\getroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\response\\getroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\response\\getallroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\response\\getallroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\models\\room\\roomdeletemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roomdeletemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallfloorcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallfloorcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\floor\\floormodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\floor\\floormodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\base\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\base\\baseresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\floor\\createfloor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\floor\\createfloor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\base\\roombase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\base\\roombase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallfloordeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallfloordeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\floor\\floorcreatemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\floor\\floorcreatemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\views\\room\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\room\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\views\\floor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\floor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\room\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\views\\room\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\floor\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\floor\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\floor\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\floor\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\base\\floorbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\base\\floorbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\floor\\flooreditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\floor\\flooreditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\floor\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\floor\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\api\\controller\\floorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|solutionrelative:api\\controller\\floorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EEDF2611-9DC7-4E23-8763-1BA5420A9915}|SGRH.Persistences\\SGRH.Persistences.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.persistences\\context\\sgrhcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EEDF2611-9DC7-4E23-8763-1BA5420A9915}|SGRH.Persistences\\SGRH.Persistences.csproj|solutionrelative:sgrh.persistences\\context\\sgrhcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\sgrh.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\sgrh.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\room\\roomeditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roomeditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getroomcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallroomeditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallroomdeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\room\\roomdeletemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\room\\roomdeletemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\floor\\floorcreatemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\floor\\floorcreatemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\room\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\room\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\room\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\room\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\views\\room\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\room\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|c:\\users\\toshiba\\desktop\\programacion 2\\proyecto\\sgrh.web\\controllers\\getallroomresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\controllers\\getallroomresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getfloordeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getfloordeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\floor\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\floor\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\floor\\floordeletemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\floor\\floordeletemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\models\\floor\\flooreditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\models\\floor\\flooreditmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getfloorcreateresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -153,10 +193,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getflooreditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getflooreditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallfloordeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\response\\getallfloordeleteresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\response\\getallflooreditresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -183,20 +219,8 @@
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\floor\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\floor\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\views\\floor\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\views\\floor\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D33AC271-2485-4FF7-AE23-108E4AF8B248}|SGRH.Web\\SGRH.Web.csproj|solutionrelative:sgrh.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\api\\controller\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|solutionrelative:api\\controller\\roomcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8D428DDD-8CC5-443C-8050-4443E3218452}|SRH.Application\\SGRH.Application.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\srh.application\\services\\roomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -205,10 +229,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8D428DDD-8CC5-443C-8050-4443E3218452}|SRH.Application\\SGRH.Application.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\srh.application\\contracts\\repositories\\services\\iroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8D428DDD-8CC5-443C-8050-4443E3218452}|SRH.Application\\SGRH.Application.csproj|solutionrelative:srh.application\\contracts\\repositories\\services\\iroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\api\\controller\\floorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7874EA20-3F5C-4D59-B66D-9C8BFCF36909}|Api\\1Api.csproj|solutionrelative:api\\controller\\floorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1E130A26-C892-496B-A8D1-A930F5830CA0}|SGRH.IOC\\SGRH.IOC1.csproj|C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\sgrh.ioc\\dependencies\\reservationdependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -246,7 +266,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -270,319 +290,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "CreateRoom.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\CreateRoom.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\CreateRoom.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\CreateRoom.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Room\\CreateRoom.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T04:34:09.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "RoomService.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\RoomService.cs",
               "RelativeDocumentMoniker": "SGRH.Web\\Services\\RoomService.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\RoomService.cs",
-              "RelativeToolTip": "SGRH.Web\\Services\\RoomService.cs",
-              "ViewState": "AQIAAIYAAABgmZmZmZknwJcAAAAAAAAA",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\RoomService.cs*",
+              "RelativeToolTip": "SGRH.Web\\Services\\RoomService.cs*",
+              "ViewState": "AQIAADYAAACANjMzMzMjwFMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-04T21:29:18.898Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IRoomService.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IRoomService.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Services\\Interface\\IRoomService.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IRoomService.cs",
-              "RelativeToolTip": "SGRH.Web\\Services\\Interface\\IRoomService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "DocumentIndex": 4,
+              "Title": "RoomBase.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\RoomBase.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Base\\RoomBase.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\RoomBase.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Base\\RoomBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:28:24.49Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RoomController.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\RoomController.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Controllers\\RoomController.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\RoomController.cs",
-              "RelativeToolTip": "SGRH.Web\\Controllers\\RoomController.cs",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAswHwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T18:04:24.002Z",
+              "WhenOpened": "2025-08-04T19:28:06.781Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "SGRH.Web",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\SGRH.Web.csproj",
-              "RelativeDocumentMoniker": "SGRH.Web\\SGRH.Web.csproj",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\SGRH.Web.csproj",
-              "RelativeToolTip": "SGRH.Web\\SGRH.Web.csproj",
-              "ViewState": "AQIAAAUAAABAMzMzM/MmwAgAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-04T20:58:43.607Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RoomModels.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomModels.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomModels.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomModels.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomModels.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:14:46.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetAllFloorCreateResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:03:32.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\appsettings.json",
-              "RelativeDocumentMoniker": "SGRH.Web\\appsettings.json",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\appsettings.json",
-              "RelativeToolTip": "SGRH.Web\\appsettings.json",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAQwBAAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-04T18:00:38.623Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GetAllRoomCreateResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:13:24.612Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Program.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Program.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Program.cs",
-              "RelativeToolTip": "SGRH.Web\\Program.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAYwBkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T15:45:42.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RoomEditModels.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomEditModels.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomEditModels.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomEditModels.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomEditModels.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:04:48.674Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FloorBase.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\FloorBase.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Base\\FloorBase.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\FloorBase.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Base\\FloorBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T15:38:37.688Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "FloorServices.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\FloorServices.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Services\\FloorServices.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\FloorServices.cs",
-              "RelativeToolTip": "SGRH.Web\\Services\\FloorServices.cs",
-              "ViewState": "AQIAAEkAAAAAmpmZmZktwJ0AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:12:40.471Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "FloorController.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\FloorController.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Controllers\\FloorController.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\FloorController.cs",
-              "RelativeToolTip": "SGRH.Web\\Controllers\\FloorController.cs",
-              "ViewState": "AQIAACUAAADAzszMzMwqwHgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T15:39:26.708Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ErrorViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\ErrorViewModel.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\ErrorViewModel.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\ErrorViewModel.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\ErrorViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:17:46.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "RoomCreateModales.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:06:50.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "GetRoomEditResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomEditResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetRoomEditResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomEditResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetRoomEditResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:15:18.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "IFloorServices.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IFloorServices.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Services\\Interface\\IFloorServices.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IFloorServices.cs",
-              "RelativeToolTip": "SGRH.Web\\Services\\Interface\\IFloorServices.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:59:25.957Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "GetRoomDeleteResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:16:28.173Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "GetRoomCreateResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomCreateResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetRoomCreateResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomCreateResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetRoomCreateResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:14:02.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "GetAllRoomEditResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:14:35.488Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "GetAllRoomDeleteResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:16:05.418Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "RoomDeleteModels.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T21:08:26.276Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "FloorModels.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorModels.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorModels.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorModels.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorModels.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T15:44:04.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "CreateFloor.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\CreateFloor.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\CreateFloor.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\CreateFloor.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\CreateFloor.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:56:43.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
               "Title": "BaseResponse.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\BaseResponse.cs",
               "RelativeDocumentMoniker": "SGRH.Web\\Models\\Base\\BaseResponse.cs",
@@ -595,176 +342,228 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "RoomBase.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\RoomBase.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Base\\RoomBase.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\RoomBase.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Base\\RoomBase.cs",
-              "ViewState": "AQIAAAEAAADAMjMzMzMrwAIAAAAiAAAA",
+              "DocumentIndex": 1,
+              "Title": "IRoomService.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IRoomService.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Services\\Interface\\IRoomService.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IRoomService.cs*",
+              "RelativeToolTip": "SGRH.Web\\Services\\Interface\\IRoomService.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T19:28:06.781Z",
+              "WhenOpened": "2025-08-04T21:28:24.49Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "FloorCreateModels.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "DocumentIndex": 0,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\RoomController.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Controllers\\RoomController.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\RoomController.cs*",
+              "RelativeToolTip": "SGRH.Web\\Controllers\\RoomController.cs*",
+              "ViewState": "AQIAAB8AAACAmZmZmZkvwD0AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:44:59.577Z",
+              "WhenOpened": "2025-08-04T18:04:24.002Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Details.cshtml",
-              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Room\\Details.cshtml",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Details.cshtml",
-              "RelativeToolTip": "SGRH.Web\\Views\\Room\\Details.cshtml",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAQwCQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-04T20:55:34.582Z",
+              "DocumentIndex": 6,
+              "Title": "RoomCreateModales.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomCreateModales.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:06:50.639Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Edit.cshtml",
-              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Room\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Edit.cshtml",
-              "RelativeToolTip": "SGRH.Web\\Views\\Room\\Edit.cshtml",
-              "ViewState": "AQIAACsAAAAAn5mZmZkOwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-04T20:53:51.241Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 7,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Create.cshtml",
               "RelativeDocumentMoniker": "SGRH.Web\\Views\\Room\\Create.cshtml",
               "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Create.cshtml",
               "RelativeToolTip": "SGRH.Web\\Views\\Room\\Create.cshtml",
-              "ViewState": "AQIAAB8AAAAAKjMzMzMbwAAAAAAAAAAA",
+              "ViewState": "AQIAACUAAACAmpmZmdkhwDEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-08-04T20:52:44.004Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Index.cshtml",
-              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Room\\Index.cshtml",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Index.cshtml",
-              "RelativeToolTip": "SGRH.Web\\Views\\Room\\Index.cshtml",
-              "ViewState": "AQIAACAAAAAAmpmZmZkdwCIAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-04T20:10:45.648Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "GetAllRoomResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\GetAllRoomResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Controllers\\GetAllRoomResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\GetAllRoomResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Controllers\\GetAllRoomResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAbAAAA",
+              "DocumentIndex": 8,
+              "Title": "FloorServices.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\FloorServices.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Services\\FloorServices.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\FloorServices.cs",
+              "RelativeToolTip": "SGRH.Web\\Services\\FloorServices.cs",
+              "ViewState": "AQIAACwAAAAAw8zMzMwAwEoAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T20:48:52.951Z",
+              "WhenOpened": "2025-08-04T16:12:40.471Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "GetFloorDeleteResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "DocumentIndex": 9,
+              "Title": "RoomController.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\RoomController.cs",
+              "RelativeDocumentMoniker": "Api\\Controller\\RoomController.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\RoomController.cs",
+              "RelativeToolTip": "Api\\Controller\\RoomController.cs",
+              "ViewState": "AQIAADMAAAAAyczMzMwowFgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:07:57.411Z",
+              "WhenOpened": "2025-08-04T19:07:54.198Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Edit.cshtml",
-              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Floor\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Edit.cshtml",
-              "RelativeToolTip": "SGRH.Web\\Views\\Floor\\Edit.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-04T20:11:43.374Z",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "SGRH.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\appsettings.json",
+              "RelativeToolTip": "SGRH.Web\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-04T18:00:38.623Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "FloorDeleteModels.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAlAAAA",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Program.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Program.cs",
+              "RelativeToolTip": "SGRH.Web\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T19:26:59.812Z",
+              "WhenOpened": "2025-08-04T15:45:42.918Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "FloorEditModels.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
-              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
+              "DocumentIndex": 12,
+              "Title": "FloorController.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\FloorController.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Controllers\\FloorController.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\FloorController.cs",
+              "RelativeToolTip": "SGRH.Web\\Controllers\\FloorController.cs",
+              "ViewState": "AQIAAAAAAAAANDMzMzMrwBEAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T15:39:26.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Program.cs",
+              "RelativeDocumentMoniker": "Api\\Program.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Program.cs",
+              "RelativeToolTip": "Api\\Program.cs",
+              "ViewState": "AQIAABkAAAAA2v////8PwBoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-06T03:37:15.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "1Api",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\1Api.csproj",
+              "RelativeDocumentMoniker": "Api\\1Api.csproj",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\1Api.csproj",
+              "RelativeToolTip": "Api\\1Api.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T18:42:50.532Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-06T03:37:10.525Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "GetFloorCreateResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorCreateResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetFloorCreateResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorCreateResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetFloorCreateResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "DocumentIndex": 16,
+              "Title": "RoomModels.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomModels.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomModels.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomModels.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomModels.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:07:47.903Z",
+              "WhenOpened": "2025-08-04T16:14:46.023Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "GetFloorEditResponse.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorEditResponse.cs",
-              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetFloorEditResponse.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorEditResponse.cs",
-              "RelativeToolTip": "SGRH.Web\\Response\\GetFloorEditResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "DocumentIndex": 15,
+              "Title": "GetAllRoomCreateResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetAllRoomCreateResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:08:23.286Z",
+              "WhenOpened": "2025-08-04T21:13:24.612Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 17,
+              "Title": "IFloorServices.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IFloorServices.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Services\\Interface\\IFloorServices.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Services\\Interface\\IFloorServices.cs",
+              "RelativeToolTip": "SGRH.Web\\Services\\Interface\\IFloorServices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:59:25.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GetAllFloorCreateResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetAllFloorCreateResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAQAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:03:32.366Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FloorModels.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorModels.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorModels.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorModels.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorModels.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T15:44:04.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CreateFloor.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\CreateFloor.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\CreateFloor.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\CreateFloor.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\CreateFloor.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:56:43.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "GetAllFloorDeleteResponse.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllFloorDeleteResponse.cs",
               "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllFloorDeleteResponse.cs",
@@ -777,7 +576,327 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Floor\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Edit.cshtml",
+              "RelativeToolTip": "SGRH.Web\\Views\\Floor\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-04T20:11:43.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "index.cshtml",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\index.cshtml",
+              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Floor\\index.cshtml",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\index.cshtml",
+              "RelativeToolTip": "SGRH.Web\\Views\\Floor\\index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-06T00:43:03.672Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Index.cshtml",
+              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Room\\Index.cshtml",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Index.cshtml",
+              "RelativeToolTip": "SGRH.Web\\Views\\Room\\Index.cshtml",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAqwCsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-04T20:10:45.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "FloorBase.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\FloorBase.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Base\\FloorBase.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Base\\FloorBase.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Base\\FloorBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T15:38:37.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Create.cshtml",
+              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Floor\\Create.cshtml",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Create.cshtml",
+              "RelativeToolTip": "SGRH.Web\\Views\\Floor\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-04T17:04:23.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "FloorEditModels.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorEditModels.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T18:42:50.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Details.cshtml",
+              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Floor\\Details.cshtml",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Details.cshtml",
+              "RelativeToolTip": "SGRH.Web\\Views\\Floor\\Details.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-04T17:53:11.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "FloorController.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\FloorController.cs",
+              "RelativeDocumentMoniker": "Api\\Controller\\FloorController.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\FloorController.cs",
+              "RelativeToolTip": "Api\\Controller\\FloorController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAABwPQwAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T18:12:33.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "SGRHContext.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Persistences\\Context\\SGRHContext.cs",
+              "RelativeDocumentMoniker": "SGRH.Persistences\\Context\\SGRHContext.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Persistences\\Context\\SGRHContext.cs",
+              "RelativeToolTip": "SGRH.Persistences\\Context\\SGRHContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T16:29:17.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\appsettings.json",
+              "RelativeDocumentMoniker": "Api\\appsettings.json",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\appsettings.json",
+              "RelativeToolTip": "Api\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-05T16:30:35.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "SGRH.Web.csproj",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\SGRH.Web.csproj",
+              "RelativeDocumentMoniker": "SGRH.Web\\SGRH.Web.csproj",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\SGRH.Web.csproj",
+              "RelativeToolTip": "SGRH.Web\\SGRH.Web.csproj",
+              "ViewState": "AQIAAAUAAABAMzMzM/MmwAgAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-04T20:58:43.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "RoomEditModels.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomEditModels.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomEditModels.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomEditModels.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomEditModels.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:04:48.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\ErrorViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:17:46.125Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "GetRoomEditResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomEditResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetRoomEditResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomEditResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetRoomEditResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:15:18.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "GetRoomDeleteResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetRoomDeleteResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:16:28.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "GetRoomCreateResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomCreateResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetRoomCreateResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetRoomCreateResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetRoomCreateResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:14:02.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "GetAllRoomEditResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetAllRoomEditResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:14:35.488Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 39,
+              "Title": "GetAllRoomDeleteResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetAllRoomDeleteResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:16:05.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "RoomDeleteModels.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Room\\RoomDeleteModels.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T21:08:26.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "FloorCreateModels.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorCreateModels.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:44:59.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Details.cshtml",
+              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Room\\Details.cshtml",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Details.cshtml",
+              "RelativeToolTip": "SGRH.Web\\Views\\Room\\Details.cshtml",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAQwCQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-04T20:55:34.582Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Room\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Room\\Edit.cshtml",
+              "RelativeToolTip": "SGRH.Web\\Views\\Room\\Edit.cshtml",
+              "ViewState": "AQIAACsAAAAAn5mZmZkOwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-04T20:53:51.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "GetFloorDeleteResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetFloorDeleteResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:07:57.411Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "FloorDeleteModels.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
+              "RelativeToolTip": "SGRH.Web\\Models\\Floor\\FloorDeleteModels.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T19:26:59.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "GetFloorCreateResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorCreateResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetFloorCreateResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorCreateResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetFloorCreateResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:07:47.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "GetFloorEditResponse.cs",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorEditResponse.cs",
+              "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetFloorEditResponse.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetFloorEditResponse.cs",
+              "RelativeToolTip": "SGRH.Web\\Response\\GetFloorEditResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:08:23.286Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
               "Title": "GetAllFloorEditResponse.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Response\\GetAllFloorEditResponse.cs",
               "RelativeDocumentMoniker": "SGRH.Web\\Response\\GetAllFloorEditResponse.cs",
@@ -785,12 +904,11 @@
               "RelativeToolTip": "SGRH.Web\\Response\\GetAllFloorEditResponse.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T16:07:34.216Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-04T16:07:34.216Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 49,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "SGRH.Web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -802,7 +920,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 50,
               "Title": "Error.cshtml",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Shared\\Error.cshtml",
               "RelativeDocumentMoniker": "SGRH.Web\\Views\\Shared\\Error.cshtml",
@@ -814,7 +932,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 51,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SGRH.Web\\Views\\Shared\\_Layout.cshtml",
@@ -826,7 +944,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 52,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "SGRH.Web\\Views\\_ViewStart.cshtml",
@@ -838,7 +956,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 53,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "SGRH.Web\\Views\\_ViewImports.cshtml",
@@ -850,31 +968,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Create.cshtml",
-              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Floor\\Create.cshtml",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Create.cshtml",
-              "RelativeToolTip": "SGRH.Web\\Views\\Floor\\Create.cshtml",
-              "ViewState": "AQIAAA4AAACAZmZmZmYkwC8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-04T17:04:23.934Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Details.cshtml",
-              "RelativeDocumentMoniker": "SGRH.Web\\Views\\Floor\\Details.cshtml",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Views\\Floor\\Details.cshtml",
-              "RelativeToolTip": "SGRH.Web\\Views\\Floor\\Details.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-04T17:53:11.268Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 54,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Web\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "SGRH.Web\\Controllers\\HomeController.cs",
@@ -886,7 +980,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 55,
               "Title": "RoomService.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SRH.Application\\Services\\RoomService.cs",
               "RelativeDocumentMoniker": "SRH.Application\\Services\\RoomService.cs",
@@ -898,7 +992,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 56,
               "Title": "IRoomService.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SRH.Application\\Contracts\\Repositories\\Services\\IRoomService.cs",
               "RelativeDocumentMoniker": "SRH.Application\\Contracts\\Repositories\\Services\\IRoomService.cs",
@@ -910,31 +1004,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "RoomController.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\RoomController.cs",
-              "RelativeDocumentMoniker": "Api\\Controller\\RoomController.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\RoomController.cs",
-              "RelativeToolTip": "Api\\Controller\\RoomController.cs",
-              "ViewState": "AQIAABcAAACAm5mZmZkhwCoAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T19:07:54.198Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "FloorController.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\FloorController.cs",
-              "RelativeDocumentMoniker": "Api\\Controller\\FloorController.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\Api\\Controller\\FloorController.cs",
-              "RelativeToolTip": "Api\\Controller\\FloorController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-04T18:12:33.486Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 57,
               "Title": "ReservationDependencies.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.IOC\\Dependencies\\ReservationDependencies.cs",
               "RelativeDocumentMoniker": "SGRH.IOC\\Dependencies\\ReservationDependencies.cs",
@@ -946,7 +1016,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 58,
               "Title": "ReservationRepository.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Persistences\\Repositories\\ReservationRepository.cs",
               "RelativeDocumentMoniker": "SGRH.Persistences\\Repositories\\ReservationRepository.cs",
@@ -958,7 +1028,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 59,
               "Title": "FloorDependencies.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.IOC\\Dependencies\\FloorDependencies.cs",
               "RelativeDocumentMoniker": "SGRH.IOC\\Dependencies\\FloorDependencies.cs",
@@ -970,7 +1040,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 60,
               "Title": "SGRH.IOC1.csproj",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.IOC\\SGRH.IOC1.csproj",
               "RelativeDocumentMoniker": "SGRH.IOC\\SGRH.IOC1.csproj",
@@ -983,7 +1053,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 61,
               "Title": "FloorService.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SRH.Application\\Services\\FloorService.cs",
               "RelativeDocumentMoniker": "SRH.Application\\Services\\FloorService.cs",
@@ -995,7 +1065,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 62,
               "Title": "SGRH.Application.csproj",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SRH.Application\\SGRH.Application.csproj",
               "RelativeDocumentMoniker": "SRH.Application\\SGRH.Application.csproj",
@@ -1008,7 +1078,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 63,
               "Title": "FloorRepository.cs",
               "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\PROGRAMACION 2\\PROYECTO\\SGRH.Persistences\\Repositories\\FloorRepository.cs",
               "RelativeDocumentMoniker": "SGRH.Persistences\\Repositories\\FloorRepository.cs",

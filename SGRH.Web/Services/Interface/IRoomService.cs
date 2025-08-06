@@ -11,5 +11,6 @@ namespace SGRH.Web.Services.Interface
         Task<bool> CreateRoomAsync(RoomModels room);
         Task<bool> UpdateRoomAsync(int id, RoomEditModels room);
         Task<bool> DisableRoomAsync(int id);
+        Task<bool> CreateAsync(object model);
     }
 }

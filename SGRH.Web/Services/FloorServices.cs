@@ -72,7 +72,7 @@ namespace SGRH.Web.Services
             var response = await ExecuteApiCallAsync<GetAllFloorCreateResponse>(() => _httpClient.GetAsync("api/Floor/GetAllFloor"));
 
             _logger.LogInformation("Datos de pisos obtenidos correctamente.");
-            return response?.data ?? new List<FloorModels>();
+            return response?.Data ?? new List<FloorModels>();
         }
 
         // Método GetByIdAsync refactorizado

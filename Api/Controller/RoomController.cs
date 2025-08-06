@@ -16,10 +16,12 @@ namespace Api.Controller
         private readonly IRoomService _roomService;
 
 
-        public RoomController(IRoomService roomService)
+        public RoomController(IRoomService roomService, SGRHContext context)
         {
             _roomService = roomService;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+
 
 
         [HttpGet("GetAllRoom")]
@@ -82,7 +84,7 @@ namespace Api.Controller
             await _context.SaveChangesAsync();
 
 
-            return CreatedAtAction(nameof(GetActiveRoomByIdDto), new { id = room.Id }, room);
+            return CreatedAtAction(nameof(GetRoomById), new { id = room.Id }, room);
         }
 
         [HttpPost("UpdateRoom/{id}")]
